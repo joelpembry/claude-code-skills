@@ -9,14 +9,14 @@ and codified as canonical specifications under
 
 ```powershell
 # Windows
-git clone https://github.com/OptimoVentures/claude-code-skills.git
+git clone https://github.com/joelpembry/claude-code-skills.git
 cd claude-code-skills
 .\install.ps1
 ```
 
 ```bash
 # macOS / Linux
-git clone https://github.com/OptimoVentures/claude-code-skills.git
+git clone https://github.com/joelpembry/claude-code-skills.git
 cd claude-code-skills
 ./install.sh
 ```
