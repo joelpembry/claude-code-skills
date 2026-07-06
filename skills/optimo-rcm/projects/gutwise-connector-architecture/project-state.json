@@ -1,0 +1,198 @@
+{
+  "$schema": "../../references/project-state-schema.json",
+  "projectState": {
+    "metadata": {
+      "projectId": "GUT-ARCH-004-rcm",
+      "projectName": "GutWise™ Canonical Integration & Connector Architecture — RCM Assessment",
+      "created": "2026-06-27T15:46:00Z",
+      "updated": "2026-06-27T16:30:00Z",
+      "version": 1,
+      "branch": "main",
+      "parentBranch": null,
+      "status": "assessed",
+      "cortexRef": "02.10 — Recursive Multi-Perspective Reasoning Pattern",
+      "initiatedBy": "RCM /optimo-rcm command — review of Collin King's GUT-ARCH-004 Slack ideation"
+    },
+    "objectives": [
+      {
+        "statement": "Define canonical integration architecture ensuring GutWise remains vendor-independent with best-in-class integrations",
+        "source": "GUT-ARCH-004 §Purpose",
+        "rcmAssessment": "Achieved in principle but underspecified in practice. The three design principles are philosophically sound. However, the connector abstraction lacks canonical data models — without them, true vendor independence is aspirational rather than architectural."
+      },
+      {
+        "statement": "Ensure no external vendor owns GutWise clinical logic",
+        "source": "GUT-ARCH-004 §Principle 1",
+        "rcmAssessment": "STRONG — Evaluator score 4.25/5.0. This is the most defensible element of the architecture. Add formal architectural enforcement (no-clinical-sprawl gate) rather than relying on principle alone."
+      },
+      {
+        "statement": "Provider-as-gatekeeper: AI generates, provider reviews/edits/approves, connectors execute",
+        "source": "GUT-ARCH-004 §Provider Approval",
+        "rcmAssessment": "Sound safety architecture (3.55/5.0) but critically dependent on provider vigilance. Automation bias risk is real. Need audit proving meaningful review, not rubber-stamping."
+      },
+      {
+        "statement": "Expose GutWise clinical intelligence via MCP layer for external AI agents",
+        "source": "GUT-ARCH-004 §MCP Architecture",
+        "rcmAssessment": "Highest-risk architectural decision (2.60/5.0). MCP protocol immaturity + external AI agent access to clinical PHI = significant security surface area. Should be decoupled: clinical service API with MCP as one frontend, not the only frontend."
+      }
+    ],
+    "concepts": [
+      { "name": "Cross-Protocol Healing Orchestrator", "novelty": "high", "source": "extension" },
+      { "name": "Bidirectional Wearable Closed-Loop", "novelty": "high", "source": "analogy" },
+      { "name": "Federated Clinical Learning Network", "novelty": "high", "source": "cross-domain" },
+      { "name": "Connector Certification Marketplace", "novelty": "high", "source": "analogy" },
+      { "name": "Digital Twin Connector for Protocol Simulation", "novelty": "high", "source": "cross-domain" },
+      { "name": "Gut-Brain Axis Connector", "novelty": "high", "source": "extension" },
+      { "name": "Clinical Reasoning Audit Chain as Regulatory Connector", "novelty": "high", "source": "analogy" },
+      { "name": "Protocol A/B Testing Framework", "novelty": "high", "source": "analogy" },
+      { "name": "Grocery-to-Meal-Prep Pipeline", "novelty": "medium", "source": "extension" },
+      { "name": "GutWise as White-Label Clinical AI Engine", "novelty": "high", "source": "original" }
+    ],
+    "research": [
+      { "question": "What is the regulatory boundary where bidirectional closed-loop control (wearable biofeedback) crosses from CDSS into active medical device territory?", "priority": "high" },
+      { "question": "What are the connector failure modes in healthcare integration (stale OAuth tokens, lab backlog timeouts, formulary changes mid-protocol) and what reliability guarantees are needed?", "priority": "high" },
+      { "question": "What is the MCP threat model for prompt injection originating from connector webhook payloads propagating through MCP layer to AI clinical reasoning?", "priority": "high" },
+      { "question": "Can the connector certification suite be codified into an open standard analogous to FHIR but for operational integration?", "priority": "medium" }
+    ],
+    "evidence": [
+      { "finding": "GutWise MVP is live at gutwise-journey.lovable.app with hardening 13/14 complete", "confidence": 0.95, "source": "Confluence gutwise-hardening-plan" },
+      { "finding": "No connector implementations exist in the current codebase — this architecture defines what needs to be built", "confidence": 0.90, "source": "Executor codebase review" },
+      { "finding": "Fullscript provides OAuth 2.0 + REST + Webhooks + JavaScript SDK for supplement fulfillment", "confidence": 0.85, "source": "GUT-ARCH-004 + Fullscript public docs" },
+      { "finding": "MCP protocol is at v1.0 (2025) with TypeScript SDK available but limited healthcare deployment precedents", "confidence": 0.80, "source": "Model Context Protocol specification" },
+      { "finding": "FDA CDSS enforcement discretion applies only when provider independently reviews the basis of recommendations", "confidence": 0.80, "source": "FDA Guidance on Clinical Decision Support Software (2022)" }
+    ],
+    "assumptions": [
+      { "assumption": "Provider review gate is sufficient safeguard against AI clinical errors", "ifFalse": "Automation bias + provider fatigue = illusory gate; unsafe recommendations reach patients", "validation": "Clinical simulation study with injected unsafe recommendations; target >99% rejection rate" },
+      { "assumption": "Vendor APIs remain available and backward-compatible", "ifFalse": "Breaking API change during active treatment cycle causes data corruption or failed fulfillment", "validation": "Contract testing in CI/CD; synthetic monitoring every 15 minutes" },
+      { "assumption": "MCP protocol security is sufficient for clinical PHI access", "ifFalse": "External AI agents can exfiltrate patient data through MCP tool calls; no fine-grained access control", "validation": "Third-party penetration test targeting MCP endpoints before any external agent connection" },
+      { "assumption": "De-identified clinical data meets HIPAA Safe Harbor or expert determination standards", "ifFalse": "Model inversion attacks re-identify patients from model outputs — HIPAA breach for all training data patients", "validation": "Engage qualified statistician for HIPAA expert determination; adversarial re-identification testing" }
+    ],
+    "decisions": [
+      {
+        "decision": "Prioritize canonical data model definition before connector implementation",
+        "rationale": "Evaluator identifies the connector abstraction as operationally defined but semantically absent. Building connectors without canonical data models guarantees vendor lock-in through data model coupling. Cost: 4-8 week delay. Benefit: abstraction proven against hardest integration (labs) before investment.",
+        "confidence": 0.90,
+        "tradeoffs": "Delays Fullscript connector delivery by 4-8 weeks; prevents building on a leaky abstraction that would require costly refactoring later."
+      },
+      {
+        "decision": "Decouple MCP from being the sole AI integration surface",
+        "rationale": "MCP protocol immaturity + single-point-of-failure + external AI agent PHI access = highest-risk architectural element (Evaluator 2.60, Threat R1 P×I=1.50). Clinical service API with MCP as one of multiple frontends is more robust.",
+        "confidence": 0.85,
+        "tradeoffs": "Adds architectural complexity (API gateway + MCP adapter vs direct MCP); buys protocol independence and security surface reduction."
+      },
+      {
+        "decision": "Adopt hybrid vendor strategy: deep partnerships with 2-3 anchor vendors + generic connector abstraction for the rest",
+        "rationale": "Social perspective identifies that pure 'swappable connector' philosophy alienates vendors whose cooperation depth is essential. Fullscript and PatientNow need partnership depth; future grocery/pharmacy connectors benefit from generic abstraction.",
+        "confidence": 0.80,
+        "tradeoffs": "Compromises pure architectural orthodoxy for practical adoption reality. Anchor vendors get deeper integration that may create some coupling."
+      },
+      {
+        "decision": "Execute 6-phase implementation over 18-26 weeks",
+        "rationale": "Executor plan is dependency-aware and each phase delivers standalone value. Phase 1 (Connector Framework) + Phase 2 (Fullscript) deliver the highest-value integration fastest.",
+        "confidence": 0.75,
+        "tradeoffs": "18-26 weeks is a significant build commitment. Could be accelerated by reducing Phase 4 (PatientNow) scope to unidirectional sync only."
+      }
+    ],
+    "deliverables": [
+      { "name": "Connector Framework & Schema Foundation", "phase": 1, "timeline": "3 weeks (likely)" },
+      { "name": "Fullscript Supplement Connector", "phase": 2, "timeline": "3 weeks (likely)" },
+      { "name": "GutWise MCP Server", "phase": 3, "timeline": "3 weeks (likely)" },
+      { "name": "PatientNow EMR Connector", "phase": 4, "timeline": "4 weeks (likely)" },
+      { "name": "Diagnostic Lab Connector Framework", "phase": 5, "timeline": "4 weeks (likely)" },
+      { "name": "Monitoring, Observability & Hardening", "phase": 6, "timeline": "3 weeks (likely)" }
+    ],
+    "dependencies": [
+      { "name": "Supabase Vault / pgcrypto", "blocks": "Phase 1 encrypted token storage", "status": "requires Pro plan upgrade" },
+      { "name": "Fullscript Partner API access", "blocks": "Phase 2", "status": "sandbox available immediately; production requires approval" },
+      { "name": "PatientNow API credentials", "blocks": "Phase 4", "status": "requires contractual agreement; begin procurement during Phase 1" },
+      { "name": "MCP TypeScript SDK (@modelcontextprotocol/sdk)", "blocks": "Phase 3", "status": "publicly available npm package" },
+      { "name": "Canonical data models (pre-requisite)", "blocks": "All connector phases", "status": "NOT YET DEFINED — critical gap" }
+    ],
+    "risks": [
+      { "id": "R1", "category": "compliance", "description": "Missing HIPAA BAAs with connector sub-processors", "pXI": 1.75, "severity": "critical" },
+      { "id": "R2", "category": "compliance", "description": "Inadequate audit logging — HIPAA requires 6+ year retention of all ePHI access records", "pXI": 1.60, "severity": "critical" },
+      { "id": "R3", "category": "security", "description": "MCP server exposes clinical PHI to external AI agents without per-scope access controls", "pXI": 1.50, "severity": "critical" },
+      { "id": "R4", "category": "technical", "description": "Connector outage cascades cause silent clinical data loss or incorrect treatment", "pXI": 1.40, "severity": "high" },
+      { "id": "R5", "category": "compliance", "description": "FDA CDSS device classification — if AI recommendations constitute 'device' functions requiring 510(k)", "pXI": 1.25, "severity": "high" },
+      { "id": "R6", "category": "technical", "description": "Provider approval gate bypass via race condition or state desynchronization", "pXI": 0.75, "severity": "high" },
+      { "id": "R7", "category": "technical", "description": "API contract breaking changes from Fullscript/PatientNow causing connector failures", "pXI": 1.20, "severity": "high" },
+      { "id": "R8", "category": "market", "description": "Vendor lock-in through connector decay — vendors restrict API access after GutWise investment", "pXI": 0.80, "severity": "medium" }
+    ],
+    "constraints": [
+      { "type": "hard", "description": "HIPAA Security Rule: all ePHI access must be logged, audit records retained 6+ years", "source": "compliance" },
+      { "type": "hard", "description": "FDA CDSS: AI must never be the final decision-maker; provider approval gate must be non-bypassable", "source": "compliance" },
+      { "type": "hard", "description": "CLIA: Lab results must be provider-reviewed before patient portal release", "source": "compliance" },
+      { "type": "hard", "description": "HIPAA minimum necessary: each connector must limit PHI transmission to minimum required", "source": "compliance" },
+      { "type": "hard", "description": "MCP external agents must have scoped, revocable access — no blanket PHI access", "source": "compliance" },
+      { "type": "soft", "description": "Provider adoption requires explainable AI — black-box recommendations erode trust", "source": "other" },
+      { "type": "soft", "description": "State telemedicine laws vary; GutWise must apply jurisdictional rules per patient-provider interaction", "source": "compliance" }
+    ],
+    "successCriteria": [
+      { "metric": "Provider override rate", "threshold": "15-25%", "rationale": "Below 10% = rubber-stamping (regulatory risk). Above 40% = AI quality insufficient." },
+      { "metric": "Time saved per new patient workup", "threshold": "40%+ reduction", "rationale": "Core value prop for practitioners — must save meaningful time" },
+      { "metric": "Practitioner NPS at 6 months", "threshold": "NPS > 40", "rationale": "Relationship-driven market; word-of-mouth is primary growth channel" },
+      { "metric": "Patient adherence improvement", "threshold": "30%+ supplement fulfillment, 20%+ dietary compliance", "rationale": "Clinical outcome proxy — platform delivers on healing promise" },
+      { "metric": "Live connector count at GA", "threshold": "3 minimum (Fullscript + EMR + 1 lab)", "rationale": "Validates connector abstraction; one connector = fancy API wrapper, not an architecture" },
+      { "metric": "Regulatory audit completion", "threshold": "HIPAA assessment + FDA CDSS opinion completed before GA", "rationale": "No practice or health system will adopt without documented compliance" }
+    ],
+    "feedback": [
+      {
+        "stakeholder": "Functional Medicine Practitioners",
+        "response": "support",
+        "condition": "Must demonstrate time savings and maintain clinical autonomy"
+      },
+      {
+        "stakeholder": "Regulators (HIPAA, FDA, State Medical Boards)",
+        "response": "resist",
+        "condition": "Published validation studies, transparent AI scoring, documented enforcement discretion analysis"
+      },
+      {
+        "stakeholder": "Fullscript",
+        "response": "neutral",
+        "condition": "Incremental order volume; preferred integration depth in exchange for partnership"
+      },
+      {
+        "stakeholder": "PatientNow",
+        "response": "resist",
+        "condition": "Must retain primacy as legal medical record; co-marketing opportunity"
+      },
+      {
+        "stakeholder": "Health System IT/Security",
+        "response": "resist",
+        "condition": "SOC 2 Type II minimum; HITRUST preferred; documented data flow diagrams; penetration test results"
+      }
+    ],
+    "specifications": [
+      {
+        "name": "Connector boundary contract (pre-build prerequisite)",
+        "description": "Formal, versioned, testable specification that connector developers implement against without accessing clinical engine source. Must include: REST/AsyncAPI specs, failure mode contracts (connector down for 30 min? 24 hours?), latency budgets, data freshness SLAs, conflict resolution semantics."
+      },
+      {
+        "name": "Canonical data models per connector type (pre-build prerequisite)",
+        "description": "Semantic models for supplement fulfillment, EHR/EMR, and diagnostic labs using existing standards (LOINC, SNOMED, FHIR, NDC). Without these, the connector abstraction is operational-only and will leak vendor semantics."
+      },
+      {
+        "name": "MCP authorization scoping",
+        "description": "Per-agent, per-tool, per-clinic access control. Clinical reasoning agent: read-only connector data. Operational agent: write to Fullscript but not clinical engine. Provider agent: approve but not modify lab results. Enforce at Clinical Service Layer, not just MCP transport."
+      },
+      {
+        "name": "Immutable approval snapshot with cryptographic hash",
+        "description": "When provider clicks Approve, capture hash of entire treatment plan. Connector layer verifies hash before external sync. Prevents race condition bypass of approval gate."
+      }
+    ],
+    "perspectiveRuns": {
+      "explorer": { "lastRun": "2026-06-27T15:46:00Z", "runCount": 1 },
+      "evaluator": { "lastRun": "2026-06-27T15:46:00Z", "runCount": 1 },
+      "executor": { "lastRun": "2026-06-27T15:46:00Z", "runCount": 1 },
+      "threat": { "lastRun": "2026-06-27T15:46:00Z", "runCount": 1 },
+      "social": { "lastRun": "2026-06-27T15:46:00Z", "runCount": 1 }
+    },
+    "branchHistory": [],
+    "approvedBy": {
+      "explorer": false,
+      "evaluator": false,
+      "executor": false,
+      "threat": false,
+      "social": false
+    }
+  }
+}

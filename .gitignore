@@ -1,0 +1,17 @@
+# Claude Code local overrides
+.claude/
+*.local.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Temp
+*.tmp
+*.bak

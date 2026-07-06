@@ -1,0 +1,14 @@
+{
+  "venture": "OptimoEvidence™",
+  "ventureSlug": "optimoevidence",
+  "hubPageId": "138608666",
+  "confluencePages": { "hub": "138608666", "mvpPlan": "from memory" },
+  "buildState": { "phase": "Phase 1 Build In Progress", "currentSprint": "MVP — 12 screens built, mutation wiring outstanding", "lovableProjectId": "opti-trace-vault", "vercelDeployment": "preview--opti-trace-vault.lovable.app", "currentStep": "Phase 2 GRC export adapters pending. Evidence template library moat. Auditor portal Phase 4." },
+  "jira": { "epic": null, "activeTickets": [] },
+  "decisions": [
+    { "date": "2026-06-01", "decision": "4-phase MVP plan v11 approved", "by": "Stakeholders" },
+    { "date": "2026-06-01", "decision": "Phase 1 prototype live — 12 screens, mutation wiring outstanding", "by": "Build Team" }
+  ],
+  "conventions": ["GRC/SOX/SOC 2 evidence integrity focus", "Auditor portal deferred to Phase 4"],
+  "contacts": { "ventureLead": "Joel Embry" }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "../references/project-state-schema.json",
+  "projectState": {
+    "metadata": {
+      "projectId": "",
+      "projectName": "",
+      "created": "",
+      "updated": "",
+      "version": 1,
+      "branch": "main",
+      "parentBranch": null,
+      "status": "draft",
+      "cortexRef": "02.10 — Recursive Multi-Perspective Reasoning Pattern",
+      "initiatedBy": ""
+    },
+    "objectives": [],
+    "concepts": [],
+    "research": [],
+    "evidence": [],
+    "assumptions": [],
+    "decisions": [],
+    "deliverables": [],
+    "dependencies": [],
+    "risks": [],
+    "constraints": [],
+    "successCriteria": [],
+    "feedback": [],
+    "specifications": [],
+    "perspectiveRuns": {
+      "explorer": { "lastRun": null, "runCount": 0 },
+      "evaluator": { "lastRun": null, "runCount": 0 },
+      "executor": { "lastRun": null, "runCount": 0 },
+      "threat": { "lastRun": null, "runCount": 0 },
+      "social": { "lastRun": null, "runCount": 0 }
+    },
+    "branchHistory": [],
+    "approvedBy": {
+      "explorer": false,
+      "evaluator": false,
+      "executor": false,
+      "threat": false,
+      "social": false
+    }
+  }
+}

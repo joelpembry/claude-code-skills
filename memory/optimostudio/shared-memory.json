@@ -1,0 +1,12 @@
+{
+  "venture": "OptimoStudio™",
+  "ventureSlug": "optimostudio",
+  "hubPageId": "from memory",
+  "buildState": { "phase": "Phase 3 active", "currentSprint": "STUD-9→Done, STUD-10→14 In Progress", "lovableProjectId": "c0a9b8ac", "latestCommit": "77c39c1", "currentStep": "All 5 panels built. Multi-provider LLM (Anthropic + DeepSeek). Resume: server-side DEEPSEEK_API_KEY, Atlassian tokens, Vercel deploy, UAT." },
+  "jira": { "epic": "STUD", "activeTickets": ["STUD-10", "STUD-11", "STUD-12", "STUD-13", "STUD-14"] },
+  "decisions": [
+    { "date": "2026-06-29", "decision": "Multi-provider LLM — Anthropic + DeepSeek. API key override in terminal. PowerShell profile auto-loads DeepSeek.", "by": "Build Team" }
+  ],
+  "conventions": ["Consumes 02.10 (Evaluator + Executor perspectives)", "All 5 panels built"],
+  "contacts": { "ventureLead": "Joel Embry" }
+}

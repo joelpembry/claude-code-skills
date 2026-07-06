@@ -1,0 +1,59 @@
+{
+  "venture": "RCM Platform",
+  "ventureSlug": "rcm-platform",
+  "hubPageId": "TBD — pending venture hub scaffold",
+  "confluencePages": {
+    "triage": "213581867",
+    "rcmSession": "213811204",
+    "competitiveAnalysis": "214269954",
+    "canon02_11": "214401026"
+  },
+  "triage": {
+    "verdict": "CONDITIONAL-GO",
+    "score": 66,
+    "disposition": "H (A+C)",
+    "conditions": [
+      { "id": "C1", "jira": "KAN-654", "description": "MVP Scope Reduction — 2 workspaces", "status": "pending" },
+      { "id": "C2", "jira": "KAN-655", "description": "Technical Architecture Spec", "status": "pending" },
+      { "id": "C3", "jira": "KAN-656", "description": "Lovable Prototype", "status": "pending" },
+      { "id": "C4", "jira": "KAN-657", "description": "02.11 Canon page filed", "status": "done" },
+      { "id": "C5", "jira": "KAN-658", "description": "Engineering Resource Plan", "status": "pending" },
+      { "id": "C6", "jira": "KAN-659", "description": "Customer Discovery", "status": "pending" }
+    ]
+  },
+  "jira": {
+    "epic": "KAN-653",
+    "project": "KAN"
+  },
+  "buildState": {
+    "phase": "Pre-Build — Condition Clearance",
+    "lovableProjectId": null,
+    "vercelDeployment": null,
+    "currentStep": "Awaiting 5 of 6 condition clearance. C4 (02.11 canon) is done."
+  },
+  "decisions": [
+    { "date": "2026-07-05", "decision": "Disposition: Hybrid A+C — canonize methodology (02.11) then stand up venture hub", "by": "Triage" },
+    { "date": "2026-07-06", "decision": "02.11 filed as 02.11 not 02.07 (occupied by AETHERIS)", "by": "Joel" },
+    { "date": "2026-07-06", "decision": "Competitive window: 12-18 months before incumbent absorption. Publish developmental memory standard within 4 weeks.", "by": "Competitive Analysis" }
+  ],
+  "conventions": [
+    "Phase 1 is solo-buildable on Lovable ($15K-25K, 6-8 weeks)",
+    "Phases 2-3 require 3-5 engineers ($250K-500K total)",
+    "Canon (A) must land before venture hub (C) is scaffolded",
+    "Developmental Memory is the defensible moat — build into MVP",
+    "Resolve 'environment vs. plugin' question before Phase 1 code",
+    "AI inference costs at scale require usage-based pricing from day 1"
+  ],
+  "risks": {
+    "top3": [
+      { "id": "R6", "risk": "Empty room — users don't need another workspace", "pXI": 3.50 },
+      { "id": "R1", "risk": "Exposes 02.10 proprietary pattern via public SaaS", "pXI": 3.25 },
+      { "id": "R7", "risk": "Feature absorption by incumbents", "pXI": 3.00 }
+    ]
+  },
+  "contacts": {
+    "ideationAuthor": "Sam Embry-Busch",
+    "triageAnalyst": "optimo-venture-triage (Claude Code AI Operator)",
+    "slackChannel": "#ideation-triage"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "venture": "GutWise Journey™",
+  "ventureSlug": "gutwise-journey",
+  "hubPageId": "131366914",
+  "confluencePages": { "hub": "131366914", "hardeningPlan": "181534722", "infra": "181764097" },
+  "buildState": { "phase": "Production Hardening — MVP COMPLETE as of 2026-06-12", "currentSprint": "UAT (kicked off 2026-06-20)", "lovableProjectId": "gutwise-journey", "vercelDeployment": "gutwise-journey.lovable.app", "currentStep": "13/14 hardening steps complete. 7 production blockers resolved. PDF lab extraction added 2026-07-01." },
+  "jira": { "epic": "GUT", "activeTickets": ["GUT-50", "GUT-51", "GUT-52", "GUT-53", "GUT-54", "GUT-55", "GUT-56"] },
+  "decisions": [
+    { "date": "2026-06-12", "decision": "MVP complete — Track A + Track B + Bristol Stool Chart done", "by": "Build Team" },
+    { "date": "2026-07-01", "decision": "PDF lab report processing via GPT-4o type:file content part. No frontend/DB changes needed.", "by": "Joel" },
+    { "date": "2026-06-20", "decision": "GitHub → Vercel auto-deploy, Supabase backend, Lovable DISCONNECTED from deploy pipeline", "by": "Infrastructure" }
+  ],
+  "conventions": ["Clinical review gate GO by Collin King / Joel Embry / Keri King", "UAT accounts: kking, cking, jembry via seed-uat-users"],
+  "contacts": { "ventureLead": "Collin King", "clinicalLead": "Keri King", "technicalLead": "Joel Embry" }
+}

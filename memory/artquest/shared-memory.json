@@ -1,0 +1,12 @@
+{
+  "venture": "ArtQuest",
+  "ventureSlug": "artquest",
+  "hubPageId": "16154662",
+  "buildState": { "phase": "Phase D active", "currentSprint": "Phase C FROZEN. Phase D in progress.", "lovableProjectId": "artquest-build", "currentStep": "AI Creative Toolset active on Lovable AI (sanctioned interim pending OptimoCortex cutover). 2D→3D earned upgrade mechanic." },
+  "jira": { "epic": null, "activeTickets": [] },
+  "decisions": [
+    { "date": "2026-06-15", "decision": "AI Creative Toolset on Lovable AI as sanctioned interim pending OptimoCortex cutover", "by": "Build Team" }
+  ],
+  "conventions": ["Creative adventure game for ages 7–12", "2D→3D earned upgrade mechanic", "Phase C FROZEN"],
+  "contacts": { "ventureLead": "Joel Embry" }
+}

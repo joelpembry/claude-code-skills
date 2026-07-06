@@ -1,0 +1,14 @@
+{
+  "venture": "OptimoSelect™",
+  "ventureSlug": "optimoselect",
+  "hubPageId": "137920553",
+  "confluencePages": { "hub": "137920553" },
+  "buildState": { "phase": "Phase 1A/1B code complete, Phase 2 partial", "currentSprint": "IFS Hero Partner deployment", "lovableProjectId": "opti-gen-opus", "supabaseRef": "axgrcitqikiadmmihgzj (14 tables)", "currentStep": "90+ source files in GitHub. IFS-branded UI. Confluence hub STALE. All 6 invariants enforced in code." },
+  "jira": { "epic": null, "activeTickets": [] },
+  "decisions": [
+    { "date": "2026-06-01", "decision": "Hero Partner: Industrial Flow Solutions (May River Capital). MNDA v05272026.", "by": "Collin King" },
+    { "date": "2026-06-01", "decision": "Phase 1 ~$50K. Annual $50-150K. OptimoMDM Sidecar proposal in plan.md.", "by": "Deal Team" }
+  ],
+  "conventions": ["Collin King lead", "Lance Wadley (IFS)", "IFS-branded UI", "All 6 invariants enforced in code"],
+  "contacts": { "ventureLead": "Collin King", "partner": "Lance Wadley (IFS)" }
+}

@@ -1,0 +1,93 @@
+{
+  "projectState": {
+    "metadata": {
+      "projectId": "rcm-20260624-ai-compliance",
+      "projectName": "AI Compliance Automation Market Entry",
+      "created": "2026-06-24T00:00:00Z",
+      "updated": "2026-06-24T00:00:00Z",
+      "version": 1,
+      "branch": "main",
+      "parentBranch": null,
+      "status": "draft",
+      "cortexRef": "02.10 — Recursive Multi-Perspective Reasoning Pattern",
+      "initiatedBy": "Joel Embry via /rcm"
+    },
+    "objectives": [
+      { "id": "O1", "description": "Determine whether Optimo Ventures should enter AI compliance automation market", "type": "primary", "source": "user" },
+      { "id": "O2", "description": "Extend OptimoEvidence's evidence pre-processing engine into AI-native GRC for underserved SME/mid-market", "type": "primary", "source": "explorer", "priority": "must-have" },
+      { "id": "O3", "description": "Target healthcare AI compliance (GutWise domain) and AI agent governance (first-mover) as vertical-first beachheads", "type": "secondary", "source": "explorer" },
+      { "id": "O4", "description": "Build unified compliance data layer (RegGraph) consumable by all portfolio companies", "type": "secondary", "source": "explorer" },
+      { "id": "O5", "description": "Validate with 3+ enterprise design partners before Phase 2 build commitment", "type": "constraint", "source": "evaluator", "priority": "must-have" }
+    ],
+    "concepts": [],
+    "research": [],
+    "evidence": [
+      { "id": "E1", "claim": "AI compliance automation market: $5.96B (2026), 28.7% CAGR to $16.25B (2030)", "source": "The Business Research Company, Feb 2026", "confidence": 0.85, "type": "primary" },
+      { "id": "E2", "claim": "Vanta valued at $4B, 1,500 employees, 400+ integrations, 35+ frameworks", "source": "YipitData B2B Signals, Feb 2026", "confidence": 0.80, "type": "secondary" },
+      { "id": "E3", "claim": "Drata: 387% enterprise spend growth since Jan 2024", "source": "YipitData B2B Signals, Feb 2026", "confidence": 0.80, "type": "secondary" },
+      { "id": "E4", "claim": "Direct moves between Vanta and Drata are exceptionally rare — compliance platforms are sticky", "source": "YipitData B2B Signals, Feb 2026", "confidence": 0.75, "type": "secondary" },
+      { "id": "E5", "claim": "EU AI Act high-risk obligations take effect August 2026; SME compliance cost estimated at €300K-400K upfront", "source": "EU AI Act published text; EU Commission impact assessment", "confidence": 0.85, "type": "primary" },
+      { "id": "E6", "claim": "Haast raised $17M at 4.5x revenue growth with zero churn in marketing compliance niche", "source": "Startup Daily / MarTech Series", "confidence": 0.80, "type": "secondary" },
+      { "id": "E7", "claim": "FLORA raised $42M Series A for AI creative workflows; Poetic at $500M valuation", "source": "BusinessWire / Fortune", "confidence": 0.85, "type": "secondary" },
+      { "id": "E8", "claim": "Vanta and Drata integration moats take 3-5 years and $50-100M+ to replicate", "source": "Analyst estimate based on integration count and funding history", "confidence": 0.70, "type": "analyst-estimate" },
+      { "id": "E9", "claim": "OptimoEvidence Phase 1 has 12 screens, 22-entity data model, packet state machine — mutation wiring outstanding", "source": "OptimoEvidence MVP Build Plan v11 (Confluence)", "confidence": 0.90, "type": "primary" }
+    ],
+    "assumptions": [],
+    "decisions": [
+      {
+        "id": "D1",
+        "decision": "DO NOT launch standalone AI compliance automation venture",
+        "rationale": "Competitive defensibility score of 1/5 — Vanta ($4B) and Drata (387% enterprise growth) have near-impenetrable moats. Direct competition requires 3-5 years and $50-100M+. CONDITIONAL-GO only as OptimoEvidence extension.",
+        "alternatives": ["Standalone venture (rejected)", "Acquisition of small compliance startup (deferred)", "Partnership with GRC incumbent (complementary)"],
+        "source": "evaluator",
+        "date": "2026-06-24T00:00:00Z",
+        "reversible": true
+      },
+      {
+        "id": "D2",
+        "decision": "EXTEND OptimoEvidence as 'evidence integrity pre-processor' — NOT 'AI compliance automation'",
+        "rationale": "Pre-processor wedge avoids direct competition, creates new category, and complements existing GRC platforms rather than competing. The distinction is existential for positioning, regulatory risk, and auditor acceptance.",
+        "alternatives": ["Full AI compliance automation platform (rejected — competitive suicide)", "Stay in current evidence-prep lane only (rejected — leaves growth on table)"],
+        "source": "evaluator + social",
+        "date": "2026-06-24T00:00:00Z",
+        "reversible": false
+      }
+    ],
+    "deliverables": [],
+    "dependencies": [
+      { "id": "DEP1", "name": "Phase 1 DoD closure (mutation wiring)", "blocks": ["All Phase 1+ deliverables"], "resolution": "Susan Embry validations + Lovable build sprint", "source": "executor", "status": "unresolved" },
+      { "id": "DEP2", "name": "Cortex 02.10 prompt template for evidence completeness", "blocks": ["AI Completeness Analysis Layer"], "resolution": "Joel Embry: define prompt + cost model", "source": "executor", "status": "unresolved" },
+      { "id": "DEP3", "name": "Design partner commitments (3+ signed pilots)", "blocks": ["Phase 2 build authorization"], "resolution": "Susan Embry network outreach", "source": "social + evaluator", "status": "unresolved" },
+      { "id": "DEP4", "name": "Optimo Ventures SOC 2 Type I", "blocks": ["First enterprise sale"], "resolution": "Dog-food OptimoEvidence for own compliance; 6-12 month timeline", "source": "threat", "status": "unresolved" }
+    ],
+    "risks": [
+      { "id": "R1", "category": "market", "description": "Vanta/Drata/AuditBoard build evidence quality features, eliminating channel partner thesis", "probability": 0.7, "impact": 5, "pXI": 3.5, "mitigation": "Move fast; establish auditor portal as defensible position before incumbents recognize gap", "residualRisk": "critical", "source": "threat" },
+      { "id": "R2", "category": "market", "description": "Enterprise procurement catch-22: cannot sell compliance software without SOC 2; need customers to justify SOC 2 investment", "probability": 0.9, "impact": 4, "pXI": 3.6, "mitigation": "Complete own SOC 2 Type I; target mid-market where requirement is softer", "residualRisk": "high", "source": "threat" },
+      { "id": "R3", "category": "compliance", "description": "AI produces incorrect evidence assessment → customer audit failure → lawsuit", "probability": 0.6, "impact": 5, "pXI": 3.0, "mitigation": "Disclaimers; confidence scoring; human-in-the-loop; E&O insurance", "residualRisk": "high", "source": "threat" },
+      { "id": "R4", "category": "technical", "description": "Lovable + Supabase cannot meet enterprise security requirements (on-prem, FedRAMP, SAML, data residency)", "probability": 0.75, "impact": 4, "pXI": 3.0, "mitigation": "Enterprise security architect review before Phase 2; consider backend split", "residualRisk": "high", "source": "threat" }
+    ],
+    "constraints": [
+      { "id": "C1", "description": "No SOC 2 Type II certification — enterprise buyers require it", "type": "hard", "source": "threat" },
+      { "id": "C2", "description": "Lovable + Supabase + Vercel build standard (no exception approved)", "type": "hard", "source": "threat" },
+      { "id": "C3", "description": "No in-house compliance domain expert with SOX/SOC 2 evidence prep experience", "type": "hard", "source": "threat" },
+      { "id": "C4", "description": "No enterprise sales motion, SDR team, or channel partnerships", "type": "hard", "source": "threat" },
+      { "id": "C5", "description": "7 ventures in active build — portfolio capacity over-committed", "type": "soft", "source": "threat" }
+    ],
+    "successCriteria": [
+      { "id": "SC1", "metric": "Design partner commitments (signed pilots)", "threshold": "3 within 90 days of Phase 1 completion", "source": "social" },
+      { "id": "SC2", "metric": "Auditor acceptance rate of pre-processed evidence packets", "threshold": "80%+ after 3 pilots complete one audit cycle each", "source": "social" },
+      { "id": "SC3", "metric": "Time saved per evidence collection cycle", "threshold": "30%+ reduction in labor hours", "source": "social" },
+      { "id": "SC4", "metric": "GRC platform inbound integration requests", "threshold": "1+ within 6 months of Phase 2 delivery", "source": "social" },
+      { "id": "SC5", "metric": "Revenue from Phase 2 export adapters", "threshold": "2+ paying customers within 6 months of launch", "source": "social" }
+    ],
+    "feedback": [],
+    "specifications": [],
+    "perspectiveRuns": {
+      "explorer": { "lastRun": "2026-06-24", "runCount": 1 },
+      "evaluator": { "lastRun": "2026-06-24", "runCount": 1 },
+      "executor": { "lastRun": "2026-06-24", "runCount": 1 },
+      "threat": { "lastRun": "2026-06-24", "runCount": 1 },
+      "social": { "lastRun": "2026-06-24", "runCount": 1 }
+    }
+  }
+}

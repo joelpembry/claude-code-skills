@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bitterroot World — A Western Narrative in the Lonesome Dove Tradition</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+  :root {
+    --parchment: #f5f0e8;
+    --ink: #1a1410;
+    --ink-light: #4a3f35;
+    --dust: #c4b5a0;
+    --blood: #8b2500;
+    --sage: #5c6b4f;
+    --sky: #8fa4b8;
+    --gold: #b8943e;
+    --bone: #e8dcc8;
+    --shadow: #2a2218;
+    --card-bg: rgba(255,252,245,0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Text', Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 18px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, #1a1410 0%, #2a2218 30%, #3a3020 60%, #5c4a30 100%);
+    color: var(--parchment);
+    padding: 120px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 8px solid var(--gold);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+  .hero-overline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'IM Fell English', 'Crimson Text', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--dust);
+    max-width: 650px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+  }
+  .hero-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+  .hero-meta span { color: var(--gold); }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--shadow);
+    border-bottom: 2px solid var(--gold);
+    padding: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  nav a {
+    display: inline-block;
+    color: var(--dust);
+    text-decoration: none;
+    padding: 14px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  nav a:hover, nav a.active { color: var(--gold); background: rgba(255,255,255,0.05); }
+
+  /* SECTIONS */
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    border-bottom: 1px solid var(--dust);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 36px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    position: relative;
+    padding-bottom: 16px;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--blood);
+  }
+  .section-subtitle {
+    font-style: italic;
+    color: var(--ink-light);
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+  .card-grid.two-col { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--dust);
+    border-radius: 4px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .card h3 {
+    font-family: 'IM Fell English', serif;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .card .card-role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blood);
+    margin-bottom: 12px;
+  }
+  .card p { color: var(--ink-light); font-size: 16px; line-height: 1.6; }
+  .card .card-tags {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .tag-novelty-high { background: #2d5016; color: #c8e6b3; }
+  .tag-novelty-med { background: #5c4a20; color: #f0d78c; }
+  .tag-pov { background: #1a3a5c; color: #a8d4f0; }
+  .tag-tragic { background: #5c1a1a; color: #f0a8a8; }
+  .tag-pillar { background: #3a2a4a; color: #d4b8f0; }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .stat {
+    background: var(--card-bg);
+    border: 1px solid var(--dust);
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+  }
+  .stat-value {
+    font-family: 'IM Fell English', serif;
+    font-size: 48px;
+    color: var(--blood);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* TABLES */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 32px 0;
+    border: 1px solid var(--dust);
+    border-radius: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    background: var(--card-bg);
+  }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--parchment);
+    background: var(--shadow);
+    padding: 14px 16px;
+    text-align: left;
+  }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--bone); color: var(--ink-light); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(184,148,62,0.06); }
+
+  /* RISK METER */
+  .risk-meter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .risk-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--bone);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .risk-fill { height: 100%; border-radius: 3px; }
+  .risk-fill.critical { background: var(--blood); }
+  .risk-fill.high { background: #c4551a; }
+  .risk-fill.medium { background: var(--gold); }
+  .risk-fill.low { background: var(--sage); }
+  .risk-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    min-width: 50px;
+    text-align: right;
+  }
+
+  /* BLOCKQUOTE */
+  blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: var(--card-bg);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink-light);
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 12px;
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blood);
+  }
+
+  /* DECISION CARDS */
+  .decision-card {
+    background: var(--card-bg);
+    border-left: 4px solid var(--blood);
+    padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .decision-card.reversible { border-left-color: var(--sage); }
+  .decision-card h4 { font-family: 'IM Fell English', serif; font-size: 20px; margin-bottom: 4px; }
+  .decision-card .decision-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--blood);
+    margin-bottom: 8px;
+  }
+  .decision-card.reversible .decision-meta { color: var(--sage); }
+
+  /* THEMATIC GRID */
+  .theme-card {
+    padding: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--dust);
+    border-radius: 4px;
+    margin: 12px 0;
+  }
+  .theme-card h3 { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--ink); }
+
+  /* TWO-COLUMN LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 32px 0;
+  }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* PART CARDS */
+  .part-card {
+    background: var(--card-bg);
+    border: 1px solid var(--dust);
+    border-radius: 4px;
+    padding: 28px;
+    margin: 20px 0;
+    border-left: 6px solid var(--blood);
+  }
+  .part-card:nth-child(1) { border-left-color: var(--sage); }
+  .part-card:nth-child(2) { border-left-color: var(--gold); }
+  .part-card:nth-child(3) { border-left-color: #c4551a; }
+  .part-card:nth-child(4) { border-left-color: var(--blood); }
+  .part-card h3 { font-family: 'IM Fell English', serif; font-size: 24px; }
+  .part-card .part-stats {
+    display: flex;
+    gap: 24px;
+    margin: 8px 0 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--shadow);
+    color: var(--dust);
+    padding: 60px 40px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-top: 4px solid var(--gold);
+  }
+  footer .footer-brand { font-family: 'IM Fell English', serif; font-size: 28px; letter-spacing: 0; text-transform: none; color: var(--gold); margin-bottom: 12px; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { height: 6px; width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bone); }
+  ::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 3px; }
+
+  /* PRINT */
+  @media print {
+    body { font-size: 12px; }
+    .section { padding: 20px 0; break-inside: avoid; }
+    nav { display: none; }
+    .hero { padding: 40px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-overline">RCM · Cortex 02.10 · Approved Project State</div>
+    <h1>The <em>Bitterroot</em> World</h1>
+    <p class="hero-subtitle">A sprawling Western narrative in the <em>Lonesome Dove</em> tradition — fifteen characters, a dying town, a coming railroad, and the end of the open range. Built by five AI perspectives under the Recursive Creativity Model.</p>
+    <div class="hero-meta">
+      Generated <span>27 June 2026</span> &nbsp;·&nbsp; Status <span>APPROVED</span> &nbsp;·&nbsp; 5/5 Perspectives Signed Off
+    </div>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#characters">The Ensemble</a>
+  <a href="#structure">Structure</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#themes">Themes</a>
+  <a href="#risks">Risks</a>
+  <a href="#audience">Audience</a>
+  <a href="#specs">Specifications</a>
+  <a href="#deliverables">Build Plan</a>
+</nav>
+
+<!-- ── OVERVIEW ── -->
+<section class="section" id="overview">
+  <h2 class="section-title">The World at a Glance</h2>
+  <p class="section-subtitle">What the five perspectives built, and why</p>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-value">15</div><div class="stat-label">Characters</div></div>
+    <div class="stat"><div class="stat-value">8</div><div class="stat-label">Locations</div></div>
+    <div class="stat"><div class="stat-value">10</div><div class="stat-label">Conflict Premises</div></div>
+    <div class="stat"><div class="stat-value">6</div><div class="stat-label">Themes</div></div>
+    <div class="stat"><div class="stat-value">96</div><div class="stat-label">Chapters (Journey Model)</div></div>
+    <div class="stat"><div class="stat-value">~350k</div><div class="stat-label">Words (Journey Model)</div></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-family:'IM Fell English',serif;font-size:24px;margin-bottom:12px;">The Moxley Town Chronicle</h3>
+      <p style="color:var(--ink-light);margin-bottom:12px;"><strong>October 1882 – April 1883.</strong> A single street of sun-baked false-front buildings on a bend of a river that dries up half the year. The railroad is coming. A Chicago speculator is buying everything. The townsite sits on contested land — Spanish grant overlay on Comanche hunting grounds overlay on Anglo squatters' claims.</p>
+      <p style="color:var(--ink-light);">Each character's private drama accumulates into a collective portrait of a community at the moment of its transformation. Structural model: <em>Winesburg, Ohio</em> filtered through frontier violence. <strong>Highest originality.</strong></p>
+    </div>
+    <div>
+      <h3 style="font-family:'IM Fell English',serif;font-size:24px;margin-bottom:12px;">The Bitterroot Trail</h3>
+      <p style="color:var(--ink-light);margin-bottom:12px;"><strong>April – October 1874.</strong> A freighting expedition — twelve wagons, sixty mules, thirty-seven people — carries secret mining equipment from San Antonio to Montana Territory. The cargo is destined for treaty-protected Lakota land.</p>
+      <p style="color:var(--ink-light);">Five POV characters, four parts, ninety-six chapters. The expedition is the crucible inside which every character is tested. <strong>Proven journey structure with novel moral stakes.</strong></p>
+    </div>
+  </div>
+
+  <blockquote>
+    "The bar is the Pulitzer. Do not aim lower."
+    <cite>— The Evaluator Perspective</cite>
+  </blockquote>
+</section>
+
+<!-- ── THE ENSEMBLE ── -->
+<section class="section" id="characters">
+  <h2 class="section-title">The Ensemble</h2>
+  <p class="section-subtitle">Fifteen characters, each a departure from or deepening of a <em>Lonesome Dove</em> archetype — with deliberate emphasis on perspectives the novel could not or did not include</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Eulalia Quince</h3>
+      <div class="card-role">The Widow Who Outlasted the Country · age 58</div>
+      <p>Married at 15 to a whiskey-runner killed by Regulators. Held his Brazos claim alone for forty years — buried three hired hands, shot two horse thieves, raised a son who left for California and never wrote. Clara Allen without family or purpose — pure stubborn endurance against the accumulating silence.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Moses "Mose" Whitfield</h3>
+      <div class="card-role">Buffalo Soldier Turned Tracker · age 42</div>
+      <p>Born enslaved, emancipated at 16, enlisted in the 10th Cavalry at 18. Served fourteen years on the southern plains. Mustered out to find no place for a Black man with a cavalry pension and a vocabulary that makes white settlers uneasy. A Deets who knows the cage — literate, bitter, self-aware.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Dempsey Crouch</h3>
+      <div class="card-role">The Gospel-Nerve Drifter · age 34</div>
+      <p>Circuit-rider's son who can quote scripture end to end and has killed six men — he counts them on the same fingers that turned the pages of his mother's Bible. Drifts from town to town, preaching funerals for strangers. Believes in God and believes he is damned — not for the killing, but because he enjoyed the first one.</p>
+      <div class="card-tags"><span class="tag tag-novelty-med">Medium Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Linh Tam</h3>
+      <div class="card-role">The Railroad Widow with a Repeating Rifle · age 27</div>
+      <p>Came from Guangdong in 1867. Her husband was killed in a Sierra tunnel blast — his body never recovered. She spent three years in railroad camps, learned to shoot and ride astride. Now crossing a thousand miles alone in the year of the Chinese Exclusion Act, searching for her husband's murdered cousin. Carries a Henry rifle. Listens more than she speaks.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Ismael "Izzy" Pacheco</h3>
+      <div class="card-role">The Tejano Who Rode with Quantrill · age 39</div>
+      <p>Lost his family's Rio Grande land to gringo courts. At 16, full of rage, fell in with Quantrill's raiders — rode through Lawrence in 1863. Twenty years trying to outrun what he saw. Works as a horse breaker — the only trade that asks nothing of his tongue. Gentles horses by breathing into their nostrils. The only thing that makes him weep is music.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Wanbli Tokahe (Eagle First)</h3>
+      <div class="card-role">The Comanche Who Learned White Laws · age 33</div>
+      <p>Born Nokoni Comanche on the Llano Estacado. Captured at 12, sent to Carlisle Indian School, renamed "Thomas Logan." Returns west as government interpreter — trusted by neither whites nor his own people. Speaks four languages and is fluent in despair. What <em>Lonesome Dove</em> could not see: the educated native caught between worlds.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Hattie Peak</h3>
+      <div class="card-role">The Schoolteacher Inventing Her Own Rules · age 31</div>
+      <p>Daughter of a failed Forty-Niner. Taught herself to read from <em>Ivanhoe</em>. Has taught school in six territories, always leaving when expectations pressed too close. A wealthy rancher has proposed marriage. If she says yes, she gains safety and loses herself. Clara Allen who never married — the tragedy is she may never find an anchor, or may find one too late.</p>
+      <div class="card-tags"><span class="tag tag-novelty-med">Medium Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Floyd "Sog" Boggs</h3>
+      <div class="card-role">The Innocent Who Should Not Survive · age 19</div>
+      <p>Foundling raised by a Fort Smith whore who died of consumption when he was fourteen. Survived by doing whatever people told him — digging graves, skinning carcasses, once accidentally helping rob a stagecoach. Has never met a horse he could not gentle. Newt without Call or Gus to protect him — the innocence that gets preyed upon, not sheltered.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Lydia "Liddy" Strange</h3>
+      <div class="card-role">The Whore with a Business Plan · age 44</div>
+      <p>Bought her freedom at 26. Owns the only saloon in Moxley plus half the lots on main street. Unofficial mayor, banker, and confessor. The railroad is coming and a Chicago speculator wants everything. Calls everyone "honey" — it is never affectionate. Gus McCrae would have adored her; Call would have disapproved, which would have amused her enormously.</p>
+      <div class="card-tags"><span class="tag tag-novelty-med">Medium Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Thaddeus Grimes</h3>
+      <div class="card-role">The Blacksmith Who Believes in Civilization · age 48</div>
+      <p>Born free in Boston. Founded Moxley's first smithy, became the town's moral center over twenty years — judges disputes, holds debts, reads the Bible in Greek. A younger Black man has been lynched in the next county. His wife is begging him to leave for Kansas. His faith in progress and law is being tested against the growing machinery of racial violence.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Poor Tom Allbee</h3>
+      <div class="card-role">The Failed Hatter Who Won't Quit · age 52</div>
+      <p>Apprenticed to a Philadelphia hatter at 11. Struck west at 25 with beaver pelts and a dream. The beaver trade collapsed. Twenty-five years of failed enterprises followed — a mercantile that burned, a freight line that went bankrupt, a gold claim that produced seventeen dollars. Now runs a hat shop in a town where no one wears hats. Has one last scheme involving an ostrich farm.</p>
+      <div class="card-tags"><span class="tag tag-novelty-med">Medium Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Kizzi Bowdre</h3>
+      <div class="card-role">The Girl Who Got to Keep Her Gun · age 16</div>
+      <p>Daughter of a Comanchero trader and a Mexican captive. Her father taught her to shoot, track, skin, and trust no one. When he died of fever, she buried him alone and took his horse, rifle, and mule. Summoned to Moxley by a lawyer claiming her father owned land. The wilderness made her free; the law would cage her. Feral in a way Lorena Wood was never allowed to be.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Captain Josiah Ledbetter</h3>
+      <div class="card-role">The Withered Cavalryman · age 63</div>
+      <p>Rose from enlisted man to brevet colonel — Shiloh, Stones River, Chickamauga. Spent twenty years on the frontier chasing raiders and signing treaties he knew would be broken. Wife left in 1872. Children are strangers. His last command: a remote outpost with thirty men, a corrupt supply officer, and a reservation where the government hasn't delivered rations in three months. Call after the outfit dispersed, after the last friend was buried.</p>
+      <div class="card-tags"><span class="tag tag-novelty-med">Medium Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Patrick "P.O." Dunnigan</h3>
+      <div class="card-role">The Railroad Surveyor Who Saw Too Much · age 45</div>
+      <p>Born in County Cork, fled the Famine at 12. Union Army sapper turned surveyor for the Union Pacific. Mapped more of the West than any man alive and never owned a single acre. His maps are works of art; his life is a shambles. The advance man for the railroad that will destroy the world his companions inhabit. Every stake he drives is a nail in the coffin of the old West — and he knows it.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Senora Antonia Covarrubias</h3>
+      <div class="card-role">The Hacendada Without an Hacienda · age 66</div>
+      <p>Born to one of the great land-grant families of New Mexico. Watched 300,000 acres dissolve through American courts, bad marriages, and taxes her father never understood. Lives in a four-room adobe with nine cats, writing a family history no one will publish. Remembers the West before the Americans came — and is not sentimental about it.</p>
+      <div class="card-tags"><span class="tag tag-novelty-high">High Novelty</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOCATIONS ── -->
+<section class="section" id="locations">
+  <h2 class="section-title">The Land as Character</h2>
+  <p class="section-subtitle">Eight locations — each a narrative engine, not a backdrop</p>
+
+  <div class="card-grid two-col">
+    <div class="card">
+      <h3>Moxley, Texas</h3>
+      <div class="card-role">Town · Gravitational Center</div>
+      <p>A single street of sun-baked false-front buildings crouched on a river bend. Saloon, smithy, mercantile, schoolhouse with one window, more dogs than children. Built by people who expected more of the future than the future delivered.</p>
+    </div>
+    <div class="card">
+      <h3>The Staked Plains</h3>
+      <div class="card-role">Wilderness · Purgatorio</div>
+      <p>Table-flat expanse of shortgrass and sky extending to every horizon without a wrinkle. Travelers have gone mad circling their own tracks. Where the old ways still hold — Comanche trails, buffalo skulls, bones of settlers who didn't find water.</p>
+    </div>
+    <div class="card">
+      <h3>Fort Belknap (Abandoned)</h3>
+      <div class="card-role">Fort · Site of Memory</div>
+      <p>Crumbling limestone barracks, parade ground overgrown with mesquite. Flagpole stands but no flag flies. A single old soldier paid to be caretaker of a place everyone else has forgotten.</p>
+    </div>
+    <div class="card">
+      <h3>Covarrubias Grant Cemetery</h3>
+      <div class="card-role">Ranch · Last Stand of the Old World</div>
+      <p>Adobe enclosure with crumbling church, century-old pecan tree, eighty-seven graves — Spanish, Mexican, Comanche, Anglo — rotting in the same red dirt. Not all the graves are marked with names, and not all the names are the ones on the stones.</p>
+    </div>
+    <div class="card">
+      <h3>The Crossing at Palo Duro</h3>
+      <div class="card-role">Crossing · Threshold</div>
+      <p>Shallow ford over the Red River where cottonwoods grow thick. A worn sign warns of Comanche country, riddled with bullet holes. A half-sunk ferry on the north bank — monument to someone's abandoned dream.</p>
+    </div>
+    <div class="card">
+      <h3>Pacheco Horse Camp</h3>
+      <div class="card-role">Wilderness · Hermitage</div>
+      <p>Hidden canyon in the Canadian River breaks. Brush arbor, rope corral, stone hearth. Smell of horse and woodsmoke is permanent. Izzy Pacheco lives here alone for months, emerging only when the loneliness becomes unbearable.</p>
+    </div>
+    <div class="card">
+      <h3>Allbee's Fine Hats and Sundries</h3>
+      <div class="card-role">Town · Comic Relief That Curdles</div>
+      <p>Dusty storefront crammed with unsold hats, expired patent medicines, a taxidermied jackrabbit in a waistcoat. Inventory unchanged in three years. The gap between aspiration and reality made physical.</p>
+    </div>
+    <div class="card">
+      <h3>Strange's Saloon & Social</h3>
+      <div class="card-role">Outpost · The Town's Heart</div>
+      <p>Only saloon in Moxley, also the bank, post office, and courthouse. Mahogany bar shipped from St. Louis at ruinous expense. The mirror behind it is the only one between Dallas and Santa Fe. Neutral ground where every station meets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── STRUCTURE ── -->
+<section class="section" id="structure">
+  <h2 class="section-title">Narrative Architecture</h2>
+  <p class="section-subtitle">The Bitterroot Trail — 96 chapters, ~350,000 words, 4 parts, 5 rotating POVs</p>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-value">5</div><div class="stat-label">POV Characters</div></div>
+    <div class="stat"><div class="stat-value">4</div><div class="stat-label">Parts</div></div>
+    <div class="stat"><div class="stat-value">96</div><div class="stat-label">Chapters</div></div>
+    <div class="stat"><div class="stat-value">~350k</div><div class="stat-label">Words</div></div>
+    <div class="stat"><div class="stat-value">18</div><div class="stat-label">Months to Draft</div></div>
+    <div class="stat"><div class="stat-value">1874</div><div class="stat-label">Setting</div></div>
+  </div>
+
+  <div class="part-card">
+    <h3>Part I — The Gathering</h3>
+    <div class="part-stats"><span>14 chapters</span><span>~48,000 words</span><span>April 1874</span></div>
+    <p>San Antonio as pressure-cooker. Each character arrives carrying a secret, a wound, or a desperate hope. The expedition assembles through intersecting decisions. Climax: the rain-swollen Guadalupe River crossing — the first test, Caleb freezes mid-river, Emmett drags him through. "The river was behind them. The country opened ahead. And Emmett Cole understood, for the first time, that he might not come back."</p>
+    <p style="margin-top:8px;"><strong>POV Introduction Order:</strong> Emmett Cole (1) → Two Bears (2) → Ruth Tolliver (3) → Emmett (4) → Isaiah Brown (5) → Caleb Cross (6) → Ruth (7) → Emmett (8–9) → Caleb (10) → Two Bears (11) → Ensemble/Emmett (12) → Emmett (13) → Ensemble climax (14)</p>
+  </div>
+
+  <div class="part-card">
+    <h3>Part II — The Crossing</h3>
+    <div class="part-stats"><span>30 chapters</span><span>~114,000 words</span><span>May–June 1874</span></div>
+    <p>The Llano Estacado, Indian Territory, the long haul toward the Arkansas. Endurance, slow accumulation of pressure, revelation of character under deprivation. Water shortages, a Comanche scare, a desertion, the first death. The expedition begins to become a community — then begins to fracture. Climax: reaching the Arkansas River at a cost. A teamster dies of snakebite. Caleb kills for the second time. Isaiah receives word his daughter has died of fever before he could free her.</p>
+  </div>
+
+  <div class="part-card">
+    <h3>Part III — The High Plains</h3>
+    <div class="part-stats"><span>28 chapters</span><span>~100,000 words</span><span>July–August 1874</span></div>
+    <p>The escalation. Lakota territory. The cargo's true nature revealed — mining equipment for illegal extraction on treaty land. Two Bears' band attacks. Isaiah is killed covering the wagons. Caleb murders a teamster in cold blood. Ruth's past catches up. The expedition that left San Antonio no longer exists. Emmett confronts Vane and learns the full conspiracy.</p>
+  </div>
+
+  <div class="part-card">
+    <h3>Part IV — The Reckoning</h3>
+    <div class="part-stats"><span>24 chapters</span><span>~88,000 words</span><span>September–October 1874</span></div>
+    <p>The end of the trail. Three-part climax: (1) Caleb killed — by Emmett after a final violent act, or by Lakota warriors; (2) Two Bears dies in a last attack on the mining site, ensuring the operation cannot proceed without Army protection; (3) Emmett confronts Vane and makes the choice that defines him. The machinery is destroyed. The survivors scatter. Last image: Emmett on a horse, riding south, alone.</p>
+  </div>
+
+  <h3 style="font-family:'IM Fell English',serif;font-size:26px;margin-top:48px;margin-bottom:24px;">Character Arc Map</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Character</th><th>Type</th><th>Arc</th><th>Proves</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Emmett Cole</strong></td><td><span class="tag tag-pov">Changer</span></td><td>Drifting ex-Ranger avoiding stillness → man who chooses to stand for something, restoring purpose through sacrifice</td><td>"A man is what he does when he could walk away."</td></tr>
+        <tr><td><strong>Ruth Tolliver</strong></td><td><span class="tag tag-pov">Changer</span></td><td>Woman running from husband's murder → woman who stops running and faces what she did</td><td>"Running only extends the journey; it doesn't change the destination."</td></tr>
+        <tr><td><strong>Isaiah Brown</strong></td><td><span class="tag tag-pov tag-tragic">Tragic</span></td><td>Man who believes freedom can be bought → man who learns freedom in America is never finally settled. Dies covering the wagons (Ch. 69)</td><td>"The law's promise and the country's reality are two different maps."</td></tr>
+        <tr><td><strong>Caleb Cross</strong></td><td><span class="tag tag-pov tag-tragic">Tragic</span></td><td>Frightened boy who killed once → young man who learns violence is the only language. Three kills escalating in moral clarity. Dies Ch. 90</td><td>"Violence is a language, and once you start speaking it, it's hard to remember any other words."</td></tr>
+        <tr><td><strong>Two Bears / Mato Najin</strong></td><td><span class="tag tag-pov tag-tragic">Tragic</span></td><td>War chief protecting his people through patience → man forced into a war he knows he will lose. Dies Ch. 92</td><td>"What was destroyed so that the towns could be built."</td></tr>
+        <tr><td><strong>Silas Vane</strong></td><td><span class="tag tag-pillar">Pillar</span></td><td>Does not change — instrument of capital, perfectly adapted, incapable of doubt. Forces every other character to decide what they'll tolerate</td><td>The corporate machinery reshaping the West, made flesh</td></tr>
+        <tr><td><strong>Old Man Chenoweth</strong></td><td><span class="tag tag-pillar">Pillar</span></td><td>Already at peace. Living memory of the West, crossed it in every decade since the 1840s. Survives the novel — stories continue</td><td>"A man's life ain't a story unless somebody tells it after."</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── BINDING DECISIONS ── -->
+<section class="section" id="decisions">
+  <h2 class="section-title">Six Binding Creative Decisions</h2>
+  <p class="section-subtitle">The Evaluator's verdict — what must hold for the narrative to succeed</p>
+
+  <div class="decision-card">
+    <h4>1. The 1880s — The Elegy Window</h4>
+    <div class="decision-meta">NON-REVERSIBLE · Source: Evaluator</div>
+    <p>Set in the 1880s (1882–1883 for town model, 1874 for journey model) — the open range's last decade. Barbed wire going up, Indian Wars concluding, buffalo near extinction. Characters know they're late. The elegy requires historical specificity.</p>
+  </div>
+
+  <div class="decision-card reversible">
+    <h4>2. Working Protagonist, Not Gunslinger</h4>
+    <div class="decision-meta">REVERSIBLE · Source: Evaluator</div>
+    <p>Rancher, drover, horse trader, or freighter — not a lawman or gunfighter. The story is about making a living, not making a name. Labor gives texture, stakes, and a built-in clock. A rancher's story is about life, which makes death matter more.</p>
+  </div>
+
+  <div class="decision-card">
+    <h4>3. Co-Equal Woman's POV</h4>
+    <div class="decision-meta">NON-REVERSIBLE · Source: Evaluator</div>
+    <p>At least one woman with her own arc, stakes, and climax — not a subplot but a parallel narrative thread. The single greatest weakness of the Western genre is the marginalization of women. Historically honest and narratively strengthening.</p>
+  </div>
+
+  <div class="decision-card reversible">
+    <h4>4. Antagonist with Legitimate Grievance</h4>
+    <div class="decision-meta">REVERSIBLE · Source: Evaluator</div>
+    <p>The villain must have a worldview the reader can't entirely dismiss even while fearing them. A villain who is just bad is dramatically inert. The best conflict is ideological, not merely violent.</p>
+  </div>
+
+  <div class="decision-card">
+    <h4>5. Pre-Final-Act Primary Death</h4>
+    <div class="decision-meta">NON-REVERSIBLE · Source: Evaluator</div>
+    <p>Kill at least one primary character before the final act. The death should feel wasteful, random, and unbearably sad. Establishes that the world doesn't care about narrative justice. The randomness IS the theme.</p>
+  </div>
+
+  <div class="decision-card reversible">
+    <h4>6. Dual Male Protagonist Engine</h4>
+    <div class="decision-meta">REVERSIBLE · Source: Evaluator</div>
+    <p>Two co-equal male protagonists with opposing philosophies bound by shared history — the Call/Gus dynamic. Love that cannot be spoken, expressed through action, protection, sacrifice. Generates plot, theme, and emotional weight more efficiently than any other structural choice.</p>
+  </div>
+</section>
+
+<!-- ── THEMES ── -->
+<section class="section" id="themes">
+  <h2 class="section-title">Thematic Territory</h2>
+  <p class="section-subtitle">Six thematic clusters, each traced from introduction through development, subversion, to final payoff</p>
+
+  <div class="theme-card">
+    <h3>The Cost of Belonging</h3>
+    <p>Every character faces a variant of the same question: what are you willing to surrender in exchange for community? Hattie would surrender her independence; Mose would surrender his invisibility; Wanbli would surrender his identity; Liddy would surrender her autonomy. The town of Moxley itself — sell to the railroad or cling to a dying way of life.</p>
+  </div>
+
+  <div class="theme-card">
+    <h3>The Violence at the Foundation</h3>
+    <p>Moxley is built on stolen land, and everyone is implicated. The Spanish took it from the Comanche, the Anglos took it from the Spanish, and the law that governs it was written by the people who did the final taking. Characters carry this knowledge in different ways — Izzy (participated in worse violence), Wanbli (his people were the victims), Thaddeus (his people were enslaved by the legal system's authors).</p>
+  </div>
+
+  <div class="theme-card">
+    <h3>The Inadequacy of the Law</h3>
+    <p>The legal system appears not as justice but as a commodity — bought by the speculator, wielded against the weak, incomprehensible to the uneducated. Characters who ignore the law (Liddy, Izzy) or learn to manipulate it (Wanbli, Thaddeus) fare best. Those who trust it — Poor Tom, Kizzi, Eulalia — are its victims.</p>
+  </div>
+
+  <div class="theme-card">
+    <h3>The Elegy for a World That Never Was</h3>
+    <p>LD mourns the end of the cattle-drive West, but that West was built on the destruction of earlier worlds. Senora Covarrubias mourns the Spanish West; Wanbli Tokahe mourns the Comanche West; Eulalia Quince mourns the settler West. The deepest sadness: everyone is mourning a loss, and everyone's loss was someone else's gain.</p>
+  </div>
+
+  <div class="theme-card">
+    <h3>The Body as Archive</h3>
+    <p>The West lives in the body — in scars, calluses, the way a man sits a horse or a woman carries water. Linh's hands remember washing clothes in icy Sierra streams. Mose's back remembers the whip. As the world changes, these embodied knowledges become obsolete — useless skills for a future that has no use for them.</p>
+  </div>
+
+  <div class="theme-card">
+    <h3>What Men Do to Each Other in the Name of Love</h3>
+    <p>The great unspoken of the Western. Love between men — between soldiers, partners, strangers who recognize each other across a fire — that cannot be named and must be expressed in action: protection, sacrifice, violence. Dempsey's attachment to his dead friend. Izzy's responsibility for Sog. Captain Ledbetter's devotion to a command that has never loved him back.</p>
+  </div>
+</section>
+
+<!-- ── RISKS ── -->
+<section class="section" id="risks">
+  <h2 class="section-title">What Could Kill This Project</h2>
+  <p class="section-subtitle">Pre-mortem analysis — fifteen specific failure modes, each scored by Probability × Impact</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Risk</th><th>Category</th><th>P×I</th><th>Severity</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>The Yellowstone Problem</strong><br><span style="font-size:13px;">21st-century sensibilities in period dress — characters who talk like 2026 op-eds</span></td>
+          <td>Audience</td>
+          <td><strong>4.50</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill critical" style="width:90%"></div></div><span class="risk-label">Critical</span></div></td>
+          <td>Every progressive choice must carry a period-authentic price. Anachronistic values without consequences = fan service.</td>
+        </tr>
+        <tr>
+          <td><strong>The Noble Savage Trope</strong><br><span style="font-size:13px;">Native characters as mystical wisdom-dispensers with no interior complexity</span></td>
+          <td>Sensitivity</td>
+          <td><strong>4.50</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill critical" style="width:90%"></div></div><span class="risk-label">Critical</span></div></td>
+          <td>Native characters must have their own storylines, conflicts within their communities, and scenes with each other unrelated to white people.</td>
+        </tr>
+        <tr>
+          <td><strong>The Magnificent Seven Flattening</strong><br><span style="font-size:13px;">Ensemble of 10–15 characters, each one defining trait, never deepening</span></td>
+          <td>Execution</td>
+          <td><strong>4.40</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill high" style="width:88%"></div></div><span class="risk-label">High</span></div></td>
+          <td>"One note + one contradictory note" is minimum viable. Every ensemble member needs two traits that conflict.</td>
+        </tr>
+        <tr>
+          <td><strong>The Woman Problem</strong><br><span style="font-size:13px;">Female characters exist only as motivation for men — dead wife, kidnapped love interest</span></td>
+          <td>Sensitivity</td>
+          <td><strong>4.40</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill high" style="width:88%"></div></div><span class="risk-label">High</span></div></td>
+          <td>Before writing any female character: what does she want (no men involved)? What does she fear (not about men)? Who is she alone?</td>
+        </tr>
+        <tr>
+          <td><strong>Middle-Act Sag</strong><br><span style="font-size:13px;">Journey loses structural tension between departure and arrival</span></td>
+          <td>Structural</td>
+          <td><strong>4.20</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill high" style="width:84%"></div></div><span class="risk-label">High</span></div></td>
+          <td>Every 5th chapter must provide escalation: new landscape, threat, revelation, or character transformation.</td>
+        </tr>
+        <tr>
+          <td><strong>Genre Stigma</strong><br><span style="font-size:13px;">"I don't read Westerns" — literary audience never discovers the book</span></td>
+          <td>Audience</td>
+          <td><strong>4.20</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill high" style="width:84%"></div></div><span class="risk-label">High</span></div></td>
+          <td>Front-load humanity, not genre. Cover design must NOT look like a traditional Western. Position as "a novel of the American West."</td>
+        </tr>
+        <tr>
+          <td><strong>Nostalgia/Reckoning Trapdoor</strong><br><span style="font-size:13px;">Unresolved tension between elegy (mourning) and indictment (condemning)</span></td>
+          <td>Creative</td>
+          <td><strong>4.00</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill high" style="width:80%"></div></div><span class="risk-label">High</span></div></td>
+          <td>Before drafting, decide: is this a reckoning wearing elegy's clothes, or elegy interrupted by reckoning?</td>
+        </tr>
+        <tr>
+          <td><strong>Cast Bloat</strong><br><span style="font-size:13px;">15+ named characters in first 100 pages — reader can't track who's who</span></td>
+          <td>Structural</td>
+          <td><strong>3.50</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill high" style="width:70%"></div></div><span class="risk-label">High</span></div></td>
+          <td>Stagger introductions. Max 3–4 significant named characters per chapter for first 200 pages. Only 8 get interiority.</td>
+        </tr>
+        <tr>
+          <td><strong>The Lonesome Dove Imitation</strong><br><span style="font-size:13px;">Copies LD's furniture (cattle drive, retired Rangers) without LD's soul</span></td>
+          <td>Creative</td>
+          <td><strong>3.60</strong></td>
+          <td><div class="risk-meter"><div class="risk-bar"><div class="risk-fill medium" style="width:72%"></div></div><span class="risk-label">Medium</span></div></td>
+          <td>Do something structurally different with LD's tools. If reader says "this feels like Lonesome Dove" as a compliment, you've failed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <blockquote>
+    "The novel arrived in early 2027 to respectful notices that praised its ambition and mourned its execution. Three structural problems sank it. First, the ensemble — fourteen POV characters, and only three had inner lives that felt genuinely lived rather than assigned. Second, the middle — the journey lost its way around page 280. Third, the politics — the novel was so anxious about getting its depictions right that it sanded off every edge. Everyone was careful. Nobody was alive."
+    <cite>— The Threat Pre-Mortem</cite>
+  </blockquote>
+</section>
+
+<!-- ── AUDIENCE ── -->
+<section class="section" id="audience">
+  <h2 class="section-title">The Audience Landscape</h2>
+  <p class="section-subtitle">Who will read this, who will resist, and what creative choices determine which camp dominates</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Segment</th><th>Size</th><th>Predicted Response</th><th>What They Need</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Literary Fiction Core</strong></td><td>Substantial</td><td>Skeptical → Embrace</td><td>Prose that signals serious craft from page one. "I know you don't read Westerns, but this is actually literature."</td></tr>
+        <tr><td><strong>Book Club Core (Women 35–65)</strong></td><td>Mass</td><td>Skeptical</td><td>2–3 women with agency, interiority, and arcs not about men. Book club women are the most powerful word-of-mouth engine in publishing.</td></tr>
+        <tr><td><strong>Prestige TV Audience</strong></td><td>Mass</td><td>Embrace</td><td>Prose that reads like a camera is following characters. "This already feels like a limited series."</td></tr>
+        <tr><td><strong>Genre Expanders</strong></td><td>Substantial</td><td>Cautious → Skeptical</td><td>Representation must feel organic to the world, not engineered for 2026. "Don't make diverse characters symbols."</td></tr>
+        <tr><td><strong>Western Traditionalists</strong></td><td>Substantial</td><td>Skeptical → Cautious</td><td>Must feel RESPECTED. Authentic detail (horse gear, firearms, social hierarchy) is table stakes.</td></tr>
+        <tr><td><strong>Historical Fiction Devotees</strong></td><td>Substantial</td><td>Cautious → Embrace</td><td>Accuracy absolute. A single howler (wrong firearm, wrong date, wrong slang) loses them permanently.</td></tr>
+        <tr><td><strong>Literary Critics</strong></td><td>Niche</td><td>Cautious → Embrace</td><td>The book must merit the comparison to McMurtry — not compete, but stand in the same tradition with its own voice.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background:var(--card-bg);border:2px solid var(--gold);border-radius:4px;padding:28px;margin:32px 0;">
+    <h3 style="font-family:'IM Fell English',serif;font-size:24px;color:var(--ink);">The Bridge Reader Is Everything</h3>
+    <p style="color:var(--ink-light);margin-top:12px;">The reader who wants BOTH — momentum AND depth, violence AND meaning, landscape AND interiority, tradition AND reckoning — is the novel's actual target audience. Traditional Western readers alone cannot sustain a 600-page literary novel commercially. Literary readers alone won't pick up a Western without bridge-reader evangelism. Lose them in the middle act and you lose everything. Win them and they become the book's most powerful ambassadors — because they occupy the same intersection the novel does.</p>
+  </div>
+
+  <h3 style="font-family:'IM Fell English',serif;font-size:24px;margin-top:40px;">Adaptation & Publishing</h3>
+  <div class="two-col">
+    <div>
+      <p><strong>Screen Potential: HIGH</strong></p>
+      <p style="color:var(--ink-light);">Ideal format: 6–10 episode prestige limited series (HBO, FX, Amazon, Apple). The ensemble density requires room to breathe — a 2-hour feature can't support the character weight. Casting is everything (see: Duvall as Gus).</p>
+    </div>
+    <div>
+      <p><strong>Estimated Draft: 18 Months</strong></p>
+      <p style="color:var(--ink-light);">Three-draft approach: (1) Part I complete + skeletal Parts II–IV (6 months), (2) full draft at 250K words (6 months), (3) expansion to 350K with full set pieces (6 months). Each stage produces a complete, readable artifact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SPECIFICATIONS ── -->
+<section class="section" id="specs">
+  <h2 class="section-title">Execution Specifications</h2>
+  <p class="section-subtitle">The four documents that must exist before Chapter 1 is written</p>
+
+  <div class="card-grid two-col">
+    <div class="card">
+      <h3>1. Character Dossiers</h3>
+      <div class="card-role">Pre-Draft Deliverable</div>
+      <p>Full physical description, voice/dialect sample, backstory before chapter 1, core want vs. core need (Dramatica-style), fear inventory, skill set, death note for doomed characters. Each dossier 2–3 pages. Non-negotiable: every POV character's voice must be distinguishable on an unmarked page of dialogue.</p>
+    </div>
+    <div class="card">
+      <h3>2. Geography & Routes Map</h3>
+      <div class="card-role">Pre-Draft Deliverable</div>
+      <p>Full map of Moxley and surrounding territory OR the 1,800-mile San Antonio–Montana route with all waypoints, water sources, and dangers. Llano Estacado geography verified against historical sources. Seasonal weather pattern overlay. Must be complete before any travel/location chapters are drafted.</p>
+    </div>
+    <div class="card">
+      <h3>3. Timeline & Event Log</h3>
+      <div class="card-role">Pre-Draft Deliverable</div>
+      <p>Day-by-day timeline for the narrative's timespan. Character location at every chapter. Historical events happening concurrently. Distance traveled per day. Master spreadsheet tracking: who is in every scene, what each character knows at each point, what the reader knows vs. what each character knows.</p>
+    </div>
+    <div class="card">
+      <h3>4. Dialect & Dialogue Guide</h3>
+      <div class="card-role">Pre-Draft Deliverable</div>
+      <p>Period-appropriate vocabulary by region (Texas, Lakota territory, New Mexico). Education markers by character. Profanity policy (period-appropriate, not modern). Racial address conventions of the period. One non-negotiable rule: no anachronistic language. Verify every word that feels modern.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:'IM Fell English',serif;font-size:24px;margin-top:40px;">Sensitivity Consultation Requirements</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Consultant</th><th>When</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Native readers (specific nations depicted)</td><td>Outline stage — before drafting Native POV material</td><td>Single most dangerous failure mode; consequences are artistic AND ethical</td></tr>
+        <tr><td>Western history academic</td><td>During world bible compilation</td><td>Period accuracy of daily life, material culture, social structures</td></tr>
+        <tr><td>19th-century racial dynamics expert</td><td>During character dossier creation</td><td>Distinct from general cultural sensitivity — the history is specific</td></tr>
+        <tr><td>Historian of Chinese American experience in the West</td><td>Before drafting Linh Tam chapters</td><td>Specific and not transferable from other immigrant experiences</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── BUILD PLAN ── -->
+<section class="section" id="deliverables">
+  <h2 class="section-title">Build Plan</h2>
+  <p class="section-subtitle">Seven deliverables across three phases — 18 months from concept to final manuscript</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Deliverable</th><th>Phase</th><th>Status</th><th>Acceptance Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Character Dossiers</strong> (15 characters, 2–3pp each)</td><td>Pre-Draft</td><td>⏳ Pending</td><td>Each has 2+ contradictory traits; voices distinguishable on unmarked dialogue page</td></tr>
+        <tr><td>2</td><td><strong>Geography & Routes Map</strong></td><td>Pre-Draft</td><td>⏳ Pending</td><td>All locations from chapter grid appear; water sources historically accurate; terrain shapes ≥3 plot events</td></tr>
+        <tr><td>3</td><td><strong>Timeline & Event Log</strong></td><td>Pre-Draft</td><td>⏳ Pending</td><td>No character in two places at once; weather consistent; historical events correctly dated</td></tr>
+        <tr><td>4</td><td><strong>Dialect & Dialogue Guide</strong></td><td>Pre-Draft</td><td>⏳ Pending</td><td>Zero anachronisms; every POV has distinct dialogue fingerprint</td></tr>
+        <tr><td>5</td><td><strong>Part I Draft</strong> (14 chapters, ~48K words)</td><td>Draft 1 (Months 1–6)</td><td>⏳ Pending</td><td>All POVs established; reader can name every character after 100pp; ≥1 scene unguarded tenderness</td></tr>
+        <tr><td>6</td><td><strong>Full Draft</strong> (250K words, all 4 parts)</td><td>Draft 2 (Months 6–12)</td><td>⏳ Pending</td><td>All character arcs traceable; middle passes "every 5 chapters something changes" test</td></tr>
+        <tr><td>7</td><td><strong>Final Manuscript</strong> (320–380K words)</td><td>Draft 3 (Months 12–18)</td><td>⏳ Pending</td><td>Passes sensitivity read; ≥60% early readers "would enthusiastically recommend"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">The Bitterroot World</div>
+  <p style="margin-bottom:16px;">A Western Narrative in the <em>Lonesome Dove</em> Tradition</p>
+  <p>Generated by RCM · Cortex 02.10 · Recursive Multi-Perspective Reasoning Pattern</p>
+  <p style="margin-top:8px;">Five AI Perspectives — Explorer · Evaluator · Executor · Threat · Social</p>
+  <p style="margin-top:8px;color:rgba(255,255,255,0.4);">27 June 2026 · Approved Project State · All 5 Perspectives Signed Off</p>
+  <p style="margin-top:20px;"><a href="https://optimoventures.ai">Optimo Ventures</a> · Reference Implementation</p>
+</footer>
+
+</body>
+</html>

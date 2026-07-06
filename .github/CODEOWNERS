@@ -1,0 +1,21 @@
+# Optimo Ventures — Code Owners
+# All changes require review from the specified owners.
+
+# Canonical specifications (01/02 layers)
+/skills/optimo-ventures/references/workspace-map.md @joel-embry @susan-embry-busch
+
+# Triage rubric (governance-critical)
+/skills/optimo-venture-triage/references/assessment-rubric.md @joel-embry
+
+# Shared memory (all ventures)
+/memory/                                    @joel-embry
+
+# Installer scripts
+/install.ps1                                @joel-embry
+/install.sh                                 @joel-embry
+
+# Hooks
+/hooks/                                     @joel-embry
+
+# Everything else defaults to:
+*                                            @joel-embry

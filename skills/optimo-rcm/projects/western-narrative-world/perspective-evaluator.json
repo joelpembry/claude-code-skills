@@ -1,0 +1,126 @@
+{
+  "perspective": "evaluator",
+  "completed": "2026-06-27T00:00:00Z",
+  "rubric": {
+    "dimensions": ["character_depth", "genre_authenticity", "thematic_resonance", "narrative_tension", "originality", "ensemble_cohesion", "tonal_range"],
+    "weights": { "character_depth": 0.25, "genre_authenticity": 0.20, "thematic_resonance": 0.15, "narrative_tension": 0.15, "originality": 0.10, "ensemble_cohesion": 0.10, "tonal_range": 0.05 },
+    "scoreInterpretation": { "5": "McMurtry-tier — publishable as-is", "4": "Strong — minor revision needed", "3": "Viable — structural work required", "2": "Weak — fundamental rethinking needed", "1": "Broken — start over" }
+  },
+  "genreBenchmarks": {
+    "mustHaveElements": [
+      "Landscape as antagonist — the West must be indifferent, vast, and physically consequential",
+      "Elegiac register — awareness that the open-range era is ending",
+      "Specificity of work — cattle drives, horse-breaking, fence-building, cooking, farriery",
+      "Violence with consequence — gunshots leave wounds that fester, kill people who are mourned",
+      "Moral ambiguity — heroes who have done unforgivable things, villains who were once children",
+      "Community as ecosystem — the town/camp/ranch as living social organism",
+      "Humor — dry, cruel, or absurd, baked into character not separate buffoonery"
+    ],
+    "dealBreakers": [
+      "Anachronistic values — 21st-century moral framing without dramatic friction",
+      "Landscape as wallpaper — described once and forgotten",
+      "The Magical Native — indigenous characters as wisdom dispensers only",
+      "Revenge as the only engine — a man with a gun hunting wrongdoers is B-movie material",
+      "No women or women as prizes — historically inaccurate and dramatically impoverished",
+      "The Stoic Hero who doesn't change — a narrative dead end",
+      "Sentimental ending — the ride into the sunset undoes the elegy"
+    ],
+    "canonicalComparables": [
+      "Lonesome Dove (McMurtry) — gold standard for ensemble depth, tonal range, elegiac register",
+      "Blood Meridian (McCarthy) — landscape as moral vacuum, beauty and horror in same sentence",
+      "The Searchers (LeMay/Ford) — revenge quest revealing revenger's own darkness",
+      "True Grit (Portis) — distinctive voice refreshing tired conventions",
+      "Deadwood (Milch) — building community under siege, language as character"
+    ]
+  },
+  "characterArchitecture": {
+    "essentialRoles": [
+      { "role": "The Moral Anchor with a Past", "function": "Ethical center carrying enough guilt for complicated judgments", "ldExample": "Newt Dobbs", "avoidance": "Untested naive idealist" },
+      { "role": "The Trickster-Philosopher", "function": "Generates humor, articulates thematic questions, irreverent wisdom", "ldExample": "Augustus McCrae", "avoidance": "Comic relief who only tells jokes" },
+      { "role": "The Authority with a Wound", "function": "Embodies old order passing, competent but carrying failure", "ldExample": "Woodrow Call", "avoidance": "Grizzled cowboy dispensing frontier wisdom" },
+      { "role": "The Woman Who Refuses Her Role", "function": "Perspective on masculine codes, agency within constraints", "ldExample": "Clara Allen", "avoidance": "Schoolmarm / whore-with-heart-of-gold" },
+      { "role": "The Reckless Young Man", "function": "Drives action through poor decisions, grows or dies", "ldExample": "Jake Spoon", "avoidance": "Hothead plot device" },
+      { "role": "The Outsider Witness", "function": "Entry point for reader, lens for critique without authorial intrusion", "ldExample": "Lorena Wood", "avoidance": "Eastern dude as comic relief" },
+      { "role": "The Antagonist with a Competing Vision", "function": "Ideological conflict, not just violence", "ldExample": "Blue Duck", "avoidance": "Mustache-twirling villain" }
+    ],
+    "recommendedEnsembleSize": { "primary": "4–6 deep-arc characters", "secondary": "6–10 partial-arc characters", "tertiary": "World-populating background characters with implied off-page lives" },
+    "diversityRequirements": [
+      "Women with agency beyond domestic/romantic roles — ranch owners, madams, doctors, teachers",
+      "Indigenous perspectives as full subjects — Comanche, Apache, Lakota with politics and interiority",
+      "Mexican/Tejano characters as community members — the West was Mexican territory first",
+      "Black cowboys and Buffalo Soldiers — one in four cowboys was Black",
+      "Class diversity — land barons through homesteaders through outlaws",
+      "Age range — children through elderly; a world without children has no stakes for the future"
+    ]
+  },
+  "plotStructureAssessment": {
+    "effectivePatterns": [
+      "The Journey as Revelation — herd drive/pursuit/migration stripping characters of pretense",
+      "The Community Under Pressure — town/outpost facing external threat with internal fractures",
+      "The Double-Linear — two narrative threads commenting on each other thematically",
+      "The Siege Economy — limited resources forcing escalating moral choices",
+      "The Moral Reckoning — past sin resurfacing and demanding payment",
+      "Seasonal Structure — spring roundup through winter survival, using land's rhythms"
+    ],
+    "avoidPatterns": [
+      "The Treasure Map — buried gold / lost mine driving plot by greed",
+      "The Lone Avenger — one man against corrupt town fits TV episode not novel",
+      "The Railroad as Unambiguous Villain — must be represented by specific people",
+      "The White Savior — white protagonist resolving indigenous/Mexican conflicts",
+      "Episodic without accumulation — adventures that don't change characters"
+    ],
+    "pacingPrinciples": [
+      "Alternate tension/respite in deliberate rhythm — four-beat cycle: comic → threat → violent → elegiac",
+      "Use landscape description as pacing mechanism — force reader to slow down and feel scale",
+      "Sprawl is a feature — every character needs room to be wrong, change their mind, disappoint",
+      "Subplots intersect thematically not mechanically — trajectories commenting on each other",
+      "Let minor characters have their own climaxes — each character's story arrives somewhere"
+    ]
+  },
+  "toneCalibration": {
+    "ldTonalRegisters": [
+      "Rough comedy — teasing, absurdity of men cooking, warmth behind mockery",
+      "Unadorned violence — fast, confusing, ugly, spare prose",
+      "Elegiac reflection — awareness of loss, landscape as carrier of grief",
+      "Tender domesticity — meals eaten together, horses gentled, children put to bed",
+      "Philosophical rumination — characters articulating worldview badly, ideas feeling discovered",
+      "Dread — atmospheric foreboding through weather, landscape, offhand remarks"
+    ],
+    "commonTonalErrors": [
+      "Grimdark without relief — violence and misery with no beauty or humor",
+      "Nostalgic sentimentality — 'good old days' framing turning West into theme park",
+      "Modern irony — winking tone that signals author is above the material",
+      "Purple landscape prose — 'golden rays kissed crimson mesas' instead of precision",
+      "Maundering pace — slow scenes that don't reveal character or advance emotional logic"
+    ]
+  },
+  "decisions": [
+    { "decision": "Set in the 1880s to maximize elegiac register — fences going up, Indian Wars concluding, buffalo near extinction", "rationale": "The elegy requires historical specificity; the 1880s is the open range's last decade", "reversible": false },
+    { "decision": "Protagonist should be rancher/drover/horse trader, not gunslinger or lawman — story about making a living, not making a name", "rationale": "LD's best work is about labor; texture, stakes, and built-in clock", "reversible": true },
+    { "decision": "Include co-equal woman's POV with own arc, stakes, and climax", "rationale": "Single greatest Western weakness is marginalization of women; historically honest and narratively strengthening", "reversible": false },
+    { "decision": "Antagonist must have legitimate grievance — worldview reader can't entirely dismiss", "rationale": "Judge Holden works because philosophically compelling; Blue Duck works because hatred is earned", "reversible": true },
+    { "decision": "Kill at least one primary character before final act — death should feel wasteful, random, unbearably sad", "rationale": "Establishes world doesn't care about narrative justice; reader is braced for later losses", "reversible": false },
+    { "decision": "Structure around two co-equal male protagonists with opposing philosophies bound by shared history", "rationale": "The Call/Gus dynamic generates plot, theme, emotional weight more efficiently than any other structural choice", "reversible": true }
+  ],
+  "successCriteriaRecommendations": [
+    { "metric": "Every primary character has at least one scene acting against expectation that forces reader re-evaluation", "threshold": "1.0 (all primary characters)", "rationale": "The moment of contradiction IS the character" },
+    { "metric": "Landscape directly causes or prevents at least 3 significant plot events", "threshold": "Minimum 3 landscape-dependent events", "rationale": "If plot is portable, Western is cosmetic" },
+    { "metric": "At least one scene of unguarded tenderness between non-romantically-linked characters", "threshold": "One scene", "rationale": "Makes violence hurt; proves author understands love not just violence" },
+    { "metric": "Closing 10% must contain emotional loss NOT redeemed by ending — lower key than beginning", "threshold": "Final chapter must not feel like victory", "rationale": "Elegy demands ending acknowledge cost" },
+    { "metric": "At least 3 women with distinct internal lives independent of male characters", "threshold": "Each must have independent-desire scene", "rationale": "Western canon weakest here; exceeding bar earns place" },
+    { "metric": "Protagonist fails someone they love through act of commission or omission — failure never fully forgiven", "threshold": "One irreparable moral failure", "rationale": "Protagonist must be damaged enough that redemption is impossible" }
+  ],
+  "ranking": [
+    "Character depth above all else",
+    "Landscape as participant not backdrop",
+    "The elegy — awareness world is ending baked into premise",
+    "Ensemble over solo protagonist",
+    "Historical verisimilitude — specificity as engine of authenticity",
+    "Tonal range — comedy and tenderness are not optional",
+    "Moral complexity — no pure heroes, no pure villains",
+    "Violence with gravity — never cheap, never entertaining",
+    "Diverse perspectives as narrative strength not obligation",
+    "Originality within the tradition — going deeper not sideways"
+  ],
+  "summary": "This Western world will be exceptional if it borrows Lonesome Dove's deepest lesson: the genre is not about cowboys or gunfights but about the end of things — a way of life, a set of relationships, an idea of freedom that was unsustainable but beautiful while it lasted. The characters must feel like people you could meet, not types you recognize. The landscape must be a presence that demands responses, not a postcard. The violence must hurt. The comedy must be earned. And the ending must leave the reader with the specific ache of something passing that cannot be brought back. It will be forgettable if it hits the expected beats without understanding what they mean; if it treats the West as a setting rather than a subject; if its characters are functions rather than people; or if it lacks the courage to make the reader sad. The bar is the Pulitzer. Do not aim lower."
+}

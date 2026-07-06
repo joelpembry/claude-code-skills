@@ -1,0 +1,519 @@
+{
+  "perspective": "executor",
+  "narrativeArchitecture": {
+    "title": "The Bitterroot Trail",
+    "totalScope": {
+      "chapters": { "likely": 96, "range": [90, 102] },
+      "wordCount": { "likely": 350000, "range": [320000, 380000] },
+      "parts": 4
+    },
+    "narrativeMode": "Close third rotating POV (McMurtry style, no head-hopping, one POV per chapter, each character's interiority limited to their own chapters)",
+    "povPolicy": "Five primary POV characters: Emmett Cole (protagonist-anchor, ~30% of chapters), Ruth Tolliver (~20%), Isaiah Brown (~15%), Caleb Cross (~15%), Two Bears/Mato Najin (~15%). Two secondary near-POV characters granted 1-2 chapters each: Silas Vane (for interiority of capital's logic) and Old Man Chenoweth (for the storytelling theme). All other characters rendered from the outside. No POV chapter under 1,500 words; no single POV more than 35% of total chapters. Part I establishes all five primary POVs in fixed rotation. Part IV tightens to mostly Emmett + Ruth.",
+    "timelineSpan": "April to October 1874. The exact moment the Black Hills gold discovery is confirmed and the Treaty of Fort Laramie begins to collapse. Five-month span gives natural season arc: spring departure, summer crossing, autumn climax.",
+    "centralContainer": "A freighting expedition consisting of twelve wagons, sixty mules, and thirty-seven people, contracted to haul mysterious cargo from San Antonio, Texas to the mining camps of Montana Territory. The expedition is the crucible inside which every character is tested. Analogous to LD's cattle drive but carrying the machinery of the coming industrial West."
+  },
+  "partStructure": [
+    {
+      "partNumber": 1,
+      "title": "The Gathering",
+      "dramaticIdentity": "A town-as-pressure-cooker ensemble introduction in the tradition of Lonesome Dove's opening. Each character arrives in San Antonio carrying a secret, a wound, or a desperate hope. The expedition assembles through a series of intersecting decisions. Part I is the quiet before violence.",
+      "chapterCount": { "likely": 14, "range": [13, 16] },
+      "wordCountRange": { "likely": 48000, "range": [44000, 54000] },
+      "centralConflict": "The collision between individual desperation and collective enterprise. Each character joins for private reasons that will eventually conflict with the group's purpose.",
+      "climax": "The crossing of the rain-swollen Guadalupe River — the expedition's first true test. Caleb freezes mid-river; Emmett drags him through. The wagons survive but the first hints of the cargo's true nature emerge. Part I ends with the expedition committed and the country opening ahead.",
+      "characterFocus": ["Emmett Cole", "Ruth Tolliver", "Isaiah Brown", "Caleb Cross", "Two Bears/Mato Najin", "Silas Vane"],
+      "thematicFocus": ["The Weight of the Past", "Freedom vs. Civilization", "The Lie of the Frontier"]
+    },
+    {
+      "partNumber": 2,
+      "title": "The Crossing",
+      "dramaticIdentity": "The classic middle journey — the Llano Estacado, the Indian Territory, the long haul toward the Arkansas. This part is about endurance, the slow accumulation of pressure, the revelation of character under deprivation. Water shortages, a Comanche scare, a desertion, the first death. The expedition begins to become a community, then begins to fracture.",
+      "chapterCount": { "likely": 30, "range": [28, 34] },
+      "wordCountRange": { "likely": 114000, "range": [105000, 125000] },
+      "centralConflict": "Survival versus purpose. The physical hardships of the trail force every character to reveal their true nature. Vane's secrecy about the cargo becomes harder to maintain. Two Bears' band begins to shadow the expedition.",
+      "climax": "Reaching the Arkansas River — but at a cost. A teamster dies of snakebite. Caleb kills for the second time (a Comanche scout, ambiguous self-defense). Isaiah receives word that his daughter has died of fever before he could free her. The expedition is fundamentally changed.",
+      "characterFocus": ["Emmett Cole", "Ruth Tolliver", "Isaiah Brown", "Caleb Cross", "Silas Vane"],
+      "thematicFocus": ["The Cost of Progress", "The Lie of the Frontier", "Redemption and Its Limits"]
+    },
+    {
+      "partNumber": 3,
+      "title": "The High Plains",
+      "dramaticIdentity": "The escalation. The expedition enters Lakota territory. The true nature of the cargo is revealed — mining equipment for a massive extraction operation on treaty land. The expedition encounters Two Bears' band. Isaiah is killed in the confrontation. Caleb murders a teamster in cold blood. Ruth's past catches up. This part is the unraveling — of secrets, of morals, of the expedition itself.",
+      "chapterCount": { "likely": 28, "range": [26, 30] },
+      "wordCountRange": { "likely": 100000, "range": [92000, 110000] },
+      "centralConflict": "The moral cost of the expedition. The cargo's true purpose makes every mile a crime. The Lakota resistance makes every mile a battle. Internal conflicts become lethal. The expedition that left San Antonio no longer exists.",
+      "climax": "Two Bears' band attacks the expedition. Isaiah is killed covering the wagons. Half the cargo is destroyed. The survivors are reduced to six wagons and eighteen people. Emmett confronts Vane and learns the full extent of the conspiracy — the consortium plans to extract gold from the Black Hills in violation of federal treaty, using the mining equipment to establish an illegal operation before the Army can stop them.",
+      "characterFocus": ["Emmett Cole", "Ruth Tolliver", "Caleb Cross", "Two Bears/Mato Najin", "Silas Vane"],
+      "thematicFocus": ["The Cost of Progress", "Redemption and Its Limits", "Memory and Storytelling"]
+    },
+    {
+      "partNumber": 4,
+      "title": "The Reckoning",
+      "dramaticIdentity": "The end of the trail. The remnants of the expedition struggle into Montana Territory. Ruth confronts her past when a man from her husband's regiment appears at a trading post. Caleb's trajectory reaches its terminus. Two Bears makes a desperate final play to stop the mining operation. Emmett must decide what he has become — and what he is willing to do about Vane and the conspiracy. The part is about judgment: who gets to mete it out, and at what cost.",
+      "chapterCount": { "likely": 24, "range": [22, 26] },
+      "wordCountRange": { "likely": 88000, "range": [80000, 96000] },
+      "centralConflict": "Justice versus survival. Every character must answer for what they have done and what they have allowed. The conspiracy must either succeed or be stopped. Emmett must decide if he is still the man who left San Antonio.",
+      "climax": "A three-part climax: (1) Caleb is killed — either by Emmett after a final violent act, or by Lakota warriors in the final engagement; (2) Two Bears dies in a last attack on the mining site, his death ensuring that the operation cannot proceed without Army protection; (3) Emmett confronts Vane and makes a choice that defines him — shooting Vane or turning him over to federal authorities, knowing either choice carries a cost. The machinery is destroyed. The survivors scatter. The last image: Emmett on a horse, riding south, alone.",
+      "characterFocus": ["Emmett Cole", "Ruth Tolliver", "Caleb Cross", "Two Bears/Mato Najin", "Silas Vane"],
+      "thematicFocus": ["The Weight of the Past", "Redemption and Its Limits", "The Cost of Progress", "Storytelling and History"]
+    }
+  ],
+  "chapterGrid": [
+    {
+      "chapterNumber": 1,
+      "title": "The Letter",
+      "povCharacters": ["Emmett Cole"],
+      "action": "April 1874, dawn. Emmett Cole wakes in a San Antonio flophouse, scarred and restless two years after his Ranger company was disbanded. He receives a letter from the Northern Development Consortium offering him the scout and wagon master position for an expedition to Montana Territory. He reads it twice, walks to the window, and watches San Antonio wake. He thinks about the Salado fight, the men he buried, the vacancy where purpose used to be. He accepts the offer because he cannot stand still. 'A man who stops moving in this country gets covered over, same as a dead horse.'",
+      "revelations": "Emmett's post-Ranger emptiness; his ability to read country and men; the Consortium exists but has no face yet; the expedition's destination and scale.",
+      "setups": "The expedition as a vehicle for Emmett's arc; the 'Northern Development Consortium' as the shadow antagonist; Emmett's moral code (he won't work for just anyone, but his standards are eroding); the frontier's impermanence as a motif.",
+      "wordCountRange": [3200, 4000],
+      "toneRegister": "contemplative, elegiac, grounded"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "The Hunter's Son",
+      "povCharacters": ["Two Bears/Mato Najin"],
+      "action": "The high plains of the Llano Estacado, late afternoon. Two Bears watches his fourteen-year-old son Runs-in-Wind track a pronghorn. He counts the buffalo skulls scattered across the plain — the hide hunters have been here. He remembers when the herds shook the earth. That evening he sends his son south to scout the white settlements. 'Do not fight. Only see. Then come back and tell me what you saw.'",
+      "revelations": "The ecological devastation of the buffalo hide trade from a Lakota perspective; Two Bears' wisdom, patience, and foreboding; the structure of his band and their current location; the spiritual dimension of Lakota life.",
+      "setups": "The Lakota counterpoint to the expedition's journey; Two Bears' son as a future character; the buffalo's disappearance as an environmental theme; the collision course between the expedition and Two Bears' people.",
+      "wordCountRange": [3000, 3800],
+      "toneRegister": "poignant, dignified, observant"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "The Nurse",
+      "povCharacters": ["Ruth Tolliver"],
+      "action": "San Antonio shantytown. Ruth Tolliver washes her hands after losing a cholera patient. Silas Vane appears at her door, too clean for this part of town, offering the medic position. He knows she was a Union Army nurse. She accepts because someone from her past is in San Antonio and she needs to leave. After he goes, she opens a folded daguerreotype: a man in Union uniform. Her husband. Dead. She put the poison in his coffee herself.",
+      "revelations": "Ruth's medical skill and competence; her past as a Union nurse; her capacity for lethal action; the fact that she killed her abusive husband and is fleeing the consequences.",
+      "setups": "Ruth's fugitive status as a ticking clock; Vane's knowledge of her past (he knows more than he says); the marriage/abuse backstory to be fully revealed later; Ruth and Emmett as potential counterparts.",
+      "wordCountRange": [3400, 4200],
+      "toneRegister": "tense, dangerous, intimate"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "The Financier's Man",
+      "povCharacters": ["Emmett Cole"],
+      "action": "The expedition staging ground. Emmett meets Silas Vane for the first time — younger, colder, smoother than expected. Twelve wagons, sixty mules, three dozen men and one woman. The cargo crates are sealed and stamped 'DELIVER UNOPENED — BY CONTRACT.' Emmett pushes; Vane deflects. Emmett meets Isaiah Brown, the head teamster — a powerfully built black man with watchful eyes and careful speech. The two size each other up and find each other acceptable. Vane's insistence on speed grates against Emmett's knowledge that the trail cannot be hurried.",
+      "revelations": "The expedition's scale and composition; the mystery of the cargo; Emmett and Vane's fundamental incompatibility; Isaiah's first appearance and competence; the racial dynamics of the expedition (Isaiah as the only black teamster in charge).",
+      "setups": "The Emmett/Vane conflict as the structural spine; the cargo as a mystery to be unraveled; the Emmett/Isaiah alliance; Vane as the instrument of capital, not a man of the country.",
+      "wordCountRange": [3500, 4500],
+      "toneRegister": "wary, clipped, establishing"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "The Teamster's Bargain",
+      "povCharacters": ["Isaiah Brown"],
+      "action": "Evening at the staging ground. Isaiah checks the mules' hooves. A younger black teamster, Samuel, approaches — a free man from Ohio, educated, idealistic about the West offering equality. Through their conversation, Isaiah's story emerges: born enslaved in Louisiana, freed in '65, worked as a teamster ever since. His daughter Eliza was sold before Emancipation reached that parish. Legally free, practically still enslaved. He's taking this dangerous job because the pay buys a lawyer for a freedom suit. He's been saving four years. Samuel doesn't understand why Isaiah doesn't just go get her. 'Because the law that says she's free is only paper, and the man who owns her is a white man in Louisiana with three sons and a shotgun.'",
+      "revelations": "Isaiah's full backstory and stakes; the difference between Northern freedom and Southern reality during Reconstruction; the expedition's pay structure; Isaiah's intelligence, patience, and suppressed rage.",
+      "setups": "Isaiah's daughter as the emotional engine of his arc; the racial tensions that will emerge on the trail; Samuel as a foil who challenges Isaiah's worldview; the freedom suit as a ticking clock (will the money arrive in time?).",
+      "wordCountRange": [3600, 4400],
+      "toneRegister": "matter-of-fact, bitter, determined"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "The Runaway",
+      "povCharacters": ["Caleb Cross"],
+      "action": "San Antonio outskirts at dawn. Caleb Cross lies in a dry creek bed, three days from Gonzales County, nearly dead of thirst. He killed a man in a card game — a knife fight over an accusation of cheating. He doesn't even remember drawing the knife, only the feeling of it going in. He stumbles into the staging ground looking for water and work. Emmett sees something in the boy's eyes — fear, desperation, and something else. He puts Caleb on as a wrangler. 'You steal from me, I'll shoot you. You run, I'll let the country do it cheaper.'",
+      "revelations": "Caleb's youth, fear, and capacity for violence; the nature of his crime (ambiguous self-defense or murder? — the chapter leaves it unclear); Emmett's pattern of taking in strays; the casual brutality of frontier justice.",
+      "setups": "Caleb's violent streak as a time bomb; his guilt as a source of self-destruction; Emmett's paternal instinct toward damaged boys; the knife as a recurring motif in Caleb's story.",
+      "wordCountRange": [3200, 3900],
+      "toneRegister": "desperate, raw, nervy"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "The Recognized",
+      "povCharacters": ["Ruth Tolliver"],
+      "action": "A San Antonio pharmacy. Ruth purchases medical supplies — quinine, morphine, bandages, sutures. A customer walks in: a man in a Confederate greatcoat, nine years after the war ended. He looks at her. Recognition flickers. 'Ruth?' His name is Jenkins; he served under her husband in Virginia. She plays it cool — 'You must have me confused with someone' — but her hands shake. She finishes the purchase and leaves quickly, knowing she has to be out of San Antonio before Jenkins talks to the wrong person.",
+      "revelations": "The war's long shadow — it's been nine years but people still carry it; Ruth's nerve under pressure; the specific danger pursuing her (Jenkins knew her husband); the fragility of her assumed identity.",
+      "setups": "Jenkins as a potential pursuer; Ruth's past as a slowly unraveling secret; the Confederate/Union divide within the expedition as a future flashpoint.",
+      "wordCountRange": [3000, 3700],
+      "toneRegister": "anxious, claustrophobic, hiding"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "The Departure",
+      "povCharacters": ["Emmett Cole"],
+      "action": "The expedition assembles at dawn. Emmett gives a brief speech: practical, not heroic. 'We are not an army. We are not a family. We are a group of men and one woman who have agreed to move some wagons from Texas to Montana for money. That is all.' Vane bristles at the informality. The wagons roll. San Antonio fades. Ruth rides near the front, alone. Caleb is at the back with the spare horses, already sunburned. Isaiah walks beside the lead wagon, talking to his mules. Chenoweth drives the cook wagon, pipe clenched, looking back at the town with relief. Emmett rides ahead, not looking back at all.",
+      "revelations": "The full ensemble in motion; each character's position in the column as a statement of their role; Emmett's leadership style (understated, authoritative, anti-heroic); the departure as a point of no return.",
+      "setups": "The column's hierarchy; the landscape as a third protagonist; the inevitable collision between Emmett's practicality and Vane's ambition; Chenoweth as the expedition's memory.",
+      "wordCountRange": [3000, 3800],
+      "toneRegister": "gathering momentum, optimistic undertow"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "The Storyteller's Supper",
+      "povCharacters": ["Emmett Cole"],
+      "action": "First night on the trail. Chenoweth cooks: salt pork, beans, coffee strong enough to walk. Emmett sits with him. Chenoweth is in his seventies, has been on every kind of crossing — Santa Fe, Oregon, Mormon, California. He tells a story about a company of wagons he led in '49 that got lost on the Llano Estacado, wandered eleven days, men went mad, two died. They found water at the last possible moment. 'The country don't care about you. That's its only mercy — it don't care. The grass grows back over everything.' Emmett listens and learns more about the trail ahead than Vane ever told him.",
+      "revelations": "Chenoweth as the repository of western knowledge; the Llano Estacado as the expedition's first great trial; Emmett's respect for practical knowledge over contract terms; the oral tradition of the trail.",
+      "setups": "Chenoweth's storytelling as a thematic device; the Llano Estacado crossing in Part II; the motif of grass growing over everything (forgetting, history, erasure); Emmett's growing distrust of Vane's incomplete information.",
+      "wordCountRange": [3400, 4100],
+      "toneRegister": "campfire intimacy, dark foreshadowing"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "The Knife",
+      "povCharacters": ["Caleb Cross"],
+      "action": "Second day on the trail. Caleb struggles with the wrangling. Other hands mock him — green, can't handle a horse. A hard-bitten cowboy named Gribbins needles him past endurance. Caleb nearly pulls his knife. Ruth appears, her voice cutting through the tension. She takes Caleb aside, tends a rope burn on his hand. She doesn't lecture. She asks: 'Are you going to make it?' Caleb doesn't know how to answer — no one has asked him a kind question in a long time. He nods. Later, alone with the horses, Caleb cries for the first time since he killed the man in Gonzales.",
+      "revelations": "Caleb's hair-trigger (Gribbins exposed it); Ruth's instinct for the wounded; the expedition as a pressure cooker for Caleb's volatility; Caleb's genuine youth and vulnerability beneath the bravado.",
+      "setups": "Caleb's attraction to Ruth (or need for maternal care); Gribbins as a future antagonist; the knife as Caleb's solution to every problem; Ruth as Caleb's potential salvation or damnation.",
+      "wordCountRange": [3100, 3800],
+      "toneRegister": "raw, tender, volatile"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "What the Boy Saw",
+      "povCharacters": ["Two Bears/Mato Najin"],
+      "action": "Two Bears' camp. Runs-in-Wind returns from scouting. He reports: many wagons, many men, mules not horses, a woman among them. They are heading north — directly toward Lakota hunting grounds. Two Bears meets with elders. They are divided: attack before the whites grow strong, negotiate, or move west into the badlands. Two Bears doesn't have a clear answer. He dreams that night of a river of blood flowing north. He wakes knowing he cannot stop the wagons, but he cannot let them pass unopposed. He sends runners to other Lakota bands.",
+      "revelations": "The expedition seen from outside — its size, composition, direction; the Lakota political situation (divided council); Two Bears' spiritual life (dreams as guidance); the coming war as inevitable.",
+      "setups": "The converging paths of expedition and Lakota; the character of Runs-in-Wind (will he be a warrior or a casualty?); the runners as a mechanism to widen the conflict; Two Bears' tragic position: knowing he cannot win but unable to submit.",
+      "wordCountRange": [3200, 3900],
+      "toneRegister": "council-fire gravity, prophetic"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "The Thunder",
+      "povCharacters": ["Ensemble (Emmett anchor)"],
+      "action": "Night. A spring thunderstorm hits the campsite without warning. Mules stampede. Men scramble in the dark. Isaiah moves among the animals with calm authority, calming them. A crate is damaged — one of Vane's sealed boxes. Emmett sees metal machinery inside — gears, cast-iron components — before Vane covers it and orders the crate moved to his personal wagon. Rain ruins half the coffee. Ruth and Emmett end up sharing shelter under a canvas tarp, pressed together, strangers in the dark. They don't speak. In the morning, the sky is clear and the trail stretches ahead, endless.",
+      "revelations": "Isaiah's mastery over animals and crisis; the cargo's physical nature (machinery, not trade goods); Vane's desperation to keep it secret; the first hint of connection between Ruth and Emmett; the expedition's fragility against nature.",
+      "setups": "The cargo as machinery (mining equipment — to be confirmed later); the Ruth/Emmett relationship arc; Isaiah as the expedition's unsung keystone; the storm as a pattern (nature as antagonist).",
+      "wordCountRange": [3500, 4300],
+      "toneRegister": "chaotic, elemental, intimacy through crisis"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "The Question",
+      "povCharacters": ["Emmett Cole"],
+      "action": "Third day. Emmett rides alongside Vane and presses him about the cargo. Vane's answers are smooth and empty: 'Agricultural equipment. Mining survey tools.' Emmett asks why they're sealed. 'The consortium's preference.' The lie hangs between them. Emmett knows the country — there are no mines where they're going that need this kind of machinery. Not yet. He considers turning back — the contract allows it within the first week. But the men are counting on him. And the open country has awakened something in him. He rides on. But he watches Vane more carefully now.",
+      "revelations": "Emmett's moral intelligence (he knows a lie when he hears it); the specific weight of the cargo deception; Emmett's growing sense of responsibility for the men; the contract as a cage.",
+      "setups": "The cargo reveal as a Part III climax; Emmett's arc from passive scout to moral actor; the Vane/Emmett confrontation as inevitable; the question of what Emmett will do when he knows the truth.",
+      "wordCountRange": [3000, 3700],
+      "toneRegister": "suspicious, coiled, moral"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "The Crossing",
+      "povCharacters": ["Ensemble (Emmett anchor, Caleb climax)"],
+      "action": "The expedition reaches the Guadalupe River, swollen by spring rain. The crossing is dangerous — swift current, unstable banks. Emmett manages with military precision: double-team the wagons, rope lines, move cargo by hand. Two wagons nearly capsize. Isaiah throws himself into the current to save a team of mules. Caleb is assigned to lead a pair of mules across on foot; he freezes mid-river, water at his chest, paralyzed. Emmett rides into the river, grabs Caleb by the collar, and drags him across. 'You survived.' By nightfall, everything is across. Part I ends with Emmett sitting apart, looking north. 'The river was behind them. The country opened ahead. And Emmett Cole understood, for the first time, that he might not come back.'",
+      "revelations": "The expedition's character under pressure — Isaiah is a hero, Caleb is a liability, Emmett is a leader, Vane is useless; the expedition has passed its first test; the country north of the Guadalupe is unknown to everyone but Chenoweth.",
+      "setups": "Caleb's debility (he froze — this will echo in later crises); Isaiah's heroism; the crossing as a model for future thresholds; Emmett's premonition of his own death or transformation; Part II's terrain as genuinely dangerous.",
+      "wordCountRange": [3800, 4800],
+      "toneRegister": "triumphant undercut with dread, climactic"
+    }
+  ],
+  "characterArcMap": {
+    "changers": [
+      {
+        "character": "Emmett Cole",
+        "arc": "From a man drifting in post-Ranger emptiness, avoiding stillness because stillness means reflection, to a man who chooses to stand for something — his men, the truth, a version of justice that costs him everything. His arc is the restoration of purpose through sacrifice.",
+        "keyChapters": [1, 4, 8, 9, 12, 13, 14, 33, 37, 42, 52, 53, 65, 70, 71, 78, 79, 91, 92, 95],
+        "proves": "A man is what he does when he could walk away."
+      },
+      {
+        "character": "Ruth Tolliver",
+        "arc": "From a woman running from her husband's murder to a woman who stops running and faces what she did. She killed an abusive husband and has spent years justifying it to herself. The journey forces her to reckon with the difference between killing and murder, and with the possibility that she might be capable of more violence — or that she might not need to be.",
+        "keyChapters": [3, 7, 10, 12, 37, 51, 52, 63, 75, 83, 89, 93],
+        "proves": "Running only extends the journey; it doesn't change the destination."
+      },
+      {
+        "character": "Isaiah Brown",
+        "arc": "From a man who believes freedom can be bought, earned, and legally secured to a man who learns that freedom in America is never finally settled. His daughter's death in Part II breaks his purpose. His sacrifice in Part III redefines it: he dies not for his own freedom but to give others a chance at theirs. His arc is the tragedy of the black American promise perpetually deferred.",
+        "keyChapters": [5, 12, 14, 39, 41, 55, 56, 66, 67, 69],
+        "proves": "The law's promise and the country's reality are two different maps."
+      },
+      {
+        "character": "Caleb Cross",
+        "arc": "From a frightened boy who killed once by accident to a young man who learns that violence is the only language that works, then can't learn any other. He follows a three-step descent: first kill (before story, ambiguous), second kill (Part II, Comanche, possibly self-defense), third kill (Part III, white man, murder). His death in Part IV is both tragedy and justice — the frontier made him, then destroyed him.",
+        "keyChapters": [6, 10, 14, 27, 41, 53, 60, 62, 74, 82, 86, 90],
+        "proves": "Violence is a language, and once you start speaking it, it's hard to remember any other words."
+      }
+    ],
+    "pillars": [
+      {
+        "character": "Silas Vane",
+        "function": "Vane does not change because he has no inner life beyond his function. He is the instrument of capital — perfectly adapted to his purpose, incapable of doubt, immune to the human cost. He embodies the corporate machinery that is reshaping the West. His function in the narrative is to force every other character to decide what they are willing to tolerate.",
+        "keyChapters": [4, 8, 13, 33, 65, 78, 87, 91, 94]
+      },
+      {
+        "character": "Old Man Chenoweth",
+        "function": "Chenoweth has already made his peace with the world. He wants nothing, fears nothing, expects nothing. He is the living memory of the West, having crossed it in every decade since the 1840s. His function is to provide context, continuity, and the storytelling theme. He tells stories that comment on the present action. He will survive the novel — the story ends, but the stories continue.",
+        "keyChapters": [9, 33, 61, 73, 88, 96]
+      }
+    ],
+    "tragicArcs": [
+      {
+        "character": "Caleb Cross",
+        "trajectory": "Boy frightened by his own violence, to young man who discovers that violence solves problems, to young man who can no longer solve problems without violence. The three kills escalate in moral clarity: the first might be self-defense, the second is ambiguous, the third is murder. By Part IV, Caleb prefers violence because it is easier than feeling.",
+        "deathChapter": 90,
+        "narrativeMeaning": "The frontier devours the young, the frightened, and the weak. What the country called 'growing up' was really learning to kill without remorse."
+      },
+      {
+        "character": "Isaiah Brown",
+        "trajectory": "From purposeful hope to broken purpose to redemptive sacrifice. The letter about his daughter's death (Part II, chapter 41) hollows him. He continues mechanically, no longer for her but because stopping means accepting that her death was meaningless. He dies in Part III covering the wagons during Two Bears' attack, buying time for Emmett and Ruth to escape.",
+        "deathChapter": 69,
+        "narrativeMeaning": "The nation's original sin cannot be outrun by going west. Freedom is not a destination; it is a condition that America withholds from black men even when they earn it."
+      },
+      {
+        "character": "Two Bears/Mato Najin",
+        "trajectory": "From war chief trying to protect his people through patience and strategy to a man forced into a war he knows he will lose. Every choice narrows: first he can negotiate, then he can only fight, then he can only die on his own terms. His tragedy is that he sees the future clearly and cannot stop it.",
+        "deathChapter": 92,
+        "narrativeMeaning": "What was destroyed so that the towns could be built. The cost of empire measured in men who knew they were losing before they fought."
+      }
+    ]
+  },
+  "worldBibleSpec": {
+    "requiredDocuments": [
+      {
+        "document": "Character Dossier Template",
+        "contents": [
+          "Full physical description (height, build, face, hands, scars, teeth, clothing, gait)",
+          "Voice and speech patterns (vocabulary range, regional markers, preferred phrases)",
+          "Backstory before chapter 1 (date and location of birth, family of origin, education level, military service, marriages, crimes, debts, secrets)",
+          "Core want vs. core need (Dramatica-style: what they think they want vs. what they actually need)",
+          "Fear inventory (what scares them physically, socially, existentially)",
+          "Skill set (what they can actually do — no romantic inflation)",
+          "Death note (for doomed characters: how, why, and what the death means)"
+        ]
+      },
+      {
+        "document": "Geography and Routes Map",
+        "contents": [
+          "The full 1,800-mile route: San Antonio to Miles City, MT, with all major waypoints",
+          "Llano Estacado geography (water sources, landmarks, dangers — must be accurate for survival plot)",
+          "Indian Territory in 1874 (which tribes where, which routes are contested)",
+          "Lakota hunting grounds as of spring 1874 (pre-Black Hills invasion)",
+          "The mining site location (fictional but plausible Montana location with real geography)",
+          "Weather patterns by month along the route (for the season arc)",
+          "A reference map for every chapter location"
+        ]
+      },
+      {
+        "document": "Timeline and Event Log",
+        "contents": [
+          "Day-by-day timeline from April 1 to October 31, 1874",
+          "Character location at every chapter (who is where, who is with whom)",
+          "Weather/season conditions at each location on each date",
+          "Historical events happening concurrently (Custer's Black Hills expedition, July 1874; national news the characters might have heard)",
+          "Distance traveled per day (realistic for mule-drawn wagons: 10-15 miles/day)"
+        ]
+      },
+      {
+        "document": "Dialect and Dialogue Guide",
+        "contents": [
+          "Texas regional vocabulary and syntax circa 1874 (fixin' to, reckon, I could care less I would, etc.)",
+          "Lakota speech patterns in translation (terse, image-based, no filler)",
+          "Education markers by character (Illiterate: Caleb. Self-educated: Emmett, Isaiah. Educated: Ruth, Vane)",
+          "Profanity policy (period-appropriate, used for impact not decoration. Civil War-era profanity, not modern)",
+          "Black vernacular of the period vs. educated Northern black speech (Samuel vs. Isaiah contrast)",
+          "Racial address conventions of 1874 (when characters use or refuse period-appropriate terms)",
+          "No anachronistic language. Verify every word that feels modern."
+        ]
+      }
+    ],
+    "continuitySystem": "A master spreadsheet tracking: (1) who is in every scene, (2) what each character knows at each point, (3) what the reader knows vs. what each character knows, (4) distance traveled and days elapsed, (5) weather conditions. For a narrative this size with this many POVs, inconsistencies in character knowledge and timeline are the most common error. A script that checks for contradictions (character knows something they haven't learned yet) should be run after every draft pass."
+  },
+  "thematicThroughlineMap": [
+    {
+      "theme": "The Cost of Progress",
+      "introduced": "Chapter 2 — Two Bears counts buffalo skulls. The hide hunters have killed for tongues and hides, leaving carcasses to rot. The first image of what 'progress' costs.",
+      "developed": "Chapters 12-13 (the machinery in the crates), Chapter 33 (Vane explains the consortium's plan to Emmett: the railroad is coming, the mining will feed it, the towns will follow), Chapter 41 (Isaiah's daughter dies — progress requires people to be expendable), Chapters 55-56 (the expedition enters country where the buffalo no longer roam), Chapters 65-67 (the cargo's true purpose revealed: illegal Black Hills mining equipment).",
+      "subverted": "Chapter 78 — When the expedition finally reaches the mining site, it is not a glorious engine of prosperity but a muddy scar on the earth, staffed by desperate men who earn less than the mules. Even Vane looks hollow. The reader realizes there was never a golden promise — only extraction and exhaustion.",
+      "paidOff": "Chapter 92 — Two Bears' death. He dies to stop the mining operation, and partially succeeds: the machinery is destroyed. But the novel's final pages (Chapter 96) show a railroad survey crew crossing the same ground a year later. Progress arrives anyway, regardless of who dies to stop it."
+    },
+    {
+      "theme": "Freedom vs. Civilization",
+      "introduced": "Chapter 1 — Emmett's restlessness: he joined the Rangers for freedom and found only discipline and death. Chapter 5 — Isaiah's bondage: he is legally free but still bound by the color of his skin. Chapter 6 — Caleb's flight: running from the law toward the myth of the open range.",
+      "developed": "Chapter 37 (Ruth realizes she is no freer on the trail than she was in San Antonio — she is still hiding), Chapter 53 (Caleb discovers that the frontier has laws too, just different ones), Chapter 67 (Isaiah, in his last living chapter, reflects that he has been running toward freedom his whole life and never found it).",
+      "subverted": "Chapter 83 — A trading post in Montana. It is the most 'civilized' place the expedition has seen in months. It has a school, a church, a jail, a newspaper. It is also the place where Ruth is recognized and nearly arrested. Civilization brings law, and law brings consequences for the past.",
+      "paidOff": "Chapter 95 — Emmett's final choice. He can disappear into the wilderness (the freedom he's always sought) or return to face what he's done (the civilized choice). He rides south — toward civilization — accepting judgment. The novel argues that true freedom is not the absence of constraint but the willingness to accept its consequences."
+    },
+    {
+      "theme": "The Lie of the Frontier",
+      "introduced": "Chapter 2 — The Llano Estacado is not empty; it is full of buffalo bones. The illusion of 'virgin land' is undercut before the expedition even leaves. Chapter 5 — Samuel believes the West offers equality; Isaiah knows better.",
+      "developed": "Chapter 11 (Two Bears' band is already there — the frontier is someone else's home), Chapter 27 (Indian Territory: the expedition passes through lands where entire nations were forcibly relocated), Chapter 56 (the expedition sees its first Lakota hunting party — the young men are armed and angry, the women are thin, the children have hollow eyes).",
+      "subverted": "Chapter 65 — The cargo reveal: the consortium is not interested in settling the frontier or building civilization. They are interested in extracting gold and leaving. The 'frontier' is not a place of new beginnings but a resource to be stripped. Even the lie of homesteads and freedom was a lie within a lie.",
+      "paidOff": "Chapter 96 (Epilogue) — A Lakota elder (Runs-in-Wind, now old) tells the story of the Bitterroot Trail to his grandchildren. The expedition has been forgotten by white history. But the Lakota remember. The frontier story is told by the victors, but the truth remains in the land."
+    },
+    {
+      "theme": "Redemption and Its Limits",
+      "introduced": "Chapter 3 — Ruth killed her husband. She believes the journey can redeem her. Chapter 5 — Isaiah believes earning enough money will redeem his daughter. Chapter 6 — Caleb believes running will erase what he did.",
+      "developed": "Chapters 41-42 (Isaiah's daughter dies — redemption denied), Chapters 62-63 (Caleb kills again — redemption refused), Chapter 75 (Ruth finally tells Emmett the truth about her husband. Emmett's response: 'I've known since the second week. It doesn't change anything.' Ruth realizes that confession does not automatically produce forgiveness).",
+      "subverted": "Chapter 86 — Caleb, in his penultimate chapter, decides to do one good thing: he tries to warn the Lakota that the expedition is armed with repeating rifles, hoping to prevent a massacre. He is killed before he can deliver the warning. The novel suggests that even the desire for redemption can arrive too late.",
+      "paidOff": "Chapter 93 — Ruth's final chapter. She does not receive absolution. She does not perform a heroic act that cancels her past. She simply decides to stop running and accept whatever comes. The novel argues that redemption is not a transaction (one good deed cancels one bad deed) but a state of being present in one's own life. Ruth achieves this; Caleb and Isaiah do not."
+    },
+    {
+      "theme": "Storytelling and History / Who Gets Remembered",
+      "introduced": "Chapter 9 — Chenoweth's first story. Emmett realizes that Chenoweth is carrying the West inside his head, and when he dies, most of it will die with him. 'A man's life ain't a story unless somebody tells it after.'",
+      "developed": "Chapter 33 (Chenoweth tells the story of a black teamster he knew in '49 who saved twelve lives and was forgotten because no one wrote his name down), Chapter 61 (the expedition's Basque shepherd, who speaks almost no English, tells a story in Spanish that Chenoweth translates — a layered transmission of memory through language), Chapter 73 (Chenoweth falls ill; Emmett realizes that if he dies, the route knowledge dies with him — the vulnerability of oral history).",
+      "subverted": "Chapter 88 — Chenoweth survives his illness. In his last POV chapter, he reflects that he doesn't know who will remember him. He has no children. His stories will die with him. He is at peace with this. The novel undercuts its own theme: maybe being forgotten is not a tragedy.",
+      "paidOff": "Chapter 96 (Epilogue) — Runs-in-Wind tells the story of the Bitterroot Trail to his grandchildren. The expedition has been forgotten by the white world. But among the Lakota, the story is told: the whites came with machines, and Two Bears died fighting them, and the machines were broken, and for a little while the land was safe. The novel's final line: 'The grass grows back over everything, but the stories stay under the grass.'"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Emmett's character setup before Vane conflict",
+      "blocks": ["The Emmett/Vane confrontation in Part III and Part IV requires Emmett to be established as a man of moral weight in Part I. If he is not fully drawn in chapters 1, 4, 8, and 13, his later moral crisis will feel unearned."],
+      "resolution": "Chapters 1, 4, 8, 9, and 13 establish Emmett's code, his relationship to authority, and his instinct for fairness. The reader must see him as a man capable of outrage before he confronts Vane."
+    },
+    {
+      "name": "Ruth's secret setup before revelation",
+      "blocks": ["Ruth's confession to Emmett (Chapter 75) and her recognition at the trading post (Chapter 83) require the plant in Chapter 3 and the near-recognition in Chapter 7."],
+      "resolution": "Chapters 3 and 7 establish Ruth's crime and her fear of discovery. Chapter 37 shows her living with the secret. By the time the past catches up, the reader has been living in her dread for 500 pages."
+    },
+    {
+      "name": "Cargo mystery before reveal",
+      "blocks": ["The reveal in Chapter 65 (the crates contain illegal Black Hills mining equipment) is meaningless without the mystery established in Chapters 4, 12, and 13."],
+      "resolution": "Chapters 4, 12, and 13 each drop a hint: the crates are sealed, the machinery is glimpsed, Vane lies about its purpose. Each hint should be visible on re-read but not obvious on first pass."
+    },
+    {
+      "name": "Two Bears' perspective before encounter",
+      "blocks": ["The expedition's first encounter with Two Bears' band (Chapters 55-56) only carries weight if the reader has been inside his head (Chapters 2 and 11) and understands that these are not 'hostiles' but people defending their homes."],
+      "resolution": "Chapters 2 and 11 establish Two Bears as a POV character with dignity, intelligence, and a tragic position. By the time the expeditions meets his band, the reader is rooting for both sides."
+    },
+    {
+      "name": "Isaiah's daughter before her death",
+      "blocks": ["The letter about Eliza's death (Chapter 41) destroys Isaiah's purpose. This only lands if Chapter 5 established the freedom suit and the four years of saving."],
+      "resolution": "Chapter 5 establishes Eliza's existence, the enslavement, the freedom suit plan. Chapters 12 and 14 show Isaiah earning the money physically (his body as the instrument of her freedom). Chapter 39 shows him writing a letter to the lawyer — the reader sees him hope."
+    },
+    {
+      "name": "Caleb's three kills as escalation",
+      "blocks": ["Caleb's trajectory requires strict escalation. Kill 1 (before story, ambiguous) must be established before Kill 2 (Part II, Comanche, ambiguous). Kill 2 must happen before Kill 3 (Part III, murder). The murder in Part III justifies his fate in Part IV."],
+      "resolution": "Chapter 6 establishes Kill 1 as the inciting incident for Caleb's flight. Chapter 27 (Part II) is the Comanche engagement where Caleb kills again. Chapter 62 (Part III) is the murder of Gribbins (the cowboy who mocked him in Chapter 10) — this one is unequivocal."
+    },
+    {
+      "name": "Weather and season as a character",
+      "blocks": ["The journey's emotional arc tracks the seasons: spring hope (Part I), summer endurance (Part II), the first chill of autumn change (Part III), and the cold closing in (Part IV). Weather must be documented per chapter to ensure consistency."],
+      "resolution": "The world bible's timeline document specifies weather for each date and location. Part I: April rains. Part II: May-June heat on the Llano Estacado (days over 100F, nights near freezing). Part III: July-August on the high plains (thunderstorms, hail, sudden cold fronts). Part IV: September-October in Montana (first frost, snow possible by late October)."
+    }
+  ],
+  "researchRequirements": [
+    {
+      "topic": "1874 freighting routes, wagon types, mule team logistics, daily mileage, supply requirements for a 5-month crossing",
+      "priority": "high",
+      "affectedChapters": [1, 4, 8, 9, 12, 14, 28, 29, 31, 35, 38, 40, 45, 48, 50, 54, 57, 59, 64, 68, 72, 76, 77, 80, 85, 94, 96]
+    },
+    {
+      "topic": "Lakota culture, social structure, spiritual practices, material life in 1874; the Treaty of Fort Laramie (1868) and its collapse; the 1874 Black Hills gold discovery and its immediate aftermath",
+      "priority": "high",
+      "affectedChapters": [2, 11, 46, 55, 56, 65, 66, 67, 69, 72, 81, 92, 96]
+    },
+    {
+      "topic": "Buffalo hide trade, 1874 ecology of the Southern Plains, disappearance of the southern herd",
+      "priority": "high",
+      "affectedChapters": [2, 46, 55, 56, 81]
+    },
+    {
+      "topic": "Reconstruction-era racial dynamics, Black teamsters in the West, freedom suits, legal status of formerly enslaved people in Louisiana 1865-1874",
+      "priority": "high",
+      "affectedChapters": [5, 12, 39, 41, 56, 66, 67]
+    },
+    {
+      "topic": "Post-Civil War veteran experience, PTSD (period term: 'soldier's heart' or 'nostalgia'), Texas Ranger history and disbandment (1873-74)",
+      "priority": "medium",
+      "affectedChapters": [1, 4, 13, 33, 52, 79, 91, 95]
+    },
+    {
+      "topic": "Medical practices of the 1870s, frontier medicine, cholera treatment, nursing during the Civil War, pharmaceutical availability",
+      "priority": "medium",
+      "affectedChapters": [3, 7, 10, 37, 51, 63, 75]
+    },
+    {
+      "topic": "Frontier justice in 1874, territorial law enforcement (no effective system in most of Montana until 1877), miners' courts, vigilance committees",
+      "priority": "medium",
+      "affectedChapters": [6, 27, 35, 60, 62, 82, 83, 90, 91, 94, 95]
+    },
+    {
+      "topic": "Domestic abuse in the 1870s, legal status of women, divorce laws, what happened to women who killed husbands (case law research)",
+      "priority": "medium",
+      "affectedChapters": [3, 37, 75, 83, 93]
+    },
+    {
+      "topic": "Llano Estacado geography, water sources, the Staked Plain crossing, Comanche activity in 1874",
+      "priority": "medium",
+      "affectedChapters": [28, 29, 30, 31, 32, 35, 38]
+    },
+    {
+      "topic": "Indian Territory in 1874 — relocated tribes, jurisdictional confusion, the territory as a lawless corridor",
+      "priority": "low",
+      "affectedChapters": [27, 30, 34, 36]
+    },
+    {
+      "topic": "Specific flora and fauna of Texas, Oklahoma, Kansas, Colorado, Nebraska, Wyoming, Montana — for atmosphere and authenticity",
+      "priority": "low",
+      "affectedChapters": [1, 2, 9, 14, 28, 30, 32, 38, 44, 47, 49, 54, 58, 61, 70, 73, 76, 80, 85, 88, 96]
+    },
+    {
+      "topic": "Oral storytelling traditions, how stories were told on the trail, what kinds of stories were told, the role of the older generation as memory keepers",
+      "priority": "low",
+      "affectedChapters": [9, 33, 61, 73, 88, 96]
+    }
+  ],
+  "parallelizable": [
+    ["Part I, Chapters 1-7 (all POVs established) can be written as independent character vignettes before assembly", "Part I, Chapter 9 (Chenoweth's story) can be written independently once the narrative voice is set", "The world bible (all four documents) can be compiled simultaneously with drafting"],
+    ["Part II, Chapters 27-35 (the Llano crossing) and Chapters 36-42 (the Indian Territory to Arkansas River) can be drafted by separate writers with clear handoff requirements",
+     "Two Bears' chapters (2, 11, 46, 55) form a self-contained sequence that can be developed independently as long as the timeline is synchronized"],
+    ["The research requirements can be divided: one researcher on Lakota history + Black Hills treaty context, another on 1874 freighting + wagon logistics, another on period medicine + gender law",
+     "The geographic route map must be completed before any travel chapter can be written with confidence"],
+    ["Thematic throughline notes can be drafted in parallel with the character dossiers — the character arcs and thematic arcs should inform each other",
+     "The dialogue guide should be drafted before any dialogue-heavy chapters (8, 9, 10, 12 especially) and tested against the first draft of Chapter 1"]
+  ],
+  "riskFlags": [
+    {
+      "risk": "Pacing sag in Part II (the middle journey) — 30 chapters across the Llano Estacado and Indian Territory with no settlement or variety",
+      "mitigation": "Every 5th chapter must provide a change: a new landscape, a threat, a character revelation, a Two Bears interlude. The Comanche scare (Chapter 27), the desertion attempt (Chapter 35), the daughter's death letter (Chapter 41), and the first Lakota encounter (Chapter 46) are structural guardrails against flat terrain becoming flat narrative.",
+      "phase": "Part II"
+    },
+    {
+      "risk": "Cast bloat — 37 named expedition members, 5+ Lakota characters, 3+ antagonists. Reader cannot track this many.",
+      "mitigation": "Only 8 expedition members get interiority or significant dialogue: Emmett, Ruth, Isaiah, Caleb, Vane, Chenoweth, Samuel, and Gribbins. Everyone else is background, killed unnamed, or referred to by function (the cook's assistant, the stocky teamster, Vane's hired guard). The Lakota cast is similarly limited: Two Bears, his wife, Runs-in-Wind, and three elders who each speak once.",
+      "phase": "Parts I through IV"
+    },
+    {
+      "risk": "The cargo mystery telegraphing — if the crates contain obvious mining equipment and the destination is Montana gold country, the reader will guess the reveal by Chapter 20",
+      "mitigation": "The cargo is glimpsed briefly (Chapter 12) as 'gears and cast iron' — could be mining, could be mill equipment, could be a printing press (one of Chenoweth's red herring suggestions). The crates are not opened again until Chapter 65. Multiple characters speculate, each wrong in a different way. The reveal is not that it's mining equipment but that it's ILLEGAL mining equipment destined for treaty-protected land — a moral reveal, not a mechanical one.",
+      "phase": "Parts I through III"
+    },
+    {
+      "risk": "Two Bears' chapters feeling like a separate novel — if the Lakota POV is not integrated into the expedition's journey, the narrative splits in half",
+      "mitigation": "Two Bears' chapters are never more than 5 chapters apart from expedition chapters. His timeline parallels the expedition's: when they are crossing the Llano, he is on the high plains watching the buffalo disappear. When they reach Colorado, he is gathering allies. The reader should feel the two lines converging, not splitting. Additionally, Runs-in-Wind's scouting reports bring information from the expedition's world into Two Bears' world — a narrative bridge.",
+      "phase": "Parts I through IV"
+    },
+    {
+      "risk": "Ruth's backstory feeling anachronistically feminist — a woman killing her abusive husband in 1874 could read as a 21st-century sensibility imposed on a period setting",
+      "mitigation": "Research actual cases. Frame Ruth's action in period morality: she sees it not as liberation but as damnation. She expects to go to hell. She is not proud; she is terrified. Her guilt is genuine, not performative. The novel should not endorse her action as righteous but present it as a terrible choice made under terrible pressure. The response of other characters (Emmett's moral complexity, Vane's pragmatic indifference) should reflect period attitudes, not contemporary ones.",
+      "phase": "Parts I through IV"
+    },
+    {
+      "risk": "Isaiah's death in Part III leaving the last third of the novel without a black POV — a structural problem that could feel like the narrative 'solved' racial complexity by killing the black character",
+      "mitigation": "Samuel (the younger black teamster from Chapter 5) survives Isaiah. He takes over as the expedition's teamster and as the narrative's black perspective. Samuel is not a replacement; he is a different character (educated, Northern-born, less patient than Isaiah) whose arc is to lose his idealism through the events of Part IV. The racial theme does not die with Isaiah.",
+      "phase": "Parts III through IV"
+    },
+    {
+      "risk": "Tonal inconsistency between Chenoweth's storytelling chapters and the violent action chapters — the novel could feel like two different books",
+      "mitigation": "Chenoweth's stories always comment on the present action, either through parallel or contrast. A violent chapter is followed by a quieter Chenoweth chapter that contextualizes the violence through memory and distance. The storytelling chapters are the narrative's breath-catchers. They should feel like the same novel at a different register, not a different novel entirely.",
+      "phase": "Parts I through IV"
+    },
+    {
+      "risk": "Silas Vane as a cardboard villain — if he is purely evil with no interiority, he becomes a plot device rather than a character",
+      "mitigation": "Vane gets one POV chapter (Chapter 33) where we see his worldview: he genuinely believes he is building the future. The railroad, the mines, the towns — these are civilization. The people who die along the way are unfortunate but necessary. He is not evil in his own mind; he is a man of progress. His single POV is enough to humanize him without forgiving him.",
+      "phase": "Part II"
+    },
+    {
+      "risk": "A 350,000-word first draft is unmanageable for most writers — the scope could lead to abandonment",
+      "mitigation": "Build the novel in three drafts: (1) Part I complete + skeletal Parts II-IV, (2) all parts complete at 250,000 words (compressed set pieces, no fat), (3) full expansion to 350,000 with all set pieces fully written. Each draft is a complete narrative. A writer who only completes Draft 1 still has a publishable Part I and a roadmap.",
+      "phase": "Pre-draft and Parts I through IV"
+    },
+    {
+      "risk": "The Black Hills/Custer context — 1874 is pregnant with the Little Bighorn (1876), which the reader knows is coming. The novel could feel like a prequel to a more famous story.",
+      "mitigation": "Never mention Custer by name. The novel is not about famous people. It is about the ordinary people caught in the machinery of history. The Black Hills gold discovery appears as a newspaper headline in a trading post (Chapter 76) — the expedition learns that the world they are moving through is about to change forever. The reader's foreknowledge is used not as dramatic irony but as tragic weight: we know what is coming, the characters don't, and that gap is the space of the novel's meaning.",
+      "phase": "Parts III through IV"
+    }
+  ],
+  "summary": "The Bitterroot Trail will be built as a 96-chapter, ~350,000-word Western in four parts, spanning April to October 1874. The narrative follows a freighting expedition from San Antonio to Montana Territory, carrying secret mining equipment destined for treaty-protected Lakota land. Five POV characters (Emmett Cole, Ruth Tolliver, Isaiah Brown, Caleb Cross, Two Bears/Mato Najin) provide rotating close-third perspectives, each embodying a different relationship to the frontier myth. The architecture follows Lonesome Dove's structural logic: every scene advances plot AND reveals character, the central journey contains and compounds all conflicts, and death is the narrative's primary punctuation. Key strategies: stagger Part II with regular complications to avoid middle sag; limit named expedition members to 8 to prevent cast bloat; use Chenoweth's storytelling chapters as tonal counterpoint to violence; keep Two Bears' timeline synchronized with the expedition's to maintain convergence. The cargo mystery is revealed not as a mechanical surprise but as a moral challenge — illegal Black Hills mining equipment that implicates every character who has helped transport it. The ending offers no easy redemption: Caleb dies unredeemed, Two Bears dies knowing he has lost, Ruth accepts judgment without absolution, and Emmett rides south to face consequences. Only Chenoweth's stories and the Lakota oral tradition survive to tell what happened. The novel argues that the West was not won but merely occupied, and that the cost of that occupation has not yet been fully counted.",
+  "writerResources": {
+    "estimatedDraftTimeMonths": 18,
+    "draftStrategy": "Three-draft approach: (1) Part I complete + skeletal Parts II-IV (months 1-6), (2) full draft at 250,000 words (months 6-12), (3) expansion to 350,000 words with full set pieces (months 12-18). Each stage produces a complete, readable artifact.",
+    "recommendedSoftware": "Scrivener for chapter management and research integration. Airtable or Notion for character/location/timeline continuity tracking. A custom script to cross-reference character knowledge against scenes.",
+    "criticalPath": "The geography and routes map must be completed before any travel chapters are drafted. The character dossiers (especially voice samples) must be completed before Part I, Chapter 8 (the departure, where all characters interact). The dialogue guide must be tested against Part I, Chapter 1 before proceeding to Part I, Chapter 2.",
+    "nonNegotiable": "All four world bible documents must exist before Chapter 1 is written. A single continuity error in a narrative this size destroys reader trust. Every chapter's weather, location, and character position must be verified against the timeline before that chapter is considered final."
+  }
+}

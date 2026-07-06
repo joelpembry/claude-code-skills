@@ -1,0 +1,14 @@
+{
+  "venture": "TelosAI™",
+  "ventureSlug": "telosai",
+  "hubPageId": "101548033",
+  "confluencePages": { "hub": "101548033", "buildState": "170459175", "optimizationSprint": "from memory" },
+  "buildState": { "phase": "Phase 4 ACTIVE", "currentSprint": "O1–O5 COMPLETE (2026-06-14)", "lovableProjectId": "14c4acd4 (Aim Clarity Hub)", "latestCommit": "5e650835", "currentStep": "Phase 4 OptimoCortex spec required next. TELO-4–TELO-47 in Jira. CHANGELOG cut. Confluence synced." },
+  "jira": { "epic": "TELO", "activeTickets": ["TELO-4–TELO-47 range"] },
+  "decisions": [
+    { "date": "2026-06-14", "decision": "Phases 1–3E + O1–O5 ALL COMPLETE", "by": "Build Team" },
+    { "date": "2026-06-14", "decision": "Phase 4 OptimoCortex spec required next", "by": "Planning" }
+  ],
+  "conventions": ["Recursive self-orientation platform", "Consumes 02.10 (Explorer + Social perspectives)"],
+  "contacts": { "ventureLead": "Joel Embry" }
+}

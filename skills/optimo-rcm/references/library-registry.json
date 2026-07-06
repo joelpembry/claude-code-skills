@@ -1,0 +1,81 @@
+{
+  "_description": "Registry mapping RCM knowledge libraries to their canonical Confluence pages. Update when libraries are created or versioned in Confluence.",
+  "_updated": "2026-06-24",
+  "base": {
+    "human-truths": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Human Truths",
+      "status": "not yet created",
+      "description": "Universal human cognitive and behavioral patterns that transcend domain"
+    },
+    "audience-intelligence": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Audience Intelligence",
+      "status": "not yet created",
+      "description": "Audience segmentation, motivation modeling, and decision psychology"
+    },
+    "objections": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Objections",
+      "status": "not yet created",
+      "description": "Common objections, resistance patterns, and rebuttal frameworks"
+    },
+    "visual-cognition": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Visual Cognition",
+      "status": "not yet created",
+      "description": "How humans process visual information — hierarchy, attention, composition"
+    },
+    "media-hierarchy": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Media Hierarchy",
+      "status": "not yet created",
+      "description": "Media format effectiveness ranking by context, audience, and objective"
+    },
+    "media-composition": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Media Composition",
+      "status": "not yet created",
+      "description": "Compositional principles for each media format in the hierarchy"
+    },
+    "ui-ux": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — UI/UX",
+      "status": "not yet created",
+      "description": "Interface design principles, patterns, and usability heuristics"
+    },
+    "marketing-view": {
+      "confluencePageId": null,
+      "title": "RCM Knowledge Library — Marketing View",
+      "status": "not yet created",
+      "description": "Marketing strategy frameworks, channel dynamics, and campaign architecture"
+    }
+  },
+  "domainPacks": {
+    "venture": {
+      "description": "Venture planning, business model design, GTM strategy, fundraising, governance",
+      "overrides": [],
+      "additions": []
+    },
+    "product": {
+      "description": "Product development, UX research, roadmapping, feature prioritization",
+      "overrides": [],
+      "additions": []
+    },
+    "marketing": {
+      "description": "Campaign strategy, audience targeting, channel planning, creative briefs",
+      "overrides": ["marketing-view"],
+      "additions": []
+    },
+    "media": {
+      "description": "Content creation, visual design, narrative development, media production",
+      "overrides": ["visual-cognition", "media-hierarchy", "media-composition"],
+      "additions": []
+    },
+    "research": {
+      "description": "Deep research, evidence gathering, competitive analysis, synthesis",
+      "overrides": [],
+      "additions": []
+    }
+  }
+}

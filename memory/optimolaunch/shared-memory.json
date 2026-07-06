@@ -1,0 +1,14 @@
+{
+  "venture": "OptimoLaunch™",
+  "ventureSlug": "optimolaunch",
+  "hubPageId": "94371841",
+  "confluencePages": { "hub": "94371841", "buildStateAssessment": "186023939" },
+  "buildState": { "phase": "S2 85% complete, S3 blocked", "currentSprint": "S2–S6 gates open", "lovableProjectId": "opti-pulse-hub", "vercelDeployment": "opti-pulse-hub.lovable.app", "currentStep": "12 feature gaps to MVP. Channel syndication/aggregation focus. 75 Jira tickets in Idea. 8 stale Confluence pages. Next: governance reconciliation Phase A." },
+  "jira": { "epic": null, "activeTickets": [] },
+  "decisions": [
+    { "date": "2026-06-14", "decision": "S1 (CC-1) signed off", "by": "Build Team" },
+    { "date": "2026-06-23", "decision": "Full multi-source audit completed — build state page 186023939, Slack Canvas F0BCSHN7KFE", "by": "Audit" }
+  ],
+  "conventions": ["Channel syndication/aggregation focus for upcoming sprints", "Prototype at optimolaunch.com"],
+  "contacts": { "ventureLead": "Joel Embry" }
+}

@@ -1,0 +1,393 @@
+{
+  "perspective": "explorer",
+  "characters": [
+    {
+      "name": "Eulalia Quince",
+      "archetype": "The Widow Who Outlasted the Country",
+      "age": 58,
+      "backstory": "Married at 15 to a whiskey-runner who got himself killed by the Regulators in the 1850s. She took his claim near the Brazos and has held it alone for forty years — buried three hired hands, shot two horse thieves, and raised a son who left for California and never wrote. She is the oldest white woman within a hundred miles and she has forgotten why she stays.",
+      "centralConflict": "Her will to endure versus the growing recognition that endurance was never the same as living. The land itself is finally wearing her down, and she has no one to leave it to.",
+      "voiceTrait": "She speaks in short, declarative sentences and never repeats herself. When she laughs, it sounds like a gate coming off its hinges. She fills silences by humming hymns she does not believe in.",
+      "lonesomeDoveParallel": "Echoes Clara Allen in her rootedness and grief, but where Clara had a household of girls and a purpose, Eulalia has only the land and the accumulating silence of a life spent alone. Clara's strength was generative; Eulalia's is purely stubborn.",
+      "novelty": "high"
+    },
+    {
+      "name": "Moses "Mose" Whitfield",
+      "archetype": "The Buffalo Soldier Turned Tracker",
+      "age": 42,
+      "backstory": "Born enslaved on a Virginia tobacco plantation, emancipated at 16, enlisted in the 10th Cavalry at 18. Served fourteen years on the southern plains — scouted against the Comanche, the Apache, and the Kiowa. Mustered out in 1880 and found that the country he helped pacify has no place for a Black man with a cavalry pension and a vocabulary that makes white settlers uneasy.",
+      "centralConflict": "The skills that made him indispensable in the Army make him feared in civilian life. He wants only to be left alone to prospect for silver in the Davis Mountains, but the frontier keeps demanding he choose sides in other men's wars.",
+      "voiceTrait": "He watches people's hands, not their eyes, when they speak. Uses precise, almost formal English — a deliberate self-education from the post library at Fort Sill. Has a habit of reading sign in any situation; once described a man's character from the way he tied his horse.",
+      "lonesomeDoveParallel": "A structural echo of Deets — the skilled Black scout whose competence is taken for granted and whose interior life is invisible to his white companions — but Mose is literate, bitter, and self-aware. He knows exactly what Deets only sensed. His tragedy is that he sees the cage, not that he doesn't know it's there.",
+      "novelty": "high"
+    },
+    {
+      "name": "Dempsey Crouch",
+      "archetype": "The Gospel-Nerve Drifter",
+      "age": 34,
+      "backstory": "Born into a family of circuit riders in the Missouri Ozarks. His father was a Methodist preacher who drowned in a flash flood while trying to baptize a convert. Dempsey himself can quote scripture end to end and has killed six men — he counts them on the same fingers that once turned the pages of his mother's Bible. He drifts from town to town, hiring on as a ranch hand or a gambler, and sometimes, when the mood takes him, he preaches funerals for strangers who have no one else.",
+      "centralConflict": "He believes in God and he believes he is damned — not for the killing, but because he enjoyed the first one. He wants redemption; he courts damnation. Every new town is a chance to be someone else, and every time he fails.",
+      "voiceTrait": "He quotes scripture in the same flat tone he uses to order whiskey. When drunk, he recites the 23rd Psalm backwards. He has a habit of touching his own pulse at his throat, as if checking that he is still alive.",
+      "lonesomeDoveParallel": "A darker, more consciously theological version of Jake Spoon — the charming drifter who can't stay put — but where Jake was thoughtless, Dempsey is tortured. His charm is a discipline, not a nature. He thinks more of Gus McCrae than anyone else in his life, and he outlived him.",
+      "novelty": "medium"
+    },
+    {
+      "name": "Linh Tam",
+      "archetype": "The Railroad Widow with a Repeating Rifle",
+      "age": 27,
+      "backstory": "She came to California from Guangdong Province in 1867 with her husband, Tam Wing, who signed on to build the transcontinental railroad through the Sierra Nevada. Wing was killed in a tunnel blast in 1868 — his body was never fully recovered. Linh spent three years in the railroad camps as a laundress and cook, then followed the tracks east when the rails were done. She has learned to shoot, to ride astride like a man, to read English from a dime novel, and to trust no one who smiles too wide.",
+      "centralConflict": "She is searching for her husband's cousin, the only family she has left, who was last seen in a place called Buffalo Gap, Texas. The journey is a thousand miles through country that has never seen a Chinese woman alone. She cannot go back; she is not sure she belongs anywhere she is going.",
+      "voiceTrait": "She listens more than she speaks and understands more English than she lets on. When she is frightened, she grows very still — animals notice before men do. She carries a Henry rifle that belonged to a dead Confederate officer and has notched the stock for every man who tried to take it.",
+      "lonesomeDoveParallel": "Her journey mirrors Lorena Wood's — a woman traveling alone through a hostile landscape — but where Lorena was fleeing her past, Linh is hunting for her future. Her weapon is not her vulnerability but her competence. She is what Lorena might have become if she had been given a rifle instead of a situation.",
+      "novelty": "high"
+    },
+    {
+      "name": "Ismael "Izzy" Pacheco",
+      "archetype": "The Tejano Who Rode with Quantrill",
+      "age": 39,
+      "backstory": "Born to a ranchero family in the Rio Grande valley. His father lost the land in a boundary dispute after the Mexican-American War. At 16, full of rage at gringos and at God, he drifted north and fell in with William Quantrill's raiders — not for the cause, which meant nothing to him, but for the violence, which meant everything. He rode through Lawrence in 1863. He has spent the years since trying to outrun what he saw there. He works as a horse breaker, the only trade that asks nothing of his tongue.",
+      "centralConflict": "He has spent twenty years running from his own capacity for cruelty, and has finally realized there is nowhere far enough. A Comanche war party has stolen a white woman from a settlement near his camp, and he must choose: stay silent and free, or help the search and risk being recognized by the white men who would hang him for his past.",
+      "voiceTrait": "Almost silent. When he does speak, it is in Spanish or in the hand-talk of the plains tribes. He gentles horses by breathing into their nostrils and knows the name of every bird in three territories. The only thing that makes him weep is music — he will ride miles to hear a guitar.",
+      "lonesomeDoveParallel": "A shadow inversion of Gus McCrae — the man who loves life but has done terrible things — where Izzy has done terrible things and cannot love anything, not even himself. His silence is the opposite of Gus's talk. Both are haunted; Izzy by memory, Gus by the future.",
+      "novelty": "high"
+    },
+    {
+      "name": "Hattie Peak",
+      "archetype": "The Schoolteacher Inventing Her Own Rules",
+      "age": 31,
+      "backstory": "Daughter of a failed Forty-Niner who never found gold and never forgave himself. She taught herself to read from her mother's one book — a worn copy of Ivanhoe — and inherited a small sum when her mother died of cholera on the trail to Oregon. She used it not to marry but to travel, and has taught school in six territories, always leaving when the community's expectations pressed too close. She is fluent in Spanish and can read Latin badly. She keeps a journal that she burns every six months.",
+      "centralConflict": "She is a woman who needs independence the way others need air, but she has begun to feel the shape of loneliness — not the companionable kind, but the kind that calcifies. A wealthy rancher has proposed marriage. If she says yes, she gains safety and loses herself. If she says no, she faces another winter alone in a tarpaper schoolhouse.",
+      "voiceTrait": "She corrects people's grammar without meaning to, then apologizes in the same breath. Has a nervous habit of touching her collar. When truly angry, her voice drops to a near-whisper that is far more terrifying than shouting.",
+      "lonesomeDoveParallel": "A version of Clara Allen who never married — the same intelligence and reading, but without the husband or the children or the rootedness. Hattie is Clara before she was anchored; the tragedy is that Hattie may never find an anchor, or may find one too late.",
+      "novelty": "medium"
+    },
+    {
+      "name": "Captain Josiah "Jo" Ledbetter",
+      "archetype": "The Withered Cavalryman",
+      "age": 63,
+      "backstory": "Rose from enlisted man to brevet colonel in the Union Army — fought at Shiloh, Stones River, Chickamauga. After the war, he accepted a cavalry commission on the frontier because he could not imagine any other life. He has spent twenty years chasing raiders and signing treaties he knows will be broken. His wife left him in 1872. His children are strangers to him. He drinks only in the evenings and never more than two glasses, because he has always believed discipline is the only thing between a man and the abyss.",
+      "centralConflict": "His last command before forced retirement: a remote outpost with thirty men, a corrupt supply officer, and responsibility for a reservation where the government has failed to deliver rations for three months. He can obey orders and watch people starve, or he can disobey and lose everything he has built.",
+      "voiceTrait": "He refers to the Civil War as "the late unpleasantness" and never speaks of it directly, though he murmurs battle names in his sleep. He polishes his boots every morning regardless of circumstances. Has never struck a man in anger — he leaves that to sergeants.",
+      "lonesomeDoveParallel": "An older, more broken version of Captain Call — the same devotion to duty, the same inability to express love, the same slow realization that the life he built has walls instead of rooms. Ledbetter is Call after the Hat Creek outfit dispersed, after the last friend is buried.",
+      "novelty": "medium"
+    },
+    {
+      "name": "Wanbli Tokahe (Eagle First)",
+      "archetype": "The Comanche Who Learned White Laws",
+      "age": 33,
+      "backstory": "Born in the Llano Estacado, a Nokoni Comanche. Captured in a cavalry raid at age 12 and sent to the Carlisle Indian School in Pennsylvania, where he was renamed "Thomas Logan." He learned English, studied law, converted to Christianity, and was sent back west as a government interpreter and mediator. He walks between two worlds and is trusted by neither. White men call him a traitor to his race. His own people call him a white man with dark skin. He speaks four languages and is fluent in despair.",
+      "centralConflict": "The buffalo are gone, the reservation system is a lie, and the younger warriors are talking about a final war they cannot win. He must decide whether to continue his work as a broker of peace — a peace that will mean the end of his people's way of life — or to join the war he knows will lead to massacre.",
+      "voiceTrait": "When speaking English, his voice is flat and precise, almost scholarly. When speaking Comanche, it becomes musical, alive. He sometimes forgets which language he is speaking mid-sentence. He smokes a pipe with white men and is embarrassed by how much he enjoys it.",
+      "lonesomeDoveParallel": "No direct parallel in LD — the novel's Comanche characters are largely silent or seen from outside. He is what the novel could not see: the educated native caught between cultures, a walking tragedy of conscience. He owes something to Blue Duck's intelligence but is driven by duty rather than cruelty.",
+      "novelty": "high"
+    },
+    {
+      "name": "Floyd "Sog" Boggs",
+      "archetype": "The Innocent Who Should Not Survive",
+      "age": 19,
+      "backstory": "A foundling raised by a whore in Fort Smith who did her best for him until she died of consumption when he was fourteen. Since then he has survived by doing whatever people tell him, which has included digging graves, skinning carcasses, and once — accidentally — helping rob a stagecoach. He is not intelligent by any standard measure, but he has a gift: he has never met a horse he could not gentle, and animals trust him in a way people do not.",
+      "centralConflict": "He is too gentle for the world he lives in. Everyone around him sees a tool to be used or a victim to be exploited. The sole protector he has is a retired outlaw who found him freezing in a barn and decided, for reasons even he cannot articulate, to keep him alive.",
+      "voiceTrait": "Speaks in simple, declarative sentences. Often answers questions that were not asked. Has no sense of irony but a profound sense of fairness. When confused, he scratches the back of his head with both hands. Cries easily and without shame.",
+      "lonesomeDoveParallel": "A darker, more pathetic version of Newt — the boy seeking a father — but where Newt had the safety of the Hat Creek outfit, Sog has nothing and no one. His innocence is not protected by a community; it is preyed upon. He is Newt without Call or Gus.",
+      "novelty": "high"
+    },
+    {
+      "name": "Lydia "Liddy" Strange",
+      "archetype": "The Whore with a Business Plan",
+      "age": 44,
+      "backstory": "Raised in a St. Louis brothel, bought her freedom at 26, headed west during the railroad boom. She worked the camps from Cheyenne to El Paso, saved every dime, and now owns the only saloon in a town called Moxley — plus half the lots on the main street. She is the unofficial mayor, banker, and confessor of a community that pretends to respect her while depending on her completely. She has buried three husbands and outlived two sheriffs.",
+      "centralConflict": "The railroad is coming. A land speculator from Chicago is buying up everything around her, and she must decide whether to sell at a fortune or stay and watch the town she built get swallowed by progress. She has never owned anything she could not walk away from, and that is the thing that scares her most.",
+      "voiceTrait": "She calls everyone "honey" — men, women, children, horses — and it is never affectionate. She keeps a pearl-handled derringer in her garter and a shotgun under the bar. She knows everyone's secrets and trades in them like currency. Smokes small cigars when she thinks no one is watching.",
+      "lonesomeDoveParallel": "Echoes the saloon-keeping women of LD's border towns but with her own agency — not a victim of the frontier economy but its quiet proprietor. She is what a frontier madam really was: a businesswoman in a world that had no category for her. Gus would have adored her; Call would have disapproved, which would have amused her enormously.",
+      "novelty": "medium"
+    },
+    {
+      "name": "Poor Tom Allbee",
+      "archetype": "The Failed Hatter Who Won't Quit",
+      "age": 52,
+      "backstory": "Apprenticed to a hatter in Philadelphia at 11, struck out west at 25 with a wagon full of beaver pelts and a dream. The beaver trade collapsed. He spent the next twenty-five years failing at various enterprises — a mercantile that burned, a freight line that went bankrupt, a gold claim that produced exactly seventeen dollars. He is now the proprietor of "Allbee's Fine Hats and Sundries" in a town of ninety-three people, none of whom wear hats. He owes money to everyone and is owed money by no one.",
+      "centralConflict": "He is a man who has failed at everything except hope. His creditors are closing in, and for the first time he is considering the possibility that the West is not a land of second chances but a land that grinds up men like him and spits out their bones. But he has a scheme — one last scheme — involving an ostrich farm.",
+      "voiceTrait": "Incessantly optimistic to the point of mania. When describing his latest plan, his voice rises in pitch and speed until he is nearly shouting. Deflects every question about money with a wave of his hand and a forced laugh. Has never admitted to being lonely, though he talks to his horse more than any man should.",
+      "lonesomeDoveParallel": "Every minor character in LD who scrabbled for a living on the edge of civilization — a combination of the Irish railroad workers and the failed storekeepers. He is the small tragedy that the epic overlooks: the man who came west with a dream and found only a slower kind of death.",
+      "novelty": "medium"
+    },
+    {
+      "name": "Kizzi Bowdre",
+      "archetype": "The Girl Who Got to Keep Her Gun",
+      "age": 16,
+      "backstory": "Daughter of a Comanchero trader and a Mexican captive. Her father taught her to shoot, to track, to skin, and to trust no one. When he died of fever last winter, she buried him alone and took his horse, his rifle, and his mule. She has been riding the Staked Plains ever since, trapping and trading and sleeping under the stars. She is feral in the way that only a child raised outside the reach of any town can be.",
+      "centralConflict": "She has been summoned to Moxley by a lawyer who claims her father owned land there — land she never knew about. To claim it, she must enter a town for the first time in her life, submit to questions, and risk being made a ward of the state. The wilderness made her free; the law would cage her.",
+      "voiceTrait": "She answers questions with questions. Moves through space like a liquid — silent, fluid, always at the edge of a room. Rarely smiles, and when she does, it disorients people. Calls grown men "sir" with a flat affect that sounds like mockery, though she does not mean it as such.",
+      "lonesomeDoveParallel": "An inheritor of the Lorena Wood story — the girl alone in a male world — but where Lorena was shaped by men's violence, Kizzi was shaped by her father's survival teaching. She is feral in a way Lorena was never allowed to be. She carries the same vulnerability but refuses to know it.",
+      "novelty": "high"
+    },
+    {
+      "name": "Thaddeus Grimes",
+      "archetype": "The Blacksmith Who Believes in Civilization",
+      "age": 48,
+      "backstory": "Born free in Boston, apprenticed in ironwork, moved west with the conviction that he could build something new — a town where a man's skill mattered more than his color. He founded Moxley's first smithy, and over twenty years he has become the town's moral center: he judges disputes, holds debts, and has never turned away a hungry man. He is a deacon in the African Methodist Episcopal church and reads the Bible in Greek.",
+      "centralConflict": "His faith in progress and civilization is being tested. The speculator buying up the town has made clear that Moxley would be better off without "his kind." A younger black man has been lynched in a neighboring county, and Thaddeus's wife is begging him to leave for Kansas before the same thing happens to them. He wants to believe that the law will protect him; he is beginning to suspect it will not.",
+      "voiceTrait": "Speaks slowly, with the weight of a man who has considered every word before it leaves his mouth. Laughs rarely but fully — a deep, rolling sound that fills a room. When he is angry, he polishes his spectacles methodically. He has a habit of finishing other people's sentences, usually correctly.",
+      "lonesomeDoveParallel": "No direct parallel in LD — a educated, freeborn Black man with civic vision would not have been visible in McMurtry's vision of Texas. He is a corrective: proof that the West was built by more than cowboys and outlaws. He is the civilization that Call and Gus spent their lives making possible, and he is its most eloquent defender.",
+      "novelty": "high"
+    },
+    {
+      "name": "Patrick O'Grady "P.O." Dunnigan",
+      "archetype": "The Railroad Surveyor Who Saw Too Much",
+      "age": 45,
+      "backstory": "Born in County Cork, fled the Famine at 12, bounced between New York gangs and Union Army sapper units before finding his calling as a surveyor for the Union Pacific. He has mapped more of the West than any man alive and has never owned a single acre of it. His maps are works of art; his life is a shambles. He has buried two wives in unmarked graves and has a daughter in a St. Louis convent who will not speak to him.",
+      "centralConflict": "He is the advance man for the railroad that will destroy the world his companions inhabit. The speculator who is buying up Moxley has hired him to survey the new townsite. Every stake he drives is a nail in the coffin of the old West, and he knows it. He drinks to forget; he surveys to remember.",
+      "voiceTrait": "An Irish brogue thickened by whiskey and years of solitude. Tells long, elaborate stories that may or may not be true. Names every landmark on his maps — "The Widow's Sorrow," "The Liar's Creek," "The Hill of Regret" — because he believes the land has its own memory. Weeps when drunk, which is often.",
+      "lonesomeDoveParallel": "An analogue to the forces of change that drive LD's plot — the railroad, the fence, the end of the open range — made flesh. He is what Gus McCrae would have been if he had lived to see the barbed wire go up: melancholy, aware, complicit.",
+      "novelty": "high"
+    },
+    {
+      "name": "Senora Antonia Covarrubias",
+      "archetype": "The Hacendada Without an Hacienda",
+      "age": 66,
+      "backstory": "Born to one of the great land-grant families of New Mexico, she grew up on an estate that covered three hundred thousand acres. She watched it dissolve piece by piece — through American courts, through bad marriages, through taxes her father never understood. She now lives in a four-room adobe in Moxley with a Mexican cook and nine cats, and she is writing a history of her family that no one will publish. She remembers the West before the Americans came, and she is not sentimental about it, which makes her account invaluable and unwelcome.",
+      "centralConflict": "The speculator wants her last remaining parcel — five acres that include the old Spanish cemetery where her grandparents are buried. If she sells, the graves will be moved. If she refuses, she will be taxed into destitution. She must decide what is worth fighting for when you are too old to fight.",
+      "voiceTrait": "Code-switches between Spanish and mid-Atlantic English depending on mood and company. Dusts everything, constantly, as if the very air offends her. Smokes cigarettes in a long holder and offers unsolicited opinions on everyone's character. Her memory is flawless; her mercy is selective.",
+      "lonesomeDoveParallel": "No parallel in LD — the Spanish/Mexican aristocratic experience of loss is entirely absent from McMurtry's novel. She brings a voice that LD never had: the perspective of those who were displaced by the very people whose displacement the novel mourns.",
+      "novelty": "high"
+    }
+  ],
+  "locations": [
+    {
+      "name": "Moxley, Texas",
+      "type": "town",
+      "description": "A single street of sun-baked false-front buildings crouched on a bend of a river that dries up for half the year. The town has a saloon, a smithy, a mercantile, a schoolhouse with one window, and more dogs than children — and a collective feel of having been built by people who expected more of the future than the future delivered.",
+      "narrativeFunction": "The gravitational center. A town on the edge of being bought, swallowed, or erased — where all the characters' paths converge and cross. It is small enough that everyone knows everyone's secrets and large enough for a surprising range of fates."
+    },
+    {
+      "name": "The Staked Plains (Llano Estacado)",
+      "type": "wilderness",
+      "description": "A table-flat expanse of shortgrass and sky that extends to every horizon without a wrinkle — a place so featureless that travelers have gone mad circling their own tracks. The wind never stops. The sun does not set so much as fall off the edge of the world.",
+      "narrativeFunction": "The purgatorio. Where characters go to lose themselves, find themselves, or disappear. The place where the old ways still hold — Comanche trails, buffalo skulls, the bones of settlers who did not find water in time. Tests the will of every character who crosses it."
+    },
+    {
+      "name": "Fort Belknap (Abandoned)",
+      "type": "fort",
+      "description": "Crumbling limestone barracks and a parade ground overgrown with mesquite. The flagpole stands but no flag flies. A single old soldier lives in the officers' quarters, paid by the Army to be caretaker of a place everyone else has forgotten. The iron bars on the guardhouse are rusted through; the walls are covered with the names of men who are probably dead.",
+      "narrativeFunction": "Site of memory and reckoning. Where Captain Ledbetter was stationed during his prime, and where the ghosts of the Indian Wars still walk. A place for confrontations with the past, for characters to meet who have history with each other."
+    },
+    {
+      "name": "Covarrubias Grant — Five Acres and a Cemetery",
+      "type": "ranch",
+      "description": "A small adobe enclosure with a crumbling church, a pecan tree that has stood for a century, and a cemetery of eighty-seven graves — Spanish, Mexican, Comanche, and Anglo — all rotting in the same red dirt. The irrigation ditch still runs, but the fields have gone fallow. Senora Covarrubias's cats patrol the walls like small, useless sentinels.",
+      "narrativeFunction": "The last stand of the old world. A physical battleground between progress (the railroad, the speculator) and memory. Also a burial ground that holds secrets: not all the graves are marked with names, and not all the names in the graves are the ones on the stones."
+    },
+    {
+      "name": "The Crossing at Palo Duro",
+      "type": "crossing",
+      "description": "A shallow ford over the Red River where the cottonwoods grow thick and the water is brown with clay. A worn sign warns travelers that they are entering Comanche country, though the sign has been there so long it is riddled with bullet holes. A half-built ferry sits half-sunk on the northern bank, a monument to someone's abandoned dream.",
+      "narrativeFunction": "Threshold and liminal space. Characters cross here when entering or leaving the story's territory. Good for chance encounters, ambushes, and the kind of conversations that happen when strangers share a fire."
+    },
+    {
+      "name": "The Pacheco Horse Camp",
+      "type": "wilderness",
+      "description": "A hidden canyon in the breaks of the Canadian River where wild mustangs are trapped and broken. The only structures are a brush arbor, a rope corral, and a stone hearth. The smell of horse and woodsmoke is permanent. Izzy Pacheco lives here alone for months at a time, emerging only when he needs supplies or when the loneliness becomes unbearable.",
+      "narrativeFunction": "Hermitage and refuge. The place a character goes to escape the world of men. Its isolation is both a sanctuary and a prison. Good for scenes of introspection, of craft, and of the communion between human and animal."
+    },
+    {
+      "name": "Allbee's Fine Hats and Sundries",
+      "type": "town",
+      "description": "A dusty storefront in Moxley crammed with unsold hats, expired patent medicines, and a taxidermied jackrabbit in a waistcoat. The floorboards sag. The inventory has not changed in three years. Poor Tom Allbee sleeps in the back and greets every customer — sometimes the same customer three times in a day — as if they were a long-awaited miracle.",
+      "narrativeFunction": "Comic relief that curdles. The place symbolizes the gap between aspiration and reality in the West. Also functions as an informal meeting point — everyone in town passes through at some point, if only to hear Tom's latest scheme."
+    },
+    {
+      "name": "Strange's Saloon & Social",
+      "type": "outpost",
+      "description": "The only saloon in Moxley, but also the bank, the unofficial post office, and the courthouse when no judge is in town. Liddy Strange runs it with an iron hand and a crystal glass. The bar is mahogany — shipped from St. Louis at ruinous expense — and the mirror behind it is the only one between Dallas and Santa Fe.",
+      "narrativeFunction": "The town's heart. Where information is exchanged, deals are struck, and conflicts either flare or are defused. The neutral ground where characters from every station can meet. Also the site of Liddy's quiet war with the speculator."
+    }
+  ],
+  "conflictsAndPlots": [
+    {
+      "premise": "The railroad comes to Moxley, and the speculator's men begin buying up the town — but the land titles are a tangle of Spanish grants, dead men's claims, and squatters' rights that no court has ever ruled on.",
+      "scale": "epic",
+      "stakes": "The entire community's survival. The town will either be dissolved and rebuilt as a rail depot, or it will be bypassed and die. Either way, the world the characters built is ending.",
+      "thematicResonance": "The cost of civilization — the thing Call and Gus spent their lives enabling, arriving to destroy what they built."
+    },
+    {
+      "premise": "A Comanche war party steals horses and a white woman from a settlement near Moxley. A posse forms. Izzy Pacheco knows where the war party is heading but cannot reveal his knowledge without revealing his past.",
+      "scale": "communal",
+      "stakes": "The woman's life. The posse's lives. Izzy's secret and the betrayal it would cost him to speak. The escalation of violence between settlers and the last free bands.",
+      "thematicResonance": "The impossibility of neutrality — the frontier's demand that everyone choose a side, even those who belong to neither."
+    },
+    {
+      "premise": "Wanbli Tokahe arrives in Moxley as a government agent to negotiate the transfer of the last Comanche bands to the reservation. The white settlers trust him because he is educated; the Comanche distrust him because he is educated; both sides will eventually hate him.",
+      "scale": "epic",
+      "stakes": "The fate of the last free Comanche people. The soul of a man caught between two worlds. The question of whether peace bought with submission is peace or merely surrender.",
+      "thematicResonance": "The death of a way of life — the central tragedy of LD, seen here from inside the culture that was destroyed rather than from the perspective of the men who destroyed it."
+    },
+    {
+      "premise": "Linh Tam arrives in Moxley looking for her husband's cousin, only to find he has been hanged for a crime she knows he did not commit. She wants the truth; the men who hanged him want her gone.",
+      "scale": "intimate",
+      "stakes": "One woman's justice in a country that has no category for her existence. Her life, which is in danger the moment she starts asking questions.",
+      "thematicResonance": "The loneliness of the outsider — Lorena's journey to belong, but with the added barrier of race and language."
+    },
+    {
+      "premise": "Hattie Peak must choose between a marriage of convenience that would give her security and a solitary winter that might break her. At the same time, her school is about to be condemned as part of the speculator's land grab.",
+      "scale": "intimate",
+      "stakes": "One woman's autonomy against the economic and social pressures designed to extinguish it. The last school in a hundred miles.",
+      "thematicResonance": "The cost of belonging vs. the cost of freedom — a theme embodied in Clara Allen's marriage and Lorena's wandering."
+    },
+    {
+      "premise": "Kizzi Bowdre arrives in Moxley to claim her father's land and discovers that the legal system sees her as a child to be controlled, not a person with rights. The speculator offers to buy her out for a pittance; Thaddeus Grimes offers to help her fight.",
+      "scale": "intimate",
+      "stakes": "A girl's freedom. A piece of land that may be worthless or may hold water — and on the plains, water is everything.",
+      "thematicResonance": "The law as a weapon of the strong against the weak — the gap between the myth of frontier justice and its reality."
+    },
+    {
+      "premise": "Captain Ledbetter must decide whether to command his troops to intervene when a group of white vigilantes threatens the blacksmith's home. His orders say to stay out of civil matters; his conscience says otherwise.",
+      "scale": "communal",
+      "stakes": "A man's life. The remaining credibility of federal authority. The question of whether the Army exists to protect citizens or to enforce the will of the powerful.",
+      "thematicResonance": "The failure of institutions — the law does not protect, the government does not provide, and the only justice available is what men make with their own hands."
+    },
+    {
+      "premise": "Mose Whitfield finds a silver vein in the Davis Mountains and must decide whether to file a claim — which would mean entering a town, dealing with white lawyers, and risking the attention of men who would kill him for his strike — or to keep it secret and remain poor.",
+      "scale": "intimate",
+      "stakes": "Wealth vs. safety. Visibility vs. survival. The chance to finally have something of his own vs. the certainty that his own will be taken.",
+      "thematicResonance": "The closed frontier — the discovery of opportunity that arrives too late, or that arrives only for some."
+    },
+    {
+      "premise": "Dempsey Crouch is recognized in Moxley by a man from his past — a man who knows what happened in a saloon in Wichita three years ago. Dempsey must decide whether to run again or to stay and face what he has been fleeing.",
+      "scale": "intimate",
+      "stakes": "His life. His soul. The possibility — which he barely dares to name — that redemption might require staying still, even when staying still means being caught.",
+      "thematicResonance": "The impossibility of outrunning the past — the matter-of-fact violence that haunts every character in LD."
+    },
+    {
+      "premise": "Senora Covarrubias's fight for her cemetery draws in the entire town, forcing every character to ask what is worth preserving — and what the speculator's money means to each of them, individually.",
+      "scale": "communal",
+      "stakes": "A piece of ground that holds the bones of three cultures. The town's collective decision about its future. Whether memory is worth more than money.",
+      "thematicResonance": "The past's claim on the present — the graves that the cattle drive passes, the history buried in the landscape that LD's characters never stop to read."
+    }
+  ],
+  "thematicTerritory": [
+    {
+      "theme": "The Cost of Belonging",
+      "exploration": "Every character in this world faces a variant of the same question: what are you willing to surrender in exchange for community? Hattie would surrender her independence; Mose would surrender his invisibility; Wanbli would surrender his identity; Liddy would surrender her hard-won autonomy. The town of Moxley itself faces the same choice — sell out to the railroad or cling to a dying way of life."
+    },
+    {
+      "theme": "The Violence at the Foundation",
+      "exploration": "The town of Moxley is built on stolen land, and everyone in it is implicated — the Spanish took it from the Comanche, the Anglos took it from the Spanish, and the law that now governs it was written by the people who did the final taking. Characters like Izzy (who participated in worse violence), Wanbli (whose people were the victims), and Thaddeus (whose people were enslaved by the legal system's authors) carry this knowledge in different ways."
+    },
+    {
+      "theme": "The Inadequacy of the Law",
+      "exploration": "The legal system appears in this world not as justice but as a commodity — bought by the speculator, wielded against the weak, incomprehensible to the uneducated. The characters who fare best are those who either ignore the law (Liddy, Izzy) or learn to manipulate it (Wanbli, Thaddeus). Those who trust it — Poor Tom, Kizzi, Eulalia — are its victims."
+    },
+    {
+      "theme": "The Elegy for a World That Never Was",
+      "exploration": "Lonesome Dove mourns the end of the cattle-drive West, but that West was itself built on the destruction of earlier worlds. Senora Covarrubias mourns the Spanish West; Wanbli Tokahe mourns the Comanche West; Eulalia Quince mourns the settler West that promised so much and delivered so little. The story's deepest sadness is that everyone is mourning a loss, and everyone's loss was someone else's gain."
+    },
+    {
+      "theme": "The Body as Archive",
+      "exploration": "The West lives in the body — in scars, in calluses, in the way a man sits a horse or a woman carries water. Linh's hands remember washing clothes in icy Sierra streams. Mose's back remembers the whip. Kizzi's eyes have learned to measure distance without thinking. As the world changes, these embodied knowledges become obsolete — useless skills for a future that has no use for them."
+    },
+    {
+      "theme": "What Men Do to Each Other in the Name of Love",
+      "exploration": "The great unspoken of the Western. The love between men — between soldiers, between partners, between strangers who recognize each other across a fire — that cannot be named and must therefore be expressed in action: in protection, in sacrifice, in violence. Dempsey's attachment to his dead friend. Izzy's responsibility for Sog. Captain Ledbetter's devotion to a command that has never loved him back."
+    }
+  ],
+  "historicalAnchors": [
+    {
+      "eventOrContext": "The Completion of the Transcontinental Railroad (1869) and its branch lines through the 1880s",
+      "narrativePotential": "The railroad is the death knell of the cattle drive and the open range. It brings settlers, speculators, and the end of the buffalo. Every character's life is shaped by its approach — it brings Liddy her business, threatens Senora Covarrubias's land, employs Patrick Dunnigan, and will ultimately make Moxley either a boomtown or a ghost."
+    },
+    {
+      "eventOrContext": "The Red River War (1874–1875) and the End of the Comanche",
+      "narrativePotential": "The final military campaign that broke Comanche resistance in the southern plains. Wanbli Tokahe and Izzy Pacheco both carry the aftermath of this war. The horse camp where Izzy lives was once Comanche territory. The violence of this war is the ground beneath every relationship between whites and natives in the story."
+    },
+    {
+      "eventOrContext": "The Chinese Exclusion Act (1882) and Anti-Chinese Violence in the West",
+      "narrativePotential": "Linh Tam's existence becomes newly illegal in the year of the story's setting. She could be deported, attacked, or simply disappeared with no legal recourse. Her journey across the West is also a journey through the growing racial machinery of the American state."
+    },
+    {
+      "eventOrContext": "The Buffalo Soldier Regiments (1866–1910s) and the Paradox of Black Men Pacifying the West",
+      "narrativePotential": "Mose Whitfield is a living embodiment of this paradox — a man who fought to conquer a country that would not grant him citizenship. His military service gave him skills but no place. The Buffalo Soldier experience is one of the great untold stories of the West, and Mose carries it in his bones."
+    },
+    {
+      "eventOrContext": "The Land Grant Adjudication Crisis (1870s–1890s)",
+      "narrativePotential": "After the Treaty of Guadalupe Hidalgo, Spanish and Mexican land grants were supposed to be honored by the U.S. government. They were not. Senora Covarrubias's family lost their land not through conquest but through paperwork — through courts that did not recognize Spanish property law, through taxes designed to dispossess. This legal violence is less dramatic than a cavalry charge but more enduring."
+    },
+    {
+      "eventOrContext": "The Carlisle Indian Industrial School and the Forced Assimilation Program",
+      "narrativePotential": "Wanbli Tokahe's education at Carlisle. The school's philosophy — "Kill the Indian, Save the Man" — left a generation of Native children caught between worlds. Wanbli is a product of this system, and his divided consciousness is the system's enduring legacy."
+    },
+    {
+      "eventOrContext": "The Lynching Epidemic of the 1880s–1890s",
+      "narrativePotential": "The threat of extralegal violence hangs over every Black character in the story. Thaddeus Grimes's wife fears it; Mose Whitfield has seen it. The lynching of Linh's husband's cousin in a neighboring county is the event that brings her to Moxley. This is not a background detail but a structuring reality."
+    }
+  ],
+  "researchLeads": [
+    {
+      "question": "What was the daily life of a Chinese woman in a railroad camp actually like? What work did she do, how was she treated, and what legal status did she have?",
+      "domain": "history",
+      "priority": "high"
+    },
+    {
+      "question": "How were Spanish and Mexican land grants adjudicated in Texas specifically after 1848? What court cases set precedent?",
+      "domain": "history",
+      "priority": "high"
+    },
+    {
+      "question": "What was the Comanche language's vocabulary for concepts introduced by white contact — money, law, paper, God?",
+      "domain": "language",
+      "priority": "medium"
+    },
+    {
+      "question": "Can you describe the physical layout, social structure, and daily operation of a typical Carlisle Indian School day in the 1870s?",
+      "domain": "history",
+      "priority": "high"
+    },
+    {
+      "question": "What was the route of the Fort Worth and Denver City Railway through Texas in the 1880s? Which towns were bypassed and which boomed?",
+      "domain": "geography",
+      "priority": "medium"
+    },
+    {
+      "question": "What was the Chinese American population of Texas specifically in the 1880s? Where did they settle and what work did they do?",
+      "domain": "history",
+      "priority": "medium"
+    },
+    {
+      "question": "How did a frontier blacksmith actually operate? What did he charge, what raw materials did he use, and what was his social standing in a small town?",
+      "domain": "history",
+      "priority": "low"
+    },
+    {
+      "question": "What was the actual process of filing a mining claim in Texas in the 1880s? Were there specific barriers for non-white claimants?",
+      "domain": "history",
+      "priority": "high"
+    },
+    {
+      "question": "What was the experience of Tejanos who fought on both sides of the Civil War? How were they treated by Confederate and Union forces?",
+      "domain": "history",
+      "priority": "medium"
+    },
+    {
+      "question": "What was the ecological state of the Llano Estacado in the 1880s — grass species, animal populations, water sources, seasonal weather patterns?",
+      "domain": "geography",
+      "priority": "medium"
+    }
+  ],
+  "objectiveRefinements": [
+    {
+      "original": "create a western narrative world",
+      "refinement": "Build a community-in-crisis narrative centered on the town of Moxley, Texas, as the railroad — and the modern world it represents — arrives to either save or destroy it, told through a kaleidoscope of characters who represent every silenced or marginalized perspective that Lonesome Dove's scope necessarily omitted.",
+      "rationale": "The most generative constraint for this material is place-based rather than journey-based. Lonesome Dove is a road novel; this should be a town novel — a fixed point around which the converging pressures of history, capital, and violence revolve. Moxley becomes the stage where the end of the West is performed, and every character's private drama becomes part of the public elegy."
+    },
+    {
+      "original": "create a western narrative world",
+      "refinement": "Set the story between October 1882 and April 1883 — the eight months between the Chinese Exclusion Act and the completion of the Southern Pacific's Sunset Route — narrowing the frame to a specific season of historical transition, when the old West was still breathing but clearly terminal.",
+      "rationale": "The specificity of the date gives every event a real historical pressure. Characters cannot simply drift in timeless Western space; they are caught in a specific window of legal and economic change. The Chinese Exclusion Act makes Linh's journey newly dangerous. The rail deadline gives the speculator's plot a ticking clock. The seasonal arc — fall to spring — mirrors the dying and (possible) rebirth of the town."
+    },
+    {
+      "original": "create a western narrative world",
+      "refinement": "Organize the narrative as a multi-perspective 'town chronicle' in the tradition of Sherwood Anderson's Winesburg, Ohio or Thornton Wilder's Our Town, but filtered through the vastness and violence of the frontier — micro-dramas that accumulate into a collective portrait of a community at the moment of its transformation.",
+      "rationale": "This structure allows the breadth of the character set to function as the plot, rather than forcing a single protagonist-driven narrative. Each character's chapter or section deepens the portrait of the town. The railroad is the event, but the town's response to it — the web of decisions, betrayals, and alliances — is the story. This structure accommodates both epic scope and intimate detail."
+    }
+  ],
+  "summary": "The most generative narrative territory discovered is Moxley, Texas — a dying cow town on the edge of the Staked Plains, circa 1882, caught between the open range and the coming railroad. The world is built around fifteen characters, each of whom represents a perspective systematically marginalized or absent from the traditional Western canon: a Chinese railroad widow searching for murdered family, a literate Comanche government interpreter, a Buffalo soldier turned prospector, a Tejano former Quantrill raider hiding in a horse camp, a female saloon owner who is the town's de facto banker, a freeborn Black blacksmith who is the town's moral center, a Spanish aristocrat watching her family's memory be erased by a Chicago speculator's legal fees, a feral 16-year-old girl raised by a Comanchero, a failed hatter who won't stop dreaming, a schoolteacher choosing between safety and freedom, and a cavalry captain forced to choose between orders and justice. The townsite itself sits on contested land — Spanish grant overlay on Comanche hunting grounds overlay on Anglo squatters' claims — making the legal battle over its future a physical map of the West's foundational dispossessions. The tonal territory is Lonesome Dove's elegiac melancholy crossed with Blood Meridian's unsentimental violence, tempered by the dry humor of people who have learned to laugh because the alternative is unacceptable."
+}

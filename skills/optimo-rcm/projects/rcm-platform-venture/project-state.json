@@ -1,0 +1,152 @@
+{
+  "projectState": {
+    "metadata": {
+      "projectId": "rcm-platform-venture",
+      "projectName": "RCM Platform — Standalone Venture",
+      "created": "2026-06-24",
+      "updated": "2026-06-24",
+      "version": 1,
+      "branch": "main",
+      "parentBranch": null,
+      "status": "draft",
+      "cortexRef": "02.10 — Recursive Multi-Perspective Reasoning Pattern",
+      "initiatedBy": "Sam Embry-Busch via Slack #ideation-triage (TS: 1782330172.164639)",
+      "sourceUrl": "https://optimoventures.slack.com/archives/C0BBCKHMPNJ/p1782330172164639"
+    },
+    "objectives": [
+      "Build a domain-agnostic recursive strategic reasoning platform that transforms goals into approved execution-ready specifications",
+      "Validate whether users will pay for structured multi-perspective AI reasoning as a standalone product",
+      "Canonize the 5-perspective pattern as Cortex 02.10 before any external productization",
+      "Establish knowledge libraries as the defensible moat (proprietary content, not just the reasoning engine)",
+      "Determine whether RCM Platform is an internal tool, a public SaaS, or both — and under what governance"
+    ],
+    "concepts": [
+      { "name": "RCM Core SaaS — Strategic Reasoning Workspace", "novelty": "medium", "source": "extension" },
+      { "name": "RCM CLI & CI/CD Pipeline Tool", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM VS Code / JetBrains Extension", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM API & Embeddable Widget", "novelty": "medium", "source": "extension" },
+      { "name": "RCM as Notion/Linear/Jira Plugin Ecosystem", "novelty": "high", "source": "analogy" },
+      { "name": "RCM for Startup Founders — 'Co-Founder OS'", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM Enterprise Strategy Platform", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM Domain Pack Marketplace", "novelty": "high", "source": "analogy" },
+      { "name": "RCM Playbook — Facilitated Workshop Kit", "novelty": "medium", "source": "original" },
+      { "name": "RCM for Therapy, Coaching & Personal Development", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM for Government Policy Design", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM for Scientific Research & Grant Writing", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM Export Integration Hub & API Gateway", "novelty": "medium", "source": "extension" },
+      { "name": "RCM 'Expose Your Reasoning' Consumer App", "novelty": "high", "source": "original" },
+      { "name": "RCM for M&A Due Diligence & Investment Committees", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM Game Engine for Interactive Narrative Design", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM Legal Reasoning & Case Strategy Platform", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM Education & Curriculum Design Platform", "novelty": "high", "source": "cross-domain" },
+      { "name": "RCM as Open Protocol / Standard Body", "novelty": "high", "source": "original" },
+      { "name": "RCM MCP Server for Claude & AI Assistant Ecosystem", "novelty": "high", "source": "original" },
+      { "name": "RCM for Crisis & Emergency Response", "novelty": "high", "source": "cross-domain" }
+    ],
+    "research": [
+      { "question": "How does Sakana Marlin's AB-MCTS compare structurally to RCM's 5-perspective loop?", "domain": "AI reasoning architectures", "priority": "high" },
+      { "question": "What is the adoption rate of multi-agent orchestration platforms in Fortune 500?", "domain": "Enterprise SaaS", "priority": "high" },
+      { "question": "What gaps exist between design thinking (Miro/MURAL) and project management (Jira/Linear)?", "domain": "Market mapping", "priority": "high" },
+      { "question": "What is pricing elasticity for AI-augmented strategic planning across verticals?", "domain": "Pricing strategy", "priority": "medium" },
+      { "question": "Has any product successfully commoditized 'exposed reasoning' as a consumer social feature?", "domain": "Consumer tech", "priority": "medium" },
+      { "question": "What regulatory requirements exist for AI-augmented decision platforms in gov/legal/healthcare?", "domain": "Regulatory compliance", "priority": "medium" },
+      { "question": "How do the 5 perspectives map to established cognitive models (Kahneman, Jungian, etc.)?", "domain": "Cognitive science", "priority": "low" },
+      { "question": "TAM for strategic reasoning tools by vertical — what share for domain-agnostic vs vertical-specific?", "domain": "Market sizing", "priority": "high" }
+    ],
+    "evidence": [
+      { "claim": "Multi-perspective AI reasoning market exists", "confidence": 0.85, "source": "Competitor analysis — pingpongit ($24.99-59.99/mo), Suprmind ($19-95/mo), HATS (open source), ChatGPT Deep Research" },
+      { "claim": "B₁ skill is already built and validated", "confidence": 0.90, "source": "Skill exists at .claude/skills/optimo-rcm/ with all 5 perspective prompts and Project State schema" },
+      { "claim": "02.10 Cortex pattern is canonicalized", "confidence": 0.95, "source": "Confluence page 189661186 created 2026-06-24" },
+      { "claim": "Knowledge libraries are entirely empty", "confidence": 0.95, "source": "Library registry shows all 8 libraries as 'not yet created'" },
+      { "claim": "No external demand signal exists", "confidence": 0.90, "source": "Ideation filed in Slack #ideation-triage — no external user research conducted" },
+      { "claim": "5+ funded competitors exist in this space", "confidence": 0.85, "source": "Web research — pingpongit, Suprmind, HATS, NEXUS, ChatGPT Deep Research, Taskade Genesis" }
+    ],
+    "assumptions": [
+      { "assumption": "Users will pay for a structured reasoning tool that produces spec documents but not working software", "ifFalse": "No revenue model — becomes free tool with no monetization path", "validation": "Concierge test with 5 external design partners" },
+      { "assumption": "5-perspective reasoning produces tangibly better outcomes than a single well-prompted Claude session", "ifFalse": "Core value prop collapses — 5x inference cost unjustifiable", "validation": "Blind comparison test" },
+      { "assumption": "Knowledge libraries are a defensible moat that cannot be replicated by competitors", "ifFalse": "Platform has no advantage — competitors clone within months", "validation": "Audit each library for proprietary vs. public knowledge ratio" },
+      { "assumption": "Joel Embry (CEO) actively sponsors this beyond initial architectural review", "ifFalse": "Initiative stalls at first resource conflict — becomes zombie project", "validation": "Direct 1:1 with Joel to get explicit priority statement" },
+      { "assumption": "B₁ skill architecture maps correctly onto Claude Code agent system", "ifFalse": "Architecture needs redesign — agents talk past each other", "validation": "Dogfood session with real non-trivial problem (Condition C5)" }
+    ],
+    "decisions": [
+      { "decision": "Decompose RCM Platform into A (Canonical Core) + B₁ (Claude Code Skill) + B₂ (Web App — deferred)", "rationale": "Evaluator: A scores 4.15/5, B₁ scores 3.90/5, B₂ scores 2.80/5. Proceed with A+B₁ now; B₂ conditional." },
+      { "decision": "Skill-first approach validated — B₁ already built at near-zero infra cost", "rationale": "Executor confirms B₁ is functional with all 5 perspective prompts and Project State schema" },
+      { "decision": "B₂ (Web App) remains CONDITIONAL-GO pending: user demand validation, dogfood success, differentiation strategy", "rationale": "Evaluator + Threat concur: crowded market (5+ competitors), no content moat, unclear unit economics" }
+    ],
+    "deliverables": [
+      { "name": "02.10 Cortex Canonical Page", "status": "complete", "spec": "Confluence page 189661186" },
+      { "name": "B₁ Skill (optimo-rcm)", "status": "built — content layer empty", "spec": ".claude/skills/optimo-rcm/" },
+      { "name": "Knowledge Libraries (8 total)", "status": "not started — all 'not yet created'", "spec": "Human Truths, Audience Intelligence, Objections, Visual Cognition, Media Hierarchy, Media Composition, UI/UX, Marketing View" },
+      { "name": "Domain Packs (5 total)", "status": "not started — all empty", "spec": "Marketing, Product, UI/UX, Media, Venture, Research" },
+      { "name": "B₂ Web Application", "status": "deferred — CONDITIONAL-GO", "spec": "Lovable + Supabase + Vercel multi-tenant SaaS" }
+    ],
+    "dependencies": [
+      { "name": "CEO sponsorship clarity", "blocks": ["B₂ authorization", "Resource allocation"], "resolution": "Direct 1:1 with Joel Embry" },
+      { "name": "Knowledge library content creation", "blocks": ["B₁ validation", "Moat establishment"], "resolution": "Sam + content council authors content in Confluence" },
+      { "name": "B₁ dogfood validation (Condition C5)", "blocks": ["B₂ authorization"], "resolution": "Run 2+ real use cases with measurable outcomes" },
+      { "name": "Susan/Sam boundary agreement", "blocks": ["Market positioning"], "resolution": "Written agreement: RCM Platform scope vs OptimoCanon scope" }
+    ],
+    "risks": [
+      { "id": "R1", "category": "reputational", "description": "RCM Platform exposes Optimo's proprietary 5-perspective reasoning pattern to competitors via public SaaS", "probability": 0.65, "impact": 5, "pXI": 3.25, "mitigation": "Keep B₁ workspace-only. Never open-source the engine. B₂ if built must be single-tenant enterprise with contractual IP protection.", "residualRisk": "critical" },
+      { "id": "R2", "category": "market", "description": "Platform occupies no-man's-land between product and feature — 'empty room' problem", "probability": 0.70, "impact": 4, "pXI": 2.80, "mitigation": "Validate WTP before building B₂. Concierge MVP with paying prospects. Only proceed if 3+ LOIs.", "residualRisk": "high" },
+      { "id": "R3", "category": "financial", "description": "Inference costs at scale destroy unit economics — $13K/month at 500 projects", "probability": 0.55, "impact": 5, "pXI": 2.75, "mitigation": "Model costs at multiple tiers before pricing. Usage-based pricing, not flat-rate. Aggressive prompt caching.", "residualRisk": "high" },
+      { "id": "R4", "category": "market", "description": "Anthropic ships native multi-perspective reasoning as a built-in feature", "probability": 0.40, "impact": 5, "pXI": 2.00, "mitigation": "Monitor Anthropic roadmap. Pivot to knowledge-library-as-a-service if this ships.", "residualRisk": "medium" },
+      { "id": "R5", "category": "execution", "description": "Sam is sole knowledge content creator — single point of failure", "probability": 0.50, "impact": 4, "pXI": 2.00, "mitigation": "Content council with minimum 2 contributors per domain pack. Define Sam-unavailability plan.", "residualRisk": "medium" }
+    ],
+    "constraints": [
+      { "type": "hard", "description": "Proprietary knowledge libraries CANNOT be distributed in public SaaS or open-source repo", "source": "compliance" },
+      { "type": "hard", "description": "02.10 pattern is canonicalized — cannot be weakened or modified for commercial purposes", "source": "compliance" },
+      { "type": "hard", "description": "B₁ is Claude Code skill — cannot run outside Claude Code environment", "source": "tech" },
+      { "type": "hard", "description": "B₂ cannot be built until Condition C5 met (B₁ validated with real use case)", "source": "other" },
+      { "type": "soft", "description": "5 funded ventures in active development — RCM Platform competes for same talent pool", "source": "resource" }
+    ],
+    "successCriteria": [
+      { "metric": "External design partner commitment rate", "threshold": ">=5/15 recruited externals commit to paid pilot within 2 weeks", "rationale": "Strongest signal of PMF for thinking tool" },
+      { "metric": "Internal adoption by venture leads", "threshold": ">=3 venture leads use RCM for 1+ real decision within 30 days", "rationale": "Proves tooling layer adds value over raw pattern" },
+      { "metric": "Susan/Sam boundary agreement", "threshold": "Written agreement filed in Confluence before any code written", "rationale": "Internal political coherence prerequisite" },
+      { "metric": "Time to first insight moment", "threshold": "New users reach non-obvious insight within 3 sessions / 60 minutes", "rationale": "North Star UX metric — high-friction tool dies without fast value" },
+      { "metric": "Stage-gate transition", "threshold": "Pass Gate 1 (business case) within 6 weeks or initiative killed", "rationale": "Prevents zombie-project status" }
+    ],
+    "feedback": [
+      { "stakeholder": "Joel Embry (CEO)", "predictedResponse": "resist", "conditionsForSupport": "Evidence RCM does NOT expose 02.10 internals; ventures get preferential access; self-funding from launch; Sam commits to 12-month P&L" },
+      { "stakeholder": "Susan Embry-Busch", "predictedResponse": "resist", "conditionsForSupport": "Clear demarcation: RCM Platform is product realization of subset of canon; OptimoCanon remains authoritative methodology; joint naming board" },
+      { "stakeholder": "Collin King (COO)", "predictedResponse": "resist", "conditionsForSupport": "Dedicated (not borrowed) resources; external funding or committed budget; 90-day kill switch" },
+      { "stakeholder": "Barbara Embry (PMO)", "predictedResponse": "neutral", "conditionsForSupport": "Standard venture intake process followed; stage-gate 0 complete; stage-gate 1 required before build" },
+      { "stakeholder": "Existing Venture Teams", "predictedResponse": "resist", "conditionsForSupport": "RCM positioned as complementary infrastructure (internal tool); ventures get free/priority access" },
+      { "stakeholder": "Startup Founders", "predictedResponse": "support", "conditionsForSupport": "Compelling free tier; non-obvious insight within 3 uses; integration with existing tools; <$30/mo" },
+      { "stakeholder": "Consultants & Strategists", "predictedResponse": "neutral", "conditionsForSupport": "White-label/API access; consultant certification; limited direct-to-client features" }
+    ],
+    "specifications": [
+      {
+        "component": "B₁ — Claude Code Skill (MVP)",
+        "status": "built — content layer empty",
+        "phases": [
+          { "name": "Phase 1 — Core Engine", "deliverables": ["Orchestration script", "File-system branching", "2 knowledge libraries in Confluence", "Venture domain pack scaffold", "AI inference cost model"], "estimates": { "bestCase": "3 days", "likely": "5 days", "worstCase": "8 days" } },
+          { "name": "Phase 2 — Full Capability", "deliverables": ["All 8 knowledge libraries", "All 5 domain packs", "4 specialist engines", "Full branching", "Dogfood validation", "Distribution decision"], "estimates": { "bestCase": "5 days", "likely": "10 days", "worstCase": "16 days" } }
+        ]
+      },
+      {
+        "component": "B₂ — Web Application (DEFERRED — CONDITIONAL-GO)",
+        "phases": [
+          { "name": "Phase 3 — Single-User Web App", "deliverables": ["Lovable project with Supabase data model", "Visual dashboard for 13 dimensions", "5-perspective output panels", "Branch tree visualization", "Export system", "Supabase Auth"], "estimates": { "bestCase": "3 weeks", "likely": "5 weeks", "worstCase": "8 weeks" } },
+          { "name": "Phase 4 — Multi-Tenant SaaS", "deliverables": ["Workspace system with RBAC", "API-first engine integration", "Stripe billing", "Advanced exports", "Public distribution"], "estimates": { "bestCase": "4 weeks", "likely": "8 weeks", "worstCase": "12 weeks" } }
+        ]
+      }
+    ],
+    "perspectiveRuns": {
+      "explorer": { "lastRun": "2026-06-24", "runCount": 1 },
+      "evaluator": { "lastRun": "2026-06-24", "runCount": 1 },
+      "executor": { "lastRun": "2026-06-24", "runCount": 1 },
+      "threat": { "lastRun": "2026-06-24", "runCount": 1 },
+      "social": { "lastRun": "2026-06-24", "runCount": 1 }
+    },
+    "branchHistory": [],
+    "approvedBy": {
+      "explorer": false,
+      "evaluator": false,
+      "executor": false,
+      "threat": false,
+      "social": false
+    }
+  }
+}

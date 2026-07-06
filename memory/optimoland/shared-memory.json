@@ -1,0 +1,14 @@
+{
+  "venture": "OptimoLand™",
+  "ventureSlug": "optimoland",
+  "hubPageId": "88440854",
+  "confluencePages": { "hub": "88440854", "sprint4": "from memory" },
+  "buildState": { "phase": "Alpha Hardening + Phase 3.4", "currentSprint": "Sprint 4", "lovableProjectId": "opti-land-hub", "uatTarget": "2026-06-20", "currentStep": "22 items active (KAN-52, KAN-88–108). Only Lovable writes code." },
+  "jira": { "epic": null, "activeTickets": ["KAN-52", "KAN-88–108 range"] },
+  "decisions": [
+    { "date": "2026-06-20", "decision": "Only Lovable writes code — no direct GitHub pushes", "by": "Joel" },
+    { "date": "2026-06-20", "decision": "Phase 3.3 complete. AAPL governance active.", "by": "Sprint Retro" }
+  ],
+  "conventions": ["Only Lovable writes code", "AAPL governance applies", "40+ child pages indexed under hub"],
+  "contacts": { "ventureLead": "Joel Embry" }
+}
