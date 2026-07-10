@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimo Ventures — Cross-Venture Memory Intelligence Report — 2026-07-09</title>
+<style>
+:root {
+  --teal-900: #0d3335; --teal-800: #134b4e; --teal-700: #1a6367; --teal-500: #2d9da3; --teal-100: #d4f0f2;
+  --gold: #c8963e; --gold-light: #f5e6cc; --ink: #1a1a2e; --muted: #6b7280;
+  --bg: #f8fafb; --card-bg: #ffffff; --border: #e5e7eb;
+  --red: #dc2626; --amber: #f59e0b; --green: #16a34a; --blue: #2563eb;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.report-header { background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-800) 100%); color: #fff; padding: 40px 0; margin-bottom: 32px; }
+.report-header .container { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+.report-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 4px; }
+.report-header .subtitle { color: var(--teal-100); font-size: 0.95rem; }
+.report-header .timestamp { color: var(--teal-100); font-size: 0.8rem; opacity: 0.8; }
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.stat { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
+.stat .num { font-size: 2.2rem; font-weight: 800; line-height: 1.1; }
+.stat .label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat.ok .num { color: var(--green); } .stat.warn .num { color: var(--amber); } .stat.stop .num { color: var(--red); } .stat.info .num { color: var(--teal-500); }
+.section { margin-bottom: 36px; }
+.section h2 { font-size: 1.4rem; font-weight: 700; color: var(--teal-900); border-bottom: 3px solid var(--gold); padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.section h2 .badge { font-size: 0.75rem; background: var(--teal-100); color: var(--teal-800); padding: 2px 10px; border-radius: 20px; font-weight: 600; }
+.venture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+.venture-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: box-shadow 0.2s; }
+.venture-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.venture-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--teal-900); margin-bottom: 4px; }
+.venture-card .phase { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+.venture-card .url { font-size: 0.8rem; color: var(--teal-500); word-break: break-all; margin-bottom: 12px; }
+.venture-card .url a { color: var(--teal-500); text-decoration: none; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.badge { font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; display: inline-block; }
+.badge-mvp { background: #d1fae5; color: #065f46; } .badge-progress { background: #dbeafe; color: #1e40af; }
+.badge-frozen { background: #f3f4f6; color: #6b7280; } .badge-stale { background: #fef3c7; color: #92400e; }
+.badge-blocked { background: #fee2e2; color: #991b1b; } .badge-active { background: #d1fae5; color: #065f46; }
+.badge-shipped { background: #d1fae5; color: #065f46; } .badge-live { background: #ede9fe; color: #5b21b6; }
+.priority-stripe { border-left: 4px solid var(--border); padding: 8px 12px; margin: 6px 0; background: #f9fafb; border-radius: 0 6px 6px 0; font-size: 0.85rem; }
+.priority-stripe.highest { border-left-color: var(--red); } .priority-stripe.high { border-left-color: var(--amber); }
+.priority-stripe.medium { border-left-color: var(--blue); } .priority-stripe.low { border-left-color: var(--muted); }
+.priority-stripe .pri-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.priority-stripe.highest .pri-label { color: var(--red); } .priority-stripe.high .pri-label { color: var(--amber); } .priority-stripe.medium .pri-label { color: var(--blue); }
+table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+th { background: var(--teal-900); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+tr:nth-child(even) td { background: #f9fafb; }
+.stale-warn { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 6px; padding: 6px 10px; font-size: 0.72rem; display: inline-flex; align-items: center; gap: 4px; margin: 4px 0; }
+.deep-dive { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.deep-dive h3 { color: var(--teal-800); font-size: 1.05rem; margin-bottom: 12px; border-bottom: 2px solid var(--teal-100); padding-bottom: 6px; }
+.deep-dive .meta-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px; font-size: 0.83rem; }
+.deep-dive .meta-row .meta-label { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.report-footer { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 20px; font-size: 0.8rem; color: var(--muted); }
+.confidential-banner { background: #fef2f2; border: 2px dashed var(--red); border-radius: 8px; padding: 12px 16px; text-align: center; font-weight: 700; color: var(--red); margin-bottom: 20px; font-size: 0.85rem; }
+.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.live-dot.green { background: var(--green); } .live-dot.amber { background: var(--amber); } .live-dot.red { background: var(--red); }
+@media (max-width: 768px) { .venture-grid { grid-template-columns: 1fr; } .stat-row { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<header class="report-header">
+  <div class="container">
+    <div>
+      <h1>🧠 Optimo Ventures — Cross-Venture Memory Intelligence Report</h1>
+      <div class="subtitle">State of the Union · All 9 Active Ventures · 52 Memory Files · Live Lovable Enrichment</div>
+    </div>
+    <div class="timestamp">
+      Generated: 2026-07-09 ~22:00 UTC<br>
+      Sources: Memory (52) · Lovable (live) · Confluence (mem-ref) · Jira (mem-ref)
+    </div>
+  </div>
+</header>
+<div class="container">
+<div class="section">
+  <h2>📊 Executive Summary <span class="badge">July 9, 2026</span></h2>
+  <div class="stat-row">
+    <div class="stat info"><div class="num">9</div><div class="label">Active Ventures</div></div>
+    <div class="stat info"><div class="num">52</div><div class="label">Memory Files Loaded</div></div>
+    <div class="stat warn"><div class="num">28</div><div class="label">Pending Actions</div></div>
+    <div class="stat stop"><div class="num">4</div><div class="label">Critical Blockers</div></div>
+    <div class="stat info"><div class="num">2</div><div class="label">Workspaces (66 projects)</div></div>
+    <div class="stat warn"><div class="num">23</div><div class="label">Stale Memories (&gt;7d)</div></div>
+  </div>
+  <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-top: 16px;">
+    <h3 style="color: var(--teal-800); margin-bottom: 10px;">🔴 Critical Attention Required</h3>
+    <div class="priority-stripe highest"><span class="pri-label">CRITICAL</span> — <strong>TelosAI NOT Launch-Ready</strong>: 4 Critical + 8 High findings (Susan, 2026-07-03). Blocks Communication Skills Venture C1 and any TelosAI sidecar.</div>
+    <div class="priority-stripe highest"><span class="pri-label">CRITICAL</span> — <strong>OptimoCortex 3 HIGH Blockers</strong>: JWT disabled on 10 edge functions (6+ months), no platform sprint, zero runtime venture integrations. Score 75/100.</div>
+    <div class="priority-stripe highest"><span class="pri-label">CRITICAL</span> — <strong>OptimoLaunch Governance Drift ~2mo</strong>: Confluence frozen at May 31. 75 Jira tickets in Idea never transitioned. 8 stale pages. S3 blocked.</div>
+    <div class="priority-stripe highest"><span class="pri-label">CRITICAL</span> — <strong>IFS MNDA at MRC Legal</strong>: Expected resolution early July (NOW). Gates all OptimoSelect technical work.</div>
+  </div>
+  <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 20px; margin-top: 16px;">
+    <h3 style="color: #166534; margin-bottom: 10px;">✅ Bright Spots</h3>
+    <div class="priority-stripe" style="border-left-color: var(--green);"><span class="pri-label" style="color: var(--green);">WIN</span> — <strong>GutWise 6 production fixes deployed TODAY.</strong> DB switched to Joel org. GUT-101/102 Done. All edge functions redeployed.</div>
+    <div class="priority-stripe" style="border-left-color: var(--green);"><span class="pri-label" style="color: var(--green);">WIN</span> — <strong>TelosAI most active project on Lovable</strong> — edited TODAY (2026-07-10), 137 total edits.</div>
+    <div class="priority-stripe" style="border-left-color: var(--green);"><span class="pri-label" style="color: var(--green);">WIN</span> — <strong>OptimoStudio edited yesterday</strong> (2026-07-08). 11 edits. Active development.</div>
+    <div class="priority-stripe" style="border-left-color: var(--green);"><span class="pri-label" style="color: var(--green);">WIN</span> — <strong>KettleLogic convergence (89/100)</strong>: Two independent builders, same governed-agent architecture.</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🏢 Venture Dashboard <span style="font-size:0.75rem;color:var(--muted);">· Lovable live data enriched</span></h2>
+  <div class="venture-grid">
+
+    <div class="venture-card">
+      <h3>🏗️ OptimoLand™</h3>
+      <div class="phase">Phase 3.3 Complete · Sprint 4 Active · Production</div>
+      <div class="url"><a href="https://optimoland.lovable.app" target="_blank">optimoland.lovable.app</a> · <a href="https://optimoland.com" target="_blank">optimoland.com</a></div>
+      <div class="badge-row">
+        <span class="badge badge-mvp">Production</span><span class="badge badge-progress">Sprint 4</span><span class="stale-warn">⚠️ Memory 28d · Code 24d</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot amber"></span><strong>Lovable:</strong> Edited 2026-06-15 (24d ago). 1,282 edits — most edited project.<br><strong>22 sprint items.</strong> UAT target June 20 — 19 days overdue. AAPL-governed. Lovable-only.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>🩺 GutWise Journey™</h3>
+      <div class="phase">MVP Complete · Production Hardening · UAT Active</div>
+      <div class="url"><a href="https://gutwise-phase0.vercel.app" target="_blank">gutwise-phase0.vercel.app</a> · <a href="https://gutwise-journey.lovable.app" target="_blank">Lovable</a></div>
+      <div class="badge-row">
+        <span class="badge badge-mvp">MVP Complete</span><span class="badge badge-active">Production</span><span class="badge badge-live">Fixes Deployed Today</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot amber"></span><strong>Lovable:</strong> Edited Jun 30 (9d). @ 6a1d83f1. Published.<br><strong>6 fixes deployed today.</strong> DB: nsrpzhvozijrmsepjfns. GUT-101/102 Done. Smoke test pending.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>📋 OptimoEvidence™</h3>
+      <div class="phase">Phase 1 Build In Progress · 12 Screens Built</div>
+      <div class="url"><a href="https://opti-trace-vault.lovable.app" target="_blank">opti-trace-vault.lovable.app</a></div>
+      <div class="badge-row">
+        <span class="badge badge-progress">Phase 1</span><span class="badge badge-live">Edited Jul 3</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot green"></span><strong>Lovable:</strong> Edited Jul 3 (6d). 13 edits. @ 084b52c6. Published.<br><strong>Mutation wiring outstanding</strong> (Screens 7/8/9). Susan validation pending.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>🚀 OptimoLaunch™</h3>
+      <div class="phase">S1 Signed Off · S2 85% · S3 Blocked</div>
+      <div class="url"><a href="https://opti-pulse-hub.lovable.app" target="_blank">opti-pulse-hub.lovable.app</a></div>
+      <div class="badge-row">
+        <span class="badge badge-blocked">S3 Blocked</span><span class="badge badge-stale">Governance Drift</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot red"></span><strong>Lovable:</strong> Edited Jun 29 (10d). @ 34d2fbfc. Published.<br><strong>75 Jira tickets in Idea.</strong> 8 stale Confluence pages. Phase A governance needed.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>🎯 TelosAI™</h3>
+      <div class="phase">Phases 1–3E Shipped · O1–O5 Complete · Phase 4 Active</div>
+      <div class="url"><a href="https://aim-loop-map.lovable.app" target="_blank">aim-loop-map.lovable.app</a></div>
+      <div class="badge-row">
+        <span class="badge badge-shipped">Shipped</span><span class="badge badge-blocked">NOT Launch-Ready</span><span class="badge badge-live">Edited TODAY</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot green"></span><strong>Lovable:</strong> Edited TODAY (Jul 10). 137 edits. @ 6d1b92bc. MOST ACTIVE.<br><strong>4 Critical + 8 High.</strong> 17 launch gates. Remediation in progress.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>⚙️ OptimoSelect™</h3>
+      <div class="phase">Phase 1A/1B Code Complete · Phase 2 Partial</div>
+      <div class="url"><a href="https://optimoselect.com" target="_blank">optimoselect.com</a></div>
+      <div class="badge-row">
+        <span class="badge badge-mvp">Code Complete</span><span class="badge badge-stale">Confluence Stale</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><strong>No Lovable project found</strong> in primary workspace.<br><strong>90+ source files.</strong> IFS MNDA at MRC legal. Confluence says "Phase 0" — actual is Phase 2.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>💻 OptimoStudio™</h3>
+      <div class="phase">Phase 3 Active · 5 Panels Built · Multi-Provider LLM</div>
+      <div class="url">Lovable: c0a9b8ac (Optimo Command) · NOT published</div>
+      <div class="badge-row">
+        <span class="badge badge-active">Active Build</span><span class="badge badge-live">Edited Jul 8</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot green"></span><strong>Lovable:</strong> Edited Jul 8 (1d ago). 11 edits. @ 51719873. Not published.<br><strong>STUD-9 Done.</strong> STUD-10–14 in progress. Pending: server-side keys, Vercel deploy.</p>
+    </div>
+
+    <div class="venture-card">
+      <h3>🎨 ArtQuest</h3>
+      <div class="phase">Phase D Active · Phase C Frozen · Ages 7–12</div>
+      <div class="url"><a href="https://artquest-sparkle.lovable.app" target="_blank">artquest-sparkle.lovable.app</a></div>
+      <div class="badge-row">
+        <span class="badge badge-progress">Phase D</span><span class="stale-warn">⚠️ Memory 28d · Code 29d</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);"><span class="live-dot red"></span><strong>Lovable:</strong> Edited Jun 10 (29d). @ d3e35157. Published. DORMANT.<br><strong>AI Creative Toolset</strong> on sanctioned interim. Canvas integration remaining.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;">
+    <h3 style="color:var(--muted);font-size:0.9rem;margin-bottom:10px;">📎 Other Ventures Under 05.02 (No Active Sprint — Dashboard Only)</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:0.8rem;color:var(--muted);">
+      <span>MedAppealAI</span><span>·</span><span>OptimoGenomics™</span><span>·</span>
+      <span>MolDesignAI</span><span>·</span><span>Optimo Sandalwood</span><span>·</span>
+      <span>OptimoCares+</span><span>·</span><span>RFXPrime™</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📋 Pending Actions by Venture <span class="badge">28 items</span></h2>
+
+  <div class="deep-dive"><h3>🩺 GutWise Journey — 4 Pending</h3>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Collin: Smoke test all 6 fixes at gutwise-phase0.vercel.app/auth</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Keri: Join smoke test with UAT account</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> GUT-103: Attribution follow-up (~2 hours)</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> Phase 1 BAA: Supabase + UnscriptedMedicine→Optimo Ventures</div>
+  </div>
+
+  <div class="deep-dive"><h3>🏗️ OptimoLand — 3 Pending</h3>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> Sprint 4 UAT: Clayton QA — target June 20 (19 days overdue)</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> 22 sprint items: P2 + P3 — timeline slipped</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> Sprint 4 Close / Sprint 5 Plan</div>
+  </div>
+
+  <div class="deep-dive"><h3>🚀 OptimoLaunch — 4 Pending</h3>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> Governance Reconciliation Phase A: 8 stale pages, 75 tickets</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> S2-P5 sign-off completion</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> S3 unblocking: 10 open questions</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> 7 open architectural decisions</div>
+  </div>
+
+  <div class="deep-dive"><h3>🎯 TelosAI — 3 Pending</h3>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> Remediate 4 Critical findings</div>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> Remediate 8 High findings</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Phase 4 spec: OptimoCortex Integration</div>
+  </div>
+
+  <div class="deep-dive"><h3>📋 OptimoEvidence — 3 Pending</h3>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Mutation wiring: Screens 7/8/9</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Susan: Domain validation of Phase 1 prototype</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> 16-item DoD review</div>
+  </div>
+
+  <div class="deep-dive"><h3>⚙️ OptimoSelect — 3 Pending</h3>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> IFS MNDA execution: MRC legal review expected NOW</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Confluence: Update pages to reflect actual Phase 1A/1B/2</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> Post-MNDA: Intelliquip → Drive → ranking engine validation</div>
+  </div>
+
+  <div class="deep-dive"><h3>💻 OptimoStudio — 4 Pending</h3>
+    <div class="priority-stripe high"><span class="pri-label">High</span> DEEPSEEK_API_KEY server-side</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Atlassian API token → live Jira/Confluence</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> Vercel deploy → optimostudio.optimoventures.com</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> Hardening STUD-15 + UAT</div>
+  </div>
+
+  <div class="deep-dive"><h3>🧠 Cross-Venture / Platform — 4 Pending</h3>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> OptimoCortex BC-1: Enable JWT on 10 edge functions</div>
+    <div class="priority-stripe highest"><span class="pri-label">Highest</span> OptimoCortex BC-2: Create platform sprint in Jira</div>
+    <div class="priority-stripe high"><span class="pri-label">High</span> OptimoCortex BC-3: First venture integration (OptimoLand pilot)</div>
+    <div class="priority-stripe medium"><span class="pri-label">Medium</span> Google Drive MCP setup (3 reports queued)</div>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>🩺 Memory Health</h2>
+  <div class="stat-row">
+    <div class="stat info"><div class="num">52</div><div class="label">Total Files</div></div>
+    <div class="stat info"><div class="num">35</div><div class="label">Project</div></div>
+    <div class="stat info"><div class="num">7</div><div class="label">Feedback</div></div>
+    <div class="stat info"><div class="num">8</div><div class="label">Reference</div></div>
+    <div class="stat info"><div class="num">1</div><div class="label">User</div></div>
+    <div class="stat info"><div class="num">1</div><div class="label">Doctrine</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat ok"><div class="num">29</div><div class="label">Fresh (&lt;7d)</div></div>
+    <div class="stat warn"><div class="num">18</div><div class="label">Aging (7-25d)</div></div>
+    <div class="stat stop"><div class="num">5</div><div class="label">Stale (&gt;25d)</div></div>
+  </div>
+
+  <h3 style="color:var(--amber);margin-bottom:12px;">⚠️ Stale Memories Requiring Update</h3>
+  <table>
+    <tr><th>Memory</th><th>Age</th><th>Issue</th></tr>
+    <tr><td>confluence-optimoland-genesis-hub</td><td>28d</td><td>Sprint 4 overdue; Phase 3.4 status unknown</td></tr>
+    <tr><td>confluence-optimoland-sprint4</td><td>28d</td><td>UAT target June 20 — 19 days past</td></tr>
+    <tr><td>confluence-artquest-genesis-hub</td><td>28d</td><td>Phase D unchanged since June 1</td></tr>
+    <tr><td>confluence-artquest-phase-d-status</td><td>28d</td><td>No update since June 9</td></tr>
+    <tr><td>confluence-gutwise-build-status</td><td>27d</td><td>Superseded by hardening + production fixes</td></tr>
+    <tr><td>feedback-model-cost-preference</td><td>27d</td><td>References Sonnet 4.6 — naming may be stale</td></tr>
+    <tr><td>confluence-optimoevidence-genesis-hub</td><td>25d</td><td>Mutation wiring progress unknown</td></tr>
+    <tr><td>confluence-optimolaunch-genesis-hub</td><td>25d</td><td>Frozen at May 31</td></tr>
+    <tr><td>confluence-telosai-genesis-hub</td><td>25d</td><td>Needs July 3 findings reflected</td></tr>
+    <tr><td>optimo-cortex-production-assessment</td><td>18d</td><td>3 HIGH blockers — no known progress</td></tr>
+    <tr><td>gutwise-jira-tickets</td><td>18d</td><td>GUT-101/102 Done, GUT-103 added — outdated</td></tr>
+    <tr><td>optimolaunch-build-state</td><td>16d</td><td>Governance reconciliation not started</td></tr>
+    <tr><td>optimostudio-build-status</td><td>16d</td><td>STUD progress since June 23 unknown</td></tr>
+  </table>
+
+  <h3 style="color:var(--teal-800);margin:20px 0 12px;">✅ Fresh Memories (&lt;7 days)</h3>
+  <table>
+    <tr><th>Memory</th><th>Age</th><th>Note</th></tr>
+    <tr><td>gutwise-production-fixes-2026-07-09</td><td>0d</td><td>🟢 6 fixes deployed today</td></tr>
+    <tr><td>gutwise-infrastructure</td><td>0d</td><td>🟢 DB switch documented today</td></tr>
+    <tr><td>gutwise-uat-accounts</td><td>0d</td><td>🟢 Verified on new DB today</td></tr>
+    <tr><td>gutwise-gut39-uat-pending-filing</td><td>0d</td><td>🟢 Filing completed today</td></tr>
+    <tr><td>skill-memory-report</td><td>0d</td><td>🟢 Skill built today</td></tr>
+    <tr><td>skills-nursery</td><td>0d</td><td>🟢 Pattern doc built today</td></tr>
+    <tr><td>kettlelogic-assessment</td><td>4d</td><td>🟢 v4 update (89/100)</td></tr>
+    <tr><td>rcm-platform-triage-2026-07-05</td><td>4d</td><td>🟢 Filed July 5</td></tr>
+    <tr><td>hooks-implementation</td><td>4d</td><td>🟢 10 hooks documented</td></tr>
+    <tr><td>dotclaude-integration</td><td>4d</td><td>🟢 Gap analysis complete</td></tr>
+    <tr><td>telosai-launch-readiness-2026-07-03</td><td>5d</td><td>🟢 Susan assessment</td></tr>
+    <tr><td>report-distributor-skill</td><td>5d</td><td>🟢 Skill documented</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>🔬 Venture Deep Dives <span style="font-size:0.75rem;color:var(--muted);">· Memory + Live Lovable</span></h2>
+
+  <div class="deep-dive"><h3>🩺 GutWise Journey™</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Genesis Hub</span><br>Page 131366914</div>
+      <div><span class="meta-label">Production</span><br><a href="https://gutwise-phase0.vercel.app" target="_blank">gutwise-phase0.vercel.app</a></div>
+      <div><span class="meta-label">Database</span><br>nsrpzhvozijrmsepjfns ✅</div>
+      <div><span class="meta-label">GitHub</span><br>main @ c2ae5a1</div>
+      <div><span class="meta-label">Lovable</span><br>ab73bffb · @ 6a1d83f1 (Jun 30)</div>
+      <div><span class="meta-label">Jira</span><br>GUT · Board 39</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>Hardening:</strong> 13/14 steps complete. Phase 1 BAA pending.<br>
+    <strong>Production Fixes (today):</strong> 6 issues resolved — lab result mixing, missing PDFs, FK cascade, rule engine errors, Add+ UX, note-to-patient.<br>
+    <strong>AI Provider:</strong> OpenAI GPT-4o + gpt-4o-mini (HIPAA-eligible, BAAs signed).<br>
+    <strong>Infra:</strong> Vercel auto-deploy. 11 edge functions. Lovable DISCONNECTED from GitHub (7 divergent commits).<br>
+    <strong>UAT:</strong> kking@, cking@ (Patient↔Practitioner toggle), jembry@ (Admin only).</p>
+  </div>
+
+  <div class="deep-dive"><h3>🎯 TelosAI™ — MOST ACTIVE PROJECT</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Genesis Hub</span><br>Page 101548033</div>
+      <div><span class="meta-label">Live</span><br><a href="https://aim-loop-map.lovable.app" target="_blank">aim-loop-map.lovable.app</a></div>
+      <div><span class="meta-label">Lovable</span><br>14c4acd4 · @ 6d1b92bc (TODAY)</div>
+      <div><span class="meta-label">Edits</span><br>137 total (most active)</div>
+      <div><span class="meta-label">Supabase</span><br>28 tables, all RLS ✅</div>
+      <div><span class="meta-label">Jira</span><br>TELO-4–8 · TELO-9–47</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>Edited TODAY (2026-07-10).</strong> All Phases 1–3E SHIPPED. O1–O5 COMPLETE.<br>
+    <strong>NOT Launch-Ready:</strong> 4 Critical, 8 High, 17 launch gates (Susan, Jul 3).<br>
+    <strong>Positive:</strong> 64 tables RLS ✅, storage bucket RLS ✅, no client secrets ✅, no tracking ✅.<br>
+    <strong>Phase 4:</strong> OptimoCortex Integration spec required before build.</p>
+  </div>
+
+  <div class="deep-dive"><h3>🏗️ OptimoLand™</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Genesis Hub</span><br>Page 88440854</div>
+      <div><span class="meta-label">Production</span><br><a href="https://optimoland.com" target="_blank">optimoland.com</a></div>
+      <div><span class="meta-label">Lovable</span><br>4329c00c · @ e68fb357 (Jun 15)</div>
+      <div><span class="meta-label">Edits</span><br>1,282 (most edited ever)</div>
+      <div><span class="meta-label">GitHub</span><br>optimo-ventures/optimoland</div>
+      <div><span class="meta-label">Jira</span><br>KAN · KAN-56–63</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>Phase 3.2 + 3.3:</strong> COMPLETE (In Production). Intelligence Inference Engine, Title Report XLSX, Runsheet PDF.<br>
+    <strong>Sprint 4:</strong> 22 items, UAT target June 20 — OVERDUE. Lovable-only execution enforced.<br>
+    <strong>Governance:</strong> AAPL Professional Standards (immutable). 19 RBAC roles. 7-state document lifecycle.<br>
+    <strong>Risk:</strong> Memory 28d stale. Code not edited since June 15. Most edited project ever (1,282 edits).</p>
+  </div>
+
+  <div class="deep-dive"><h3>📋 OptimoEvidence™</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Genesis Hub</span><br>Page 138608666</div>
+      <div><span class="meta-label">Preview</span><br><a href="https://opti-trace-vault.lovable.app" target="_blank">opti-trace-vault.lovable.app</a></div>
+      <div><span class="meta-label">Lovable</span><br>fb16f5dd · @ 084b52c6 (Jul 3)</div>
+      <div><span class="meta-label">GitHub</span><br>opti-trace-vault · @ 0c9ea17d</div>
+      <div><span class="meta-label">MVP Plan</span><br>v11 approved · Page 163184641</div>
+      <div><span class="meta-label">Owner</span><br>Susan Embry</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>12 screens built.</strong> 22-entity Supabase with RLS. 9-state packet state machine.<br>
+    <strong>Gates:</strong> Mutation wiring (Screens 7/8/9) + Susan domain validation + 16-item DoD review.<br>
+    <strong>Strategy:</strong> Channel partner to GRC platforms. Template library = durable moat.<br>
+    <strong>Pricing:</strong> $18K–$250K ARR. Per audit cycle (not seat-based).</p>
+  </div>
+
+  <div class="deep-dive"><h3>🚀 OptimoLaunch™</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Genesis Hub</span><br>Page 94371841</div>
+      <div><span class="meta-label">Live</span><br><a href="https://opti-pulse-hub.lovable.app" target="_blank">opti-pulse-hub.lovable.app</a></div>
+      <div><span class="meta-label">Lovable</span><br>6cfe6173 · @ 34d2fbfc (Jun 29)</div>
+      <div><span class="meta-label">GitHub</span><br>opti-pulse-hub (30 commits)</div>
+      <div><span class="meta-label">Jira</span><br>KAN · 75 tickets in Idea</div>
+      <div><span class="meta-label">Slack</span><br>#optimolaunch</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>S1 (CC-1):</strong> SIGNED OFF 2026-06-14. <strong>S2:</strong> ~85%, P5 in flight. <strong>S3:</strong> BLOCKED (10 open questions).<br>
+    <strong>Governance drift ~2 months.</strong> 8 stale pages. 75 tickets never transitioned. S4–S6 not planned.<br>
+    <strong>Architecture:</strong> campaign_definitions → channel_outputs (FK cascade). 3 ADRs. Cross-venture required from day one.</p>
+  </div>
+
+  <div class="deep-dive"><h3>⚙️ OptimoSelect™ + IFS Deal</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Production</span><br><a href="https://optimoselect.com" target="_blank">optimoselect.com</a></div>
+      <div><span class="meta-label">GitHub</span><br>opti-gen-opus (90+ files)</div>
+      <div><span class="meta-label">Supabase</span><br>axgrcitqikiadmmihgzj</div>
+      <div><span class="meta-label">Hero Partner</span><br>IFS (May River Capital)</div>
+      <div><span class="meta-label">Deal</span><br>~$50K + $50-150K/yr</div>
+      <div><span class="meta-label">MNDA</span><br>At MRC legal review</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>Code Complete:</strong> Constraint Envelope Validator, Agentic Ranking Engine (Gemini 2.5 Flash, 40/30/30), AI Console (7 models), Corpus Admin (Drive ingestion), Engineering Review Gate, Multi-tenant (6 RBAC).<br>
+    <strong>IFS:</strong> MNDA v05272026 + AI governance §6.1. MRC IP review expected NOW. New CEO buy-in confirmed.<br>
+    <strong>OptimoMDM Sidecar:</strong> Bundled in plan.md. Sidecar → Enterprise MDM → Multi-OpCo across MRC portfolio.</p>
+  </div>
+
+  <div class="deep-dive"><h3>💻 OptimoStudio™</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Confluence</span><br>Page 184680450</div>
+      <div><span class="meta-label">Lovable</span><br>c0a9b8ac · @ 51719873 (Jul 8)</div>
+      <div><span class="meta-label">Status</span><br>NOT published · 11 edits</div>
+      <div><span class="meta-label">Stack</span><br>TanStack Start + Lovable Cloud</div>
+      <div><span class="meta-label">Jira</span><br>STUD-9 Done · STUD-10–14</div>
+      <div><span class="meta-label">LLM</span><br>Anthropic + DeepSeek</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>5 panels:</strong> Skill Launcher (28 skills via Claude API), Terminal (session history, tool-use cards), Ventures (9 curated), PMO Sprint View (3 tabs), Observability (CEO-only).<br>
+    <strong>Active development</strong> — edited yesterday (Jul 8). Multi-provider: Anthropic + DeepSeek with override.<br>
+    <strong>Pending:</strong> DEEPSEEK_API_KEY server-side, Atlassian tokens, Vercel deploy, UAT.</p>
+  </div>
+
+  <div class="deep-dive"><h3>🎨 ArtQuest</h3>
+    <div class="meta-row">
+      <div><span class="meta-label">Genesis Hub</span><br>Page 16154662</div>
+      <div><span class="meta-label">Lovable</span><br>82d80ad5 · @ d3e35157 (Jun 10)</div>
+      <div><span class="meta-label">Phase</span><br>D — Expansion</div>
+      <div><span class="meta-label">Target</span><br>Ages 7–12</div>
+      <div><span class="meta-label">Jira</span><br>AQ-100–700</div>
+      <div><span class="meta-label">AI Toolset</span><br>4 edge fns (interim)</div>
+    </div>
+    <p style="font-size:0.83rem;"><strong>Dormant</strong> — last edited June 10 (29 days). Phase C FROZEN (immutable).<br>
+    <strong>AI Creative Toolset:</strong> Sanctioned interim on Lovable AI gateway. OptimoCortex cutover planned.<br>
+    <strong>2D→3D:</strong> Earned upgrade (non-negotiable). Remaining: canvas integration, quest authoring UI, theming hooks.</p>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>📋 Report Metadata</h2>
+  <table>
+    <tr><th>Source</th><th>Status</th><th>Data Pulled</th><th>Note</th></tr>
+    <tr><td><strong>Memory Files</strong></td><td>✅ Complete</td><td>52/52 files</td><td>Full frontmatter + content. All 9 ventures covered.</td></tr>
+    <tr><td><strong>Lovable (live)</strong></td><td>✅ Complete</td><td>2 workspaces, 7 projects</td><td>Commit SHAs, edit dates, publish status, edit counts.</td></tr>
+    <tr><td><strong>Confluence (live)</strong></td><td>⚠️ Memory-ref only</td><td>0 live pages</td><td>Confluence MCP unavailable. Page IDs from memory — verify.</td></tr>
+    <tr><td><strong>Jira (live)</strong></td><td>⚠️ Memory-ref only</td><td>0 live queries</td><td>Jira MCP requires subagent+ToolSearch path.</td></tr>
+    <tr><td><strong>GitHub (live)</strong></td><td>⚠️ Not checked</td><td>0 repos queried</td><td>Commit SHAs from memory.</td></tr>
+    <tr><td><strong>Vercel (live)</strong></td><td>⚠️ Not checked</td><td>0 projects queried</td><td>CLI check deferred.</td></tr>
+    <tr><td><strong>Slack (live)</strong></td><td>⚠️ Not checked</td><td>0 channels read</td><td>Sampled activity deferred per scope.</td></tr>
+  </table>
+
+  <div style="margin-top:16px;padding:14px;background:#fef3c7;border-radius:8px;font-size:0.82rem;">
+    <strong>⚠️ Live Data Gap:</strong> Confluence and Jira MCP tools are stdio npx servers requiring subagent+ToolSearch per [[reference-jira-confluence-mcp-access]]. This run prioritized memory completeness + Lovable enrichment. Confluence page freshness should be verified independently.
+  </div>
+
+  <div style="margin-top:16px;padding:14px;background:#f0fdf4;border-radius:8px;font-size:0.82rem;">
+    <strong>✅ Lovable Live Enrichment:</strong> 7 primary projects confirmed. TelosAI most active (edited TODAY, 137 edits). OptimoStudio active (yesterday). OptimoEvidence recent (Jul 3). GutWise + OptimoLaunch dormant (9-10d). OptimoLand dormant (24d). ArtQuest dormant (29d). 66 total projects across 2 workspaces.
+  </div>
+
+  <div style="margin-top:16px;padding:14px;background:#ede9fe;border-radius:8px;font-size:0.82rem;">
+    <strong>📊 Cross-Venture Platform Assets:</strong> 10 lifecycle hooks deployed · 42 Claude skills in distribution repo (Optimo-Ventures-Incorporate/claude-skills) · 7 MCP servers (Slack, Lovable, Dropbox, Confluence, Jira, Ruflo, Google Drive-pending) · KettleLogic convergence (89/100, strongest RCM match) · RCM Platform triage (66/100, CONDITIONAL-GO) · HLDS framework (Sam Embry-Busch, 4-layer learning architecture) · LLM Privacy Canon codified as 01.02.AI.
+  </div>
+</div>
+
+<div class="report-footer">
+  <p><strong>Memory Report 2026-07-09</strong> · Generated by Claude Code /memory-report skill · Optimo Ventures CLI</p>
+  <p>Design: Optimo teal-and-gold system · Self-contained HTML (no CDN, no external dependencies) · 52 memory files + live Lovable enrichment</p>
+  <p>Sources checked: Memory (52 ✅) · Lovable (7 projects, 2 workspaces ✅) · Confluence (memory-ref ⚠️) · Jira (memory-ref ⚠️) · GitHub (deferred ⚠️) · Vercel (deferred ⚠️)</p>
+  <p style="margin-top:12px;font-weight:700;color:var(--teal-800);">
+    🛑 REVIEW GATE — This report is rendered locally. It has NOT been distributed.<br>
+    Review it in your browser, then say <strong>"distribute"</strong> to push to Confluence, Slack, and OneDrive (personal section auto-stripped).
+  </p>
+</div>
+
+</div>
+</body>
+</html>
