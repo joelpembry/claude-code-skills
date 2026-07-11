@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TelosAI™ — Cognitive Core Build Plan v3 (Option 1 · Non-Breaking) — 2026-07-10</title>
+<style>
+  :root{--ink:#1a1f2b;--muted:#5b6472;--line:#e3e7ee;--bg:#f6f8fb;--card:#fff;--brand:#3b4b8a;--brand2:#5a6fd6;--accent:#0e9f6e;--warn:#b45309;--danger:#b91c1c;--chip:#eef1f8}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px 80px}
+  header.hero{background:linear-gradient(135deg,#1f7a54 0%,#2b355f 55%,#3b4b8a 100%);color:#fff;padding:40px 24px 30px;border-bottom:4px solid #17203f}
+  .hero-inner{max-width:1060px;margin:0 auto}
+  .hero h1{margin:0 0 6px;font-size:27px}
+  .hero .tag{font-style:italic;opacity:.9;margin:0 0 16px}
+  .banner{display:inline-flex;gap:8px;flex-wrap:wrap;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);padding:8px 14px;border-radius:8px;font-size:13px}
+  .meta{max-width:1060px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)}
+  .toc{max-width:1060px;margin:14px auto 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+  .toc b{color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-size:11px;align-self:center}
+  .toc a{color:var(--brand);text-decoration:none;font-weight:600}
+  h2{font-size:19px;margin:32px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--line);color:var(--brand);scroll-margin-top:12px}
+  h3{font-size:15px;margin:18px 0 8px}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:13.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#eef1f8;color:#33406e;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.3px}
+  tr:last-child td{border-bottom:none}
+  code{background:var(--chip);padding:1px 6px;border-radius:4px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:12.5px}
+  a{color:var(--brand2)} a.ref{color:var(--brand);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--brand2)}
+  .callout{border-left:4px solid var(--brand2);background:var(--card);border:1px solid var(--line);border-left-width:4px;border-radius:8px;padding:12px 16px;margin:14px 0}
+  .callout.good{border-left-color:var(--accent);background:#f0fbf6}
+  .callout.warn{border-left-color:var(--warn);background:#fffaf0}
+  .callout.crit{border-left-color:var(--danger);background:#fff5f5}
+  .callout .lbl{font-weight:700;letter-spacing:.3px;font-size:12px;text-transform:uppercase}
+  .callout.good .lbl{color:var(--accent)}.callout.warn .lbl{color:var(--warn)}.callout.crit .lbl{color:var(--danger)}
+  .badge{display:inline-block;padding:1px 8px;border-radius:20px;font-size:11.5px;font-weight:600;white-space:nowrap}
+  .b-keep{background:#e6f6ef;color:#0e7a52}.b-new{background:#eaeefb;color:#3b4b8a}.b-mod{background:#fff4e5;color:#b45309}.b-hold{background:#fdeced;color:#b91c1c}
+  .step{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-weight:700;color:#33406e}
+  .ws .wshead{display:flex;align-items:center;gap:10px;margin:22px 0 4px}
+  .ws .wstag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 9px;border-radius:6px;background:var(--brand);color:#fff}
+  .ws .wssub{font-size:12px;color:var(--muted)}
+  pre.flow{background:#0f1424;color:#d7dcf0;padding:16px 18px;border-radius:8px;overflow:auto;font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:12.5px;line-height:1.6}
+  ol.q{margin:8px 0;padding-left:22px}ol.q li{margin:6px 0}
+  footer{margin-top:38px;padding:18px 20px;background:#101528;color:#c9d0e8;border-radius:10px;font-size:13.5px}
+  footer b{color:#fff}
+  .small{font-size:12px;color:var(--muted)}
+  .guard{background:#fff5f5;border:1px solid #f3c9c9;border-radius:10px;padding:6px 4px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>TelosAI™ — Cognitive Core Build Plan v3</h1>
+    <p class="tag">Option 1 · Non-Breaking Adaptation onto the authoritative build · See your loop. Sharpen your aim.</p>
+    <div class="banner"><b>PLANNING / DRY_RUN</b> · for review &amp; approval · no build pushed · no Confluence write · Lovable Build Prompts &amp; Genesis Hub update held until approved</div>
+  </div>
+</header>
+
+<div class="meta">
+  <span><b>Prepared:</b>&nbsp;2026-07-10</span>
+  <span><b>Production:</b>&nbsp;<a href="https://telosai.optimoventures.ai" target="_blank" rel="noopener">telosai.optimoventures.ai</a> = <a href="https://aim-loop-map.lovable.app" target="_blank" rel="noopener">aim-loop-map.lovable.app</a></span>
+  <span><b>Authoritative build:</b>&nbsp;<a href="https://lovable.dev/projects/14c4acd4-b6be-4cc1-9edd-90becc748e45" target="_blank" rel="noopener">Lovable 14c4acd4</a> · commit 5e650835</span>
+  <span><b>Genesis Hub:</b>&nbsp;<a href="https://optimoventures.atlassian.net/wiki/spaces/OPTIMOV/pages/101548033/" target="_blank" rel="noopener">101548033</a></span>
+</div>
+
+<nav class="toc"><b>Contents</b>
+  <a href="#s0">0 · Decision</a><a href="#s1">1 · Non-breaking mandate</a><a href="#s2">2 · What v2 adds</a><a href="#s3">3 · Reuse vs new</a><a href="#s4">4 · Workstreams</a><a href="#s5">5 · Flags &amp; branch</a><a href="#s6">6 · Sequence</a><a href="#s7">7 · Quality gates</a><a href="#s8">8 · On approval</a><a href="#s9">9 · Open items</a>
+</nav>
+
+<div class="wrap">
+
+  <h2 id="s0">0 · Decision — reconciliation resolved (Option 1)</h2>
+  <div class="callout good">
+    <div class="lbl">✔ Confirmed by Joel (2026-07-10)</div>
+    <p>The published app at <b>telosai.optimoventures.ai</b> is the <b>same</b> as <b>aim-loop-map.lovable.app</b>, and the <b>Lovable build is authoritative</b>. The roadmap v2's "German placeholder / build-from-scratch / Next.js" premise was written against the bare <code>telosai.com</code> domain (an unconnected placeholder), <b>not</b> the real production app. Therefore roadmap v2 is incorporated as an <b>additive enhancement</b> of the existing shipped Aim Clarity Hub — <b>not</b> a greenfield rebuild.</p>
+  </div>
+  <p><b>What this changes vs the roadmap as written:</b> The roadmap's <b>Phase 0</b> (strip German, replace "Standort-CRM," Next.js framing) is largely <b>N/A</b> — the real app is already English, TelosAI-branded, and built on Lovable/Vite/React with 28 Supabase tables, 31 edge functions, and 18 live routes. We keep the roadmap's <b>substance</b> (the visibility model, the 9-section output, the Inner/Outer loops, the input fixes, Recursive Dynamics) and drop its incorrect starting-state assumptions.</p>
+
+  <h2 id="s1">1 · Non-breaking mandate (hard constraint)</h2>
+  <div class="callout crit">
+    <div class="lbl">⛔ Nothing may break the current build</div>
+    <p>Every step below is governed by these guardrails. The live app must keep working throughout, and any new surface stays dark until validated.</p>
+  </div>
+  <div class="guard">
+  <table>
+    <thead><tr><th>#</th><th>Guardrail</th></tr></thead>
+    <tbody>
+      <tr><td>G1</td><td><b>Branch/version isolation.</b> Build on a Lovable branch/new version. <code>telosai.optimoventures.ai</code> production stays pinned to the current authoritative build until a new version is explicitly promoted.</td></tr>
+      <tr><td>G2</td><td><b>Everything flag-gated, default OFF in prod.</b> New surfaces behind new flags (<code>VITE_TELOS_PSYCH_MATRIX_V2</code>, <code>VITE_TELOS_LOOPS_UI</code>, <code>VITE_TELOS_LIBRARY_LOOKUP</code>, <code>VITE_TELOS_MATURATION</code>). Existing O1–O5 flags are not touched.</td></tr>
+      <tr><td>G3</td><td><b>Additive schema only.</b> New tables/columns with <code>FORCE ROW LEVEL SECURITY</code>; nullable/defaulted; backfill-safe. <b>No ALTER/DROP</b> on the existing 28 <code>telos_*</code> tables' columns.</td></tr>
+      <tr><td>G4</td><td><b>Additive routes/components/functions.</b> New output lives at a <b>new</b> flag-gated route (e.g. <code>/app/portrait</code>). The 18 existing routes and 31 edge functions are left intact; engine changes are new edge functions or additive params — never destructive edits.</td></tr>
+      <tr><td>G5</td><td><b>Existing flows keep working.</b> Two-path equivalence and the new pipeline are wrapped so the current assessment / RTOS / Psych Matrix / Aims flows continue unchanged.</td></tr>
+      <tr><td>G6</td><td><b>Validation gate before any prod flip.</b> Prod flag defaults stay OFF until UAT passes on the branch preview. Promotion is a separate, explicit step.</td></tr>
+      <tr><td>G7</td><td><b>Instant rollback.</b> Flags OFF = immediate revert; branch is discardable. Rollback point = commit <code>5e650835</code> + a pre-flight Supabase backup.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="s2">2 · What roadmap v2 adds (the substance we're incorporating)</h2>
+  <ul>
+    <li><b>Visibility model:</b> RTOS 8-stage mapping becomes <b>engine-internal</b> (hidden); the <b>RTPL Inner &amp; Outer Loops</b> become the user-facing signature output.
+      <ul>
+        <li><b>Outer Loop</b> (macro, 4 stages): Ordered Past → Present Awareness → Aims → Chaotic Future.</li>
+        <li><b>Inner Loop</b> (micro, 5 stages): Aim → Act → Feedback → Recalibrate → Sharpen Aim + Loop Alignment.</li>
+      </ul>
+    </li>
+    <li><b>9-section Psych Matrix output page:</b> Executive Summary ("That's Me") · 6 Assessment Foundations (narrative-first) · 6-part Unified Synthesis · Outer Loop · Inner Loop · Strengths &amp; Blind Spots · EQ/IQ/HQ · Maturation · Model Integrity.</li>
+    <li><b>5 input fixes:</b> Big Five parent+facets stored separately (no averaging); MBTI dominant-pole display; Enneagram type+wing; DISC/zodiac unchanged; two-path equivalence (Path A native / Path B import → one engine entry point).</li>
+    <li><b>Recursive Dynamics</b> (Stage 10): Recursive Capacity/Stability, Divergence/Convergence, Learning Rate.</li>
+    <li><b>Loop visualizations</b> — the interactive signature interaction (+the reason the roadmap added 6 days).</li>
+  </ul>
+
+  <h2 id="s3">3 · Existing assets reused vs net-new (the Option-1 efficiency)</h2>
+  <table>
+    <thead><tr><th>Capability</th><th>Status in current build</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>Auth, routing, shell, design tokens, dark mode</td><td>Exists (shipped)</td><td><span class="badge b-keep">Reuse</span> — verify NDA gate + Google OAuth present; add only if missing</td></tr>
+      <tr><td>RTOS runtime, Psych Matrix, Loop Analyzer, Equilibrium, Energy Leaks, Aims, Signal</td><td>Exists (28 tables, 31 edge fns, 18 routes)</td><td><span class="badge b-keep">Reuse</span> as engine substrate + data source for the new output</td></tr>
+      <tr><td>6 assessment libraries (MBTI/DISC/zodiacs JSON; Big5/Enneagram from spec)</td><td>Inbound packages (staged)</td><td><span class="badge b-new">Add</span> via <code>telos_assessment_libraries</code> (new table)</td></tr>
+      <tr><td>5 input fixes + two-path equivalence</td><td>Partial (Phase 2C intake exists)</td><td><span class="badge b-mod">Extend</span> additively (new fields/columns)</td></tr>
+      <tr><td>13-stage pipeline + Cross-Library Convergence + confidence</td><td>Pieces exist (compute-* edge fns)</td><td><span class="badge b-mod">Extend/orchestrate</span> as new edge function(s)</td></tr>
+      <tr><td>Outer/Inner Loop <b>generation</b> (user-facing narratives) + Recursive Dynamics</td><td>Not present as user-facing output</td><td><span class="badge b-new">Build</span> (flag-gated)</td></tr>
+      <tr><td>9-section output page + loop visualizations</td><td>Not present</td><td><span class="badge b-new">Build</span> at new route <code>/app/portrait</code> (flag-gated)</td></tr>
+      <tr><td>Framework / German cleanup (roadmap P0)</td><td>Already English/branded/Vite</td><td><span class="badge b-keep">N/A</span> — roadmap premise corrected</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="s4">4 · Workstreams (additive, flag-gated)</h2>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-A</span><span class="wssub">Pre-flight &amp; safety · <span class="badge b-new">gate</span></span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th><th>Acceptance</th></tr></thead><tbody>
+    <tr><td class="step">A1</td><td>Create build branch/version; pin prod to current build; Supabase backup; record rollback point (5e650835)</td><td>Prod unaffected; rollback documented</td></tr>
+    <tr><td class="step">A2</td><td>Register new feature flags (all default OFF in prod)</td><td>Flags exist; existing O1–O5 flags untouched</td></tr>
+    <tr><td class="step">A3</td><td>Verify current build inventory: NDA gate? Google OAuth? existing loop/matrix surfaces?</td><td>Gap list confirmed before building (avoids rebuilding what exists)</td></tr>
+  </tbody></table></div>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-B</span><span class="wssub">Assessment libraries + input fixes (roadmap P1 + P2.1)</span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th><th>Non-breaking note</th></tr></thead><tbody>
+    <tr><td class="step">B1</td><td>Add 6 libraries via <code>telos_assessment_libraries</code> (version-routed, RLS); build Big5/Enneagram JSON from PDFs</td><td>New table only; no change to existing tables</td></tr>
+    <tr><td class="step">B2</td><td>5 input fixes: Big Five parent+facets separate; MBTI dominant-pole; Enneagram type+wing</td><td>New columns, nullable; existing intake path preserved</td></tr>
+    <tr><td class="step">B3</td><td>Two-path equivalence: Path A native + Path B import → single <code>generatePsychMatrix(scores)</code> entry</td><td>Wrap, don't replace; legacy assessment still valid</td></tr>
+  </tbody></table></div>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-C</span><span class="wssub">Engine: 13-stage pipeline + convergence + loops (roadmap P2.2)</span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th><th>Non-breaking note</th></tr></thead><tbody>
+    <tr><td class="step">C1</td><td>13-stage pipeline orchestration (reuse existing compute-* edge fns where possible)</td><td>New orchestrator edge fn; existing fns unchanged</td></tr>
+    <tr><td class="step">C2</td><td>Cross-Library Convergence + per-theme confidence (≥3 systems agree = high confidence; conflicts surfaced)</td><td>New logic in new fn</td></tr>
+    <tr><td class="step">C3</td><td>Stage 8 RTOS (engine-internal) → Stage 9a Outer Loop + 9b Inner Loop generation (user-facing narratives + Loop Alignment)</td><td>Additive output; never exposes RTOS/trig terms</td></tr>
+    <tr><td class="step">C4</td><td>Stage 10 Recursive Dynamics; Stage 11 EQ/IQ/HQ; Stage 12 Maturation (age-based, read-only); Stage 13 Executive Summary (last)</td><td>New output object fields</td></tr>
+    <tr><td class="step">C5</td><td>Persist result: extend <code>psych_matrix</code> via <b>new</b> columns/companion table (13 sections, confidence, narrative)</td><td>Additive; backfill-safe</td></tr>
+  </tbody></table></div>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-D</span><span class="wssub">New 9-section output surface + loop visualizations (roadmap P3) · <span class="badge b-new">signature</span></span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th><th>Non-breaking note</th></tr></thead><tbody>
+    <tr><td class="step">D1</td><td>New route <code>/app/portrait</code> (flag <code>VITE_TELOS_PSYCH_MATRIX_V2</code>) rendering the 9 sections, narrative-first</td><td>New route; existing routes untouched</td></tr>
+    <tr><td class="step">D2</td><td>Outer Loop (4-node) + Inner Loop (5-node) interactive visualizations — tap-to-expand narrative/strengths/risks; mobile vertical fallback</td><td>Flag <code>VITE_TELOS_LOOPS_UI</code></td></tr>
+    <tr><td class="step">D3</td><td>Recursive Dynamics + EQ/IQ/HQ + Maturation + Model Integrity (collapsed) sections</td><td>Within new surface only</td></tr>
+  </tbody></table></div>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-E</span><span class="wssub">Static/Dynamic separation + onboarding polish (roadmap P3.3)</span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th></tr></thead><tbody>
+    <tr><td class="step">E1</td><td>Frame Psych Matrix (incl. loops) as Static "Your Foundation"; reserve Dynamic "Coming Soon"; "Assessed on [date]" stability label</td></tr>
+    <tr><td class="step">E2</td><td>Add NDA gate + Google OAuth <b>only if WS-A3 shows they're missing</b>; wire full flow into the new surface behind the flag</td></tr>
+  </tbody></table></div>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-F</span><span class="wssub">Hardening &amp; governance (carry-forward)</span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th></tr></thead><tbody>
+    <tr><td class="step">F1</td><td>Edge-function test coverage (existing gap) — add <code>*_test.ts</code>, prioritizing new pipeline fns</td></tr>
+    <tr><td class="step">F2</td><td>RLS on all new tables; provisional language; no engagement maximization; DisclaimerFooter on new surface</td></tr>
+    <tr><td class="step">F3</td><td>Optional: promote existing O1–O3 flags to prod (separate decision — unrelated to this build; still valid since we're on the same app)</td></tr>
+  </tbody></table></div>
+
+  <div class="ws"><div class="wshead"><span class="wstag">WS-G</span><span class="wssub">Docs / sync + Phase 4</span></div>
+  <table><thead><tr><th>Step</th><th>Goal</th></tr></thead><tbody>
+    <tr><td class="step">G1</td><td>CHANGELOG; new Build State Update page; Genesis Hub Phase Map → add "Phase 3F — Cognitive Core"; Jira TELO epics/tasks</td></tr>
+    <tr><td class="step">G2</td><td>Phase 4 (OptimoCortex) spec — after Cognitive Core lands; Psych Matrix v2 becomes its cross-session user-model substrate</td></tr>
+  </tbody></table></div>
+
+  <h2 id="s5">5 · Feature-flag &amp; branch strategy</h2>
+  <p>New flags (default <b>OFF</b> in prod, ON in dev), promoted only after UAT: <code>VITE_TELOS_LIBRARY_LOOKUP</code> (WS-B) · <code>VITE_TELOS_PSYCH_MATRIX_V2</code> (WS-C/D) · <code>VITE_TELOS_LOOPS_UI</code> (WS-D) · <code>VITE_TELOS_MATURATION</code> (WS-C/D). Same discipline that shipped O1–O5. The live app renders exactly as today until a flag is flipped.</p>
+
+  <h2 id="s6">6 · Sequence &amp; timeline</h2>
+  <pre class="flow">WS-A pre-flight ─▶ WS-B libraries+input ─▶ WS-C engine+loops ─▶ WS-D output surface ─▶ WS-E static/dynamic
+                                                                         │
+WS-F hardening (parallel) ───────────────────────────────────────────────┤
+WS-G docs/sync + Phase 4 (after) ────────────────────────────────────────┘</pre>
+  <p>Roadmap's 24-day estimate assumed greenfield. Under Option 1 the P0/foundation and much of the backend already exist, so calendar is <b>shorter</b> — but the loop-generation quality gate (WS-C3) and loop-viz build (WS-D2) remain the real cost. Estimate to be finalized in the Lovable Build Prompt package after your approval.</p>
+
+  <h2 id="s7">7 · Quality gates (from the RCM lenses)</h2>
+  <div class="callout warn"><div class="lbl">Anti-"cognitive astrology"</div><p>Every loop node must carry <b>specific, personal</b> narrative (how <em>this</em> user operates at that stage) — not generic stage descriptions. This is the make-or-break bar. Prototype the loops against <b>real engine output</b> (WS-C3), never mock data. WS-C3 loop-narrative generation is the critical quality gate; WS-D2 loop visualization is the second.</p></div>
+
+  <h2 id="s8">8 · On approval (held — awaiting your sign-off)</h2>
+  <table>
+    <thead><tr><th>Action</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><b>Craft Lovable Build Prompts</b> — per-workstream prompts to push to the Lovable AI to affect the build (non-breaking, flag-gated)</td><td><span class="badge b-hold">Held for approval</span></td></tr>
+      <tr><td><b>Update TelosAI Program Genesis Hub</b> (Confluence 101548033) — Phase Map + new Build State page (DRY_RUN → COMMIT on approval)</td><td><span class="badge b-hold">Held for approval</span></td></tr>
+      <tr><td><b>/report-distributor</b> — file this plan to GitHub reports/telosai/2026/ + Confluence + #telosai</td><td><span class="badge b-mod">Teed up</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="s9">9 · Open items to confirm</h2>
+  <ol class="q">
+    <li><b>Big Five / Enneagram JSON</b> — build from the PDFs now (WS-B1), or will Sam ship them like the other four?</li>
+    <li><b>NDA gate / Google OAuth</b> — confirm whether these already exist in the current build (WS-A3 verifies) so we don't rebuild them.</li>
+    <li><b>Phase Map label</b> — "Phase 3F — Cognitive Core" acceptable for the Genesis Hub update?</li>
+    <li><b>Alpha testing framework</b> (Barbara's UI/UX dashboard, referenced in the roadmap) — in scope for this build or separate?</li>
+  </ol>
+
+  <footer>
+    <b>Planning only.</b> Nothing built, no Lovable prompt pushed, no Confluence write. On your approval: I craft the Lovable Build Prompts and update the Genesis Hub. <code>/report-distributor</code> is teed up. Clickable copy published via Dropbox.
+    <div class="small" style="margin-top:8px;color:#8b93b5">v3 · Option 1 · Non-Breaking · 2026-07-10 · TelosAI™ · Optimo Ventures · staged at C:\Users\joelp\reports\telosai-inbound-2026-07-10\</div>
+  </footer>
+
+</div>
+</body>
+</html>
