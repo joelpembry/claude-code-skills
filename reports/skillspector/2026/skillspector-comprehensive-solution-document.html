@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIA SkillSpector — AI Agent Security Gatekeeper for Optimo Ventures</title>
+<style>
+  :root { --bg: #0d1117; --fg: #c9d1d9; --muted: #8b949e; --border: #30363d; --accent: #58a6ff; --critical: #f85149; --high: #d29922; --medium: #db6d28; --low: #3fb950; --card-bg: #161b22; --header-bg: #010409; }
+  * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 28px; }
+  header { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 40px 0; text-align: center; }
+  header h1 { font-size: 2.2rem; color: #fff; margin-bottom: 10px; }
+  header .subtitle { color: var(--muted); font-size: 1.05rem; }
+  .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+  .badge-critical { background: rgba(248,81,73,0.15); color: var(--critical); }
+  .badge-high { background: rgba(210,153,34,0.15); color: var(--high); }
+  .badge-medium { background: rgba(219,109,40,0.15); color: var(--medium); }
+  .badge-low { background: rgba(63,185,80,0.15); color: var(--low); }
+  section { margin: 40px 0; scroll-margin-top: 20px; }
+  h2 { font-size: 1.5rem; color: #fff; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
+  h2 .back-top { font-size: 0.7rem; font-weight: 400; color: var(--accent); text-decoration: none; margin-left: 12px; opacity: 0; transition: opacity 0.2s; }
+  h2:hover .back-top { opacity: 1; }
+  h3 { font-size: 1.15rem; color: #f0f6fc; margin: 20px 0 10px; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 18px 0; }
+  .card.crit { border-left: 3px solid var(--critical); }
+  .card.warn { border-left: 3px solid var(--high); }
+  .card.info { border-left: 3px solid var(--accent); }
+  .stat-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+  .stat { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; text-align: center; min-width: 110px; flex: 1; }
+  .stat .num { font-size: 2.4rem; font-weight: 700; }
+  .stat .label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .num-critical { color: var(--critical); } .num-high { color: var(--high); } .num-medium { color: var(--medium); } .num-low { color: var(--low); } .num-total { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 14px 0; }
+  th { text-align: left; padding: 10px 14px; border-bottom: 2px solid var(--border); color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover { background: rgba(88,166,255,0.03); }
+  code { background: rgba(110,118,129,0.12); padding: 2px 7px; border-radius: 4px; font-size: 0.85em; font-family: monospace; }
+  pre { background: var(--header-bg); border: 1px solid var(--border); border-radius: 8px; padding: 18px; overflow-x: auto; font-size: 0.82rem; line-height: 1.6; }
+  .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(48,54,61,0.5); }
+  .pipeline-step:last-child { border-bottom: none; }
+  .pipeline-step .icon { font-size: 1.4rem; min-width: 32px; text-align: center; }
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px 28px; margin: 24px 0; }
+  .toc h3 { margin-top: 0; }
+  .toc ol { columns: 2; column-gap: 30px; list-style-position: inside; }
+  .toc li { margin: 2px 0; font-size: 0.9rem; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .arch-diagram { background: var(--header-bg); border: 1px solid var(--border); border-radius: 8px; padding: 28px; margin: 20px 0; text-align: center; font-family: monospace; white-space: pre; line-height: 1.3; font-size: 0.82rem; }
+  #back-to-top { position: fixed; bottom: 28px; right: 28px; background: var(--accent); color: #fff; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; opacity: 0; transition: opacity 0.3s; z-index: 999; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+  #back-to-top.visible { opacity: 0.85; }
+  #back-to-top:hover { opacity: 1; }
+  .quick-nav { position: sticky; top: 0; background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 10px 0; z-index: 100; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; font-size: 0.78rem; }
+  .quick-nav a { color: var(--muted); text-decoration: none; padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+  .quick-nav a:hover { color: #fff; background: rgba(88,166,255,0.12); }
+  footer { text-align: center; padding: 28px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 48px; }
+  footer a { color: var(--accent); }
+  @media (max-width: 768px) { .toc ol { columns: 1; } .stat { min-width: 80px; } .quick-nav { gap: 4px; } }
+</style>
+</head>
+<body>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<header id="top">
+  <div class="container">
+    <h1>🛡️ NVIDIA SkillSpector — AI Agent Security Gatekeeper</h1>
+    <p class="subtitle">Comprehensive Solution Architecture, Deployment, and Operational Runbook for Optimo Ventures</p>
+    <p class="subtitle" style="margin-top:6px;font-size:0.9rem;">Confluence 00.07.4 &bull; Version 1.0 &bull; July 17, 2026</p>
+  </div>
+</header>
+
+<nav class="quick-nav">
+  <a href="#executive-summary">Summary</a>
+  <a href="#what-is-skillspector">What Is It?</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#installation">Install</a>
+  <a href="#ci-pipeline">CI/CD</a>
+  <a href="#git-hooks">Hooks</a>
+  <a href="#auto-sync">Sync</a>
+  <a href="#claude-policy">Policy</a>
+  <a href="#audit-results">Audit</a>
+  <a href="#critical-analysis">Critical</a>
+  <a href="#remediation">Remediation</a>
+  <a href="#operational-runbook">Runbook</a>
+  <a href="#roles">Roles</a>
+  <a href="#governance">Governance</a>
+  <a href="#appendix">Inventory</a>
+</nav>
+
+<div class="container">
+
+<div class="toc">
+  <h3>📑 Table of Contents</h3>
+  <ol>
+    <li><a href="#executive-summary">Executive Summary</a></li>
+    <li><a href="#what-is-skillspector">What Is SkillSpector?</a></li>
+    <li><a href="#architecture">Solution Architecture</a></li>
+    <li><a href="#installation">Installation & Setup</a></li>
+    <li><a href="#ci-pipeline">GitHub Actions CI Pipeline</a></li>
+    <li><a href="#git-hooks">Client-Side Git Hooks</a></li>
+    <li><a href="#auto-sync">Automated Sync & Delta Updates</a></li>
+    <li><a href="#claude-policy">Canonical Security Policy (CLAUDE.md)</a></li>
+    <li><a href="#audit-results">44-Skill Baseline Audit Results</a></li>
+    <li><a href="#critical-analysis">Critical Skills Analysis</a></li>
+    <li><a href="#remediation">Remediation & Baselines</a></li>
+    <li><a href="#operational-runbook">Operational Runbook</a></li>
+    <li><a href="#roles">Roles & Responsibilities</a></li>
+    <li><a href="#governance">Governance & Compliance</a></li>
+    <li><a href="#appendix">Appendix: Full Skill Inventory</a></li>
+  </ol>
+</div>
+
+<section id="executive-summary">
+  <h2>1. Executive Summary <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="stat-row">
+    <div class="stat"><div class="num num-total">44</div><div class="label">Skills Under Management</div></div>
+    <div class="stat"><div class="num num-critical">5</div><div class="label">CRITICAL (CSO Review)</div></div>
+    <div class="stat"><div class="num num-high">1</div><div class="label">HIGH</div></div>
+    <div class="stat"><div class="num num-medium">1</div><div class="label">MEDIUM</div></div>
+    <div class="stat"><div class="num num-low">37</div><div class="label">LOW / CLEAN</div></div>
+  </div>
+  <p>NVIDIA SkillSpector v2.3.13 has been deployed as the <strong>canonical AI agent security gatekeeper</strong> for the Optimo Ventures Claude skill ecosystem. Every skill — whether authored by Optimo employees, associate consultants, or external third-party sources — must now pass a dual-stage security evaluation (Static AST + LLM Semantic Analysis) before installation or execution.</p>
+  <p>The solution spans five integrated layers: local CLI, GitHub Actions CI/CD pipeline, client-side git hooks (pre-push + post-merge), automated upstream sync, and a canonical zero-trust policy codified in the shared <code>CLAUDE.md</code>.</p>
+  <div class="card crit">
+    <h3>⚠️ Immediate Priority</h3>
+    <p>Five skills scored <strong>CRITICAL (100/100)</strong> on static analysis. Blocked by pre-push hook; require CSO review:</p>
+    <table style="margin-top:10px;">
+      <tr><th>Skill</th><th>Findings</th><th>Primary Concern</th></tr>
+      <tr><td><code>nextflow-development</code></td><td>31</td><td>Shell execution in HPC pipeline orchestration</td></tr>
+      <tr><td><code>docx</code></td><td>28</td><td>python-docx template injection & file I/O</td></tr>
+      <tr><td><code>optimo-rcm</code></td><td>11</td><td>Multi-source financial data synthesis crossing trust boundaries</td></tr>
+      <tr><td><code>pptx</code></td><td>26</td><td>python-pptx macro/shell injection surfaces</td></tr>
+      <tr><td><code>xlsx</code></td><td>30</td><td>Formula injection, CSV parsing chains, data export</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="what-is-skillspector">
+  <h2>2. What Is SkillSpector? <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="card info">
+    <p><strong>SkillSpector</strong> is NVIDIA's open-source security scanner purpose-built for AI agent skills — specifically LangGraph-based skill ecosystems. It detects vulnerabilities, malicious patterns, and trust-boundary violations in skill definition files (<code>SKILL.md</code>) <em>before</em> those skills are installed and executed by an AI agent runtime.</p>
+  </div>
+  <h3>2.1 Dual-Stage Analysis Engine</h3>
+  <table>
+    <tr><th>Stage</th><th>Method</th><th>What It Catches</th><th>Speed</th></tr>
+    <tr><td><strong>Static AST</strong></td><td>YARA rules + AST parsing of embedded code blocks</td><td>Malware signatures, shell injection, obfuscated code, suspicious imports, file-system escapes</td><td>~1-5s/skill</td></tr>
+    <tr><td><strong>LLM Semantic</strong></td><td>Multi-model semantic evaluation of NL instructions</td><td>Instruction hijacking, trust-boundary violations, PII leakage, tool misuse, authority override</td><td>~10-30s/skill</td></tr>
+  </table>
+  <h3>2.2 Scoring Model</h3>
+  <table>
+    <tr><th>Score</th><th>Severity</th><th>Action</th></tr>
+    <tr><td>0–19</td><td><span class="badge badge-low">LOW</span></td><td>Pass — no blocking</td></tr>
+    <tr><td>20–54</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Warning — review recommended</td></tr>
+    <tr><td>55–99</td><td><span class="badge badge-high">HIGH</span></td><td>Blocked by pre-push — remediation required</td></tr>
+    <tr><td>100</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Blocked — CSO review mandatory</td></tr>
+  </table>
+  <h3>2.3 Source</h3>
+  <ul>
+    <li><strong>Repository:</strong> github.com/NVIDIA/SkillSpector</li>
+    <li><strong>Installed:</strong> v2.3.13 (commit 8f534e2)</li>
+    <li><strong>Install:</strong> <code>uv tool install git+https://github.com/NVIDIA/SkillSpector.git</code></li>
+  </ul>
+</section>
+
+<section id="architecture">
+  <h2>3. Solution Architecture <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="arch-diagram">
+                    SKILLSPECTOR SECURITY MESH — Optimo Ventures
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │                                                                      │
+  │  DEVELOPER WORKSTATION       GITHUB ACTIONS CI        SCHEDULED CRON │
+  │  pre-push ──► blocked if     push/PR ──► SARIF        Mon 00:00 UTC │
+  │  HIGH/CRITICAL               upload to Security Tab  recursive deep │
+  │  post-merge ──► validate     workflow_dispatch       scan all 44    │
+  │                                                                      │
+  │         ALL ROADS LEAD TO ──► skillspector scan ◄──                  │
+  │                              • YARA Rules (AST)                      │
+  │                              • LLM Semantic (Anthropic)               │
+  │                              • Scoring Engine                         │
+  │                                      │                               │
+  │                    OUTPUTS: SARIF | Terminal | Markdown | Exit Code   │
+  │                                      │                               │
+  │              GOVERNANCE: CLAUDE.md Zero-Trust | CSO Baselines | KPI │
+  └──────────────────────────────────────────────────────────────────────┘
+  </div>
+  <h3>3.1 Technology Stack</h3>
+  <table>
+    <tr><th>Component</th><th>Technology</th><th>Version</th></tr>
+    <tr><td>Security Scanner</td><td>NVIDIA SkillSpector</td><td>v2.3.13</td></tr>
+    <tr><td>Package Manager</td><td>Astral uv</td><td>0.11.29</td></tr>
+    <tr><td>Python Runtime</td><td>Python</td><td>3.13</td></tr>
+    <tr><td>CI/CD</td><td>GitHub Actions</td><td>v4/v5/v3</td></tr>
+    <tr><td>LLM Provider</td><td>Anthropic (Claude)</td><td>API 2023-06-01</td></tr>
+    <tr><td>Output Format</td><td>SARIF 2.1.0</td><td>GitHub Security Tab</td></tr>
+  </table>
+</section>
+
+<section id="installation">
+  <h2>4. Installation & Setup <a href="#top" class="back-top">↑ top</a></h2>
+  <h3>4.1 Prerequisites</h3>
+  <table><tr><th>Component</th><th>Verify</th></tr>
+    <tr><td>Python 3.11+</td><td><code>python --version</code></td></tr>
+    <tr><td>uv</td><td><code>uv --version</code></td></tr>
+    <tr><td>Git</td><td><code>git --version</code></td></tr>
+    <tr><td>ANTHROPIC_API_KEY</td><td>Set as env var or GitHub secret</td></tr>
+  </table>
+  <h3>4.2 Install SkillSpector</h3>
+  <pre><code>uv tool install git+https://github.com/NVIDIA/SkillSpector.git
+skillspector --version  # Expected: v2.3.13</code></pre>
+  <h3>4.3 Set GitHub Secrets</h3>
+  <pre><code>gh secret set ANTHROPIC_API_KEY -R Optimo-Ventures-Incorporate/claude-skills
+gh secret set SKILLSPECTOR_PROVIDER --body "anthropic" -R Optimo-Ventures-Incorporate/claude-skills</code></pre>
+  <div class="card info">
+    <h4>Current State (2026-07-17)</h4>
+    <table>
+      <tr><td>Local Install</td><td>✅ v2.3.13 at ~/.local/bin/skillspector</td></tr>
+      <tr><td>ANTHROPIC_API_KEY</td><td>✅ GitHub secret (updated 2026-07-17)</td></tr>
+      <tr><td>SKILLSPECTOR_PROVIDER</td><td>✅ "anthropic" (updated 2026-07-17)</td></tr>
+      <tr><td>Local API Key</td><td>⏳ Pending</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="ci-pipeline">
+  <h2>5. GitHub Actions CI Pipeline <a href="#top" class="back-top">↑ top</a></h2>
+  <p><code>.github/workflows/skillspector-scan.yml</code></p>
+  <h3>5.1 Triggers</h3>
+  <table>
+    <tr><th>Trigger</th><th>Filter</th><th>Behavior</th></tr>
+    <tr><td>push → main, develop</td><td>.claude/skills/**, **/SKILL.md</td><td>Scan changed skills, upload SARIF</td></tr>
+    <tr><td>pull_request → main, develop</td><td>.claude/skills/**, **/SKILL.md</td><td>PR code review gate</td></tr>
+    <tr><td>schedule (0 0 * * 1)</td><td>All skills</td><td>Full recursive deep scan every Monday</td></tr>
+    <tr><td>workflow_dispatch</td><td>All skills</td><td>Manual trigger</td></tr>
+  </table>
+  <h3>5.2 Job Steps</h3>
+  <div class="card">
+    <div class="pipeline-step"><div class="icon">1</div><div><strong>Checkout</strong> — actions/checkout@v4</div></div>
+    <div class="pipeline-step"><div class="icon">2</div><div><strong>Install uv</strong> — astral-sh/setup-uv@v5 with cache</div></div>
+    <div class="pipeline-step"><div class="icon">3</div><div><strong>Install SkillSpector</strong> — uv tool install from NVIDIA repo</div></div>
+    <div class="pipeline-step"><div class="icon">4</div><div><strong>Run scan</strong> — recursive, SARIF format, ANTHROPIC_API_KEY from secrets</div></div>
+    <div class="pipeline-step"><div class="icon">5</div><div><strong>Upload SARIF</strong> — github/codeql-action/upload-sarif@v3 → Security tab</div></div>
+    <div class="pipeline-step"><div class="icon">6</div><div><strong>Surface summary</strong> — Markdown posted to job step summary</div></div>
+  </div>
+</section>
+
+<section id="git-hooks">
+  <h2>6. Client-Side Git Hooks <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="card crit">
+    <h3>6.1 pre-push — Blocking Security Gate</h3>
+    <p><code>.hooks/pre-push</code> → <code>.git/hooks/pre-push</code></p>
+    <p>Blocks push if any staged skill file triggers HIGH or CRITICAL findings. Bypass: <code>git push --no-verify</code> (requires documented justification).</p>
+  </div>
+  <div class="card warn">
+    <h3>6.2 post-merge — Third-Party Validation Gate</h3>
+    <p><code>.hooks/post-merge</code> → <code>.git/hooks/post-merge</code></p>
+    <p>Fires after every merge/pull. Runs full recursive scan to validate external contributions. Does not block — reports warnings.</p>
+  </div>
+  <h3>6.3 Activating on a New Workstation</h3>
+  <pre><code>cp .hooks/pre-push .git/hooks/pre-push
+cp .hooks/post-merge .git/hooks/post-merge
+chmod +x .git/hooks/pre-push .git/hooks/post-merge</code></pre>
+</section>
+
+<section id="auto-sync">
+  <h2>7. Automated Sync & Delta Updates <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="card">
+    <p><code>.hooks/update-skillspector.sh</code> — Checks NVIDIA upstream for commits, reinstalls on delta, smoke-tests the binary. Supports <code>--force</code>. Designed for cron and post-merge hooks.</p>
+  </div>
+</section>
+
+<section id="claude-policy">
+  <h2>8. Canonical Security Policy (CLAUDE.md) <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="card crit">
+    <p>Appended to <code>~/.claude/CLAUDE.md</code> as permanent shared-memory security mandate:</p>
+    <pre>## 🛡️ AI Agent Security & Guardrails
+- Mandate: Absolute zero-trust policy applied to all skills pushed or pulled
+  by Optimo Ventures employees, associate consultants, or external third-party sources.
+- Execution: Every new or updated skill must pass the NVIDIA SkillSpector
+  dual-stage gate (Static AST + LLM Semantic Evaluation) before installation.
+- Verification: Pending active validation and signature verification from Susan or the CSO.</pre>
+  </div>
+</section>
+
+<section id="audit-results">
+  <h2>9. 44-Skill Baseline Audit Results <a href="#top" class="back-top">↑ top</a></h2>
+  <p style="color:var(--muted);">Static analysis only (--no-llm). Full dual-stage LLM scan pending. Executed: 2026-07-17.</p>
+  <h3>CRITICAL (5 skills)</h3>
+  <table>
+    <tr><th>#</th><th>Skill</th><th>Score</th><th>Findings</th><th>Risk Vector</th></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td>1</td><td>nextflow-development</td><td>100</td><td>31</td><td>Shell execution in HPC orchestration</td></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td>2</td><td>docx</td><td>100</td><td>28</td><td>python-docx template injection</td></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td>3</td><td>optimo-rcm</td><td>100</td><td>11</td><td>Multi-source data crossing trust boundaries</td></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td>4</td><td>pptx</td><td>100</td><td>26</td><td>python-pptx macro injection</td></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td>5</td><td>xlsx</td><td>100</td><td>30</td><td>Formula injection (CWE-1236)</td></tr>
+  </table>
+  <h3>HIGH (1) + MEDIUM (1) + LOW/CLEAN (37)</h3>
+  <table>
+    <tr style="background:rgba(210,153,34,0.04);"><td>6</td><td>instrument-data-to-allotrope</td><td>55</td><td>HIGH</td><td>7</td></tr>
+    <tr style="background:rgba(219,109,40,0.04);"><td>7</td><td>optimo-local-dev-setup-mac</td><td>22</td><td>MEDIUM</td><td>3</td></tr>
+    <tr><td>8-21</td><td>14 skills</td><td>0-17</td><td>LOW</td><td>1-8</td></tr>
+    <tr><td>22-44</td><td>23 skills</td><td>0</td><td>CLEAN</td><td>0</td></tr>
+  </table>
+</section>
+
+<section id="critical-analysis">
+  <h2>10. Critical Skills Analysis <a href="#top" class="back-top">↑ top</a></h2>
+  <div class="card crit"><h3>nextflow-development (31 findings)</h3><p>Bio-research workflow skill. Flagged for embedded shell execution, container orchestration (Docker/Singularity), and pipeline script generation. In HPC environments, these patterns could enable arbitrary code execution on compute clusters.</p><p><strong>Recommendation:</strong> Baseline after CSO review. Consider runtime sandbox.</p></div>
+  <div class="card crit"><h3>docx (28 findings)</h3><p>Office document generation. Flagged for python-docx execution, template injection, and file-system writes. Primary concern: malicious templates embedding macros or external references.</p><p><strong>Recommendation:</strong> Baseline after template source audit. Enforce whitelist.</p></div>
+  <div class="card crit"><h3>optimo-rcm (11 findings)</h3><p>RCM analysis pipeline. The 5-perspective engine (8 base + 4 engines + 5 domain packs) triggers on dynamic data ingestion and multi-source synthesis crossing trust boundaries.</p><p><strong>Recommendation:</strong> Baseline after CSO confirms data pathways.</p></div>
+  <div class="card crit"><h3>pptx (26 findings)</h3><p>PowerPoint generation. python-pptx execution, template manipulation, macro injection surfaces.</p><p><strong>Recommendation:</strong> Baseline after template audit. Strip active content.</p></div>
+  <div class="card crit"><h3>xlsx (30 findings)</h3><p>Excel generation — highest finding count. Flagged for openpyxl execution, formula injection (CWE-1236), CSV parsing chains. Cells starting with =, +, -, @ can execute commands when opened in Excel.</p><p><strong>Recommendation:</strong> Implement formula sanitization before baseline. Highest downstream risk to non-technical users.</p></div>
+</section>
+
+<section id="remediation">
+  <h2>11. Remediation & Baselines <a href="#top" class="back-top">↑ top</a></h2>
+  <h3>11.1 Baseline Approval Workflow</h3>
+  <div class="card">
+    <div class="pipeline-step"><div class="icon">1</div><div>Developer runs scan → identifies CRITICAL/HIGH findings</div></div>
+    <div class="pipeline-step"><div class="icon">2</div><div>Developer documents each finding: why it fires, why acceptable (or remediates)</div></div>
+    <div class="pipeline-step"><div class="icon">3</div><div>CSO (Susan) reviews documented findings</div></div>
+    <div class="pipeline-step"><div class="icon">4</div><div>CSO approves → <code>skillspector baseline --output baseline.yaml</code></div></div>
+    <div class="pipeline-step"><div class="icon">5</div><div>Baseline committed alongside SKILL.md</div></div>
+  </div>
+  <h3>11.2 Priority Queue</h3>
+  <table>
+    <tr><th>Priority</th><th>Action</th><th>Owner</th><th>Target</th></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td><span class="badge badge-critical">P0</span></td><td>CSO review & baseline sign-off for 5 CRITICAL skills</td><td>Susan Embry-Busch</td><td>2026-07-24</td></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td><span class="badge badge-critical">P0</span></td><td>Implement formula sanitization in xlsx skill</td><td>Joel / Barbara</td><td>2026-07-21</td></tr>
+    <tr style="background:rgba(248,81,73,0.06);"><td><span class="badge badge-critical">P0</span></td><td>Run full dual-stage LLM scan locally</td><td>Joel</td><td>2026-07-18</td></tr>
+    <tr style="background:rgba(210,153,34,0.04);"><td><span class="badge badge-high">P1</span></td><td>Remediate instrument-data-to-allotrope (55/100)</td><td>Sam Embry-Busch</td><td>2026-07-25</td></tr>
+    <tr><td><span class="badge badge-medium">P2</span></td><td>Review optimo-local-dev-setup-mac (22/100)</td><td>Barbara / Collin</td><td>2026-07-28</td></tr>
+    <tr><td><span class="badge badge-low">P3</span></td><td>Install hooks on all workstations</td><td>All devs</td><td>Ongoing</td></tr>
+  </table>
+</section>
+
+<section id="operational-runbook">
+  <h2>12. Operational Runbook <a href="#top" class="back-top">↑ top</a></h2>
+  <h3>12.1 Daily Commands</h3>
+  <table>
+    <tr><th>Task</th><th>Command</th></tr>
+    <tr><td>Scan single skill</td><td><code>skillspector scan ./skill-dir/</code></td></tr>
+    <tr><td>Scan all (static)</td><td><code>skillspector scan ./.claude/skills/ --recursive --no-llm</code></td></tr>
+    <tr><td>Scan all (full dual-stage)</td><td><code>skillspector scan ./.claude/skills/ --recursive</code></td></tr>
+    <tr><td>Generate baseline</td><td><code>skillspector baseline ./skill-dir/ --output baseline.yaml</code></td></tr>
+    <tr><td>Update tool</td><td><code>.hooks/update-skillspector.sh</code></td></tr>
+  </table>
+  <h3>12.2 Emergency Bypass</h3>
+  <pre><code>git push --no-verify
+git commit -m "Emergency: bypass SkillSpector for [reason] (CSO approved, ticket SEC-NNN)"</code></pre>
+  <h3>12.3 Incident Response</h3>
+  <ol>
+    <li><strong>Isolate:</strong> Remove suspect skill from .claude/skills/</li>
+    <li><strong>Scan:</strong> Full dual-stage scan on isolated skill</li>
+    <li><strong>Audit:</strong> Check git log for origin</li>
+    <li><strong>Notify:</strong> Post to #optimo-platform; @mention CSO</li>
+    <li><strong>Remediate:</strong> Follow baseline workflow</li>
+    <li><strong>Post-mortem:</strong> Document in Confluence 00.07</li>
+  </ol>
+</section>
+
+<section id="roles">
+  <h2>13. Roles & Responsibilities <a href="#top" class="back-top">↑ top</a></h2>
+  <table>
+    <tr><th>Role</th><th>Person</th><th>Responsibility</th></tr>
+    <tr><td><strong>Chief Security Officer</strong></td><td>Susan Embry-Busch</td><td>Final sign-off on CRITICAL baselines; policy enforcement; incident response</td></tr>
+    <tr><td><strong>Security Engineer</strong></td><td>Joel Embry</td><td>Tool maintenance; CI pipeline; dual-stage scans; upstream delta monitoring</td></tr>
+    <tr><td><strong>Operations Lead</strong></td><td>Barbara Embry</td><td>MEDIUM remediation; hook installation; skill inventory management</td></tr>
+    <tr><td><strong>Engineering Lead</strong></td><td>Sam Embry-Busch</td><td>Bio-research skill remediation; HIGH finding resolution; HPC security review</td></tr>
+    <tr><td><strong>Product Lead</strong></td><td>Collin King</td><td>RCM skill baseline review; venture skill security; third-party integration audit</td></tr>
+    <tr><td><strong>All Developers</strong></td><td>—</td><td>Run pre-push scans; document bypasses; keep hooks active; report suspicious behavior</td></tr>
+  </table>
+</section>
+
+<section id="governance">
+  <h2>14. Governance & Compliance <a href="#top" class="back-top">↑ top</a></h2>
+  <h3>14.1 Policy Alignment</h3>
+  <table>
+    <tr><th>Policy</th><th>SkillSpector Enforcement</th></tr>
+    <tr><td><strong>01.02.AI</strong> — LLM Privacy</td><td>LLM analysis uses Anthropic API in private mode — no training on Optimo data</td></tr>
+    <tr><td><strong>Zero-Trust Architecture</strong></td><td>Every skill treated as untrusted until scanned. No exceptions.</td></tr>
+    <tr><td><strong>Change Management</strong></td><td>Every modification triggers scan. SARIF creates immutable audit trail.</td></tr>
+    <tr><td><strong>Segregation of Duties</strong></td><td>Developer generates baseline; CSO approves CRITICAL. Hook enforces mechanically.</td></tr>
+  </table>
+  <h3>14.2 KPIs</h3>
+  <table>
+    <tr><th>KPI</th><th>Current</th><th>Target</th></tr>
+    <tr><td>Skills with active baseline</td><td>0/44</td><td>44/44</td></tr>
+    <tr><td>CRITICAL skills un-remediated</td><td>5</td><td>0</td></tr>
+    <tr><td>Hook activation rate</td><td>1 machine</td><td>All contributors</td></tr>
+    <tr><td>Monday scan success rate</td><td>N/A (begins 7/20)</td><td>100%</td></tr>
+    <tr><td>Mean time to baseline (CRITICAL)</td><td>N/A</td><td>&lt; 7 days</td></tr>
+  </table>
+</section>
+
+<section id="appendix">
+  <h2>15. Appendix: Full 44-Skill Inventory <a href="#top" class="back-top">↑ top</a></h2>
+  <table>
+    <tr><th>#</th><th>Skill</th><th>Score</th><th>Severity</th><th>Findings</th><th>Category</th></tr>
+    <tr style="background:rgba(248,81,73,0.04);"><td>1</td><td>nextflow-development</td><td>100</td><td>CRITICAL</td><td>31</td><td>Bio-Research</td></tr>
+    <tr style="background:rgba(248,81,73,0.04);"><td>2</td><td>docx</td><td>100</td><td>CRITICAL</td><td>28</td><td>Office</td></tr>
+    <tr style="background:rgba(248,81,73,0.04);"><td>3</td><td>optimo-rcm</td><td>100</td><td>CRITICAL</td><td>11</td><td>Optimo Venture</td></tr>
+    <tr style="background:rgba(248,81,73,0.04);"><td>4</td><td>pptx</td><td>100</td><td>CRITICAL</td><td>26</td><td>Office</td></tr>
+    <tr style="background:rgba(248,81,73,0.04);"><td>5</td><td>xlsx</td><td>100</td><td>CRITICAL</td><td>30</td><td>Office</td></tr>
+    <tr style="background:rgba(210,153,34,0.03);"><td>6</td><td>instrument-data-to-allotrope</td><td>55</td><td>HIGH</td><td>7</td><td>Bio-Research</td></tr>
+    <tr style="background:rgba(219,109,40,0.03);"><td>7</td><td>optimo-local-dev-setup-mac</td><td>22</td><td>MEDIUM</td><td>3</td><td>Optimo Platform</td></tr>
+    <tr><td>8</td><td>frontend-design</td><td>17</td><td>LOW</td><td>3</td><td>Engineering</td></tr>
+    <tr><td>9</td><td>optimo-local-dev-setup</td><td>16</td><td>LOW</td><td>2</td><td>Optimo Platform</td></tr>
+    <tr><td>10</td><td>scientific-problem-selection</td><td>9</td><td>LOW</td><td>3</td><td>Bio-Research</td></tr>
+    <tr><td>11</td><td>context-budget</td><td>8</td><td>LOW</td><td>2</td><td>Platform</td></tr>
+    <tr><td>12</td><td>code-review</td><td>8</td><td>LOW</td><td>1</td><td>Engineering</td></tr>
+    <tr><td>13</td><td>debug</td><td>8</td><td>LOW</td><td>8</td><td>Engineering</td></tr>
+    <tr><td>14</td><td>incident-response</td><td>8</td><td>LOW</td><td>8</td><td>Engineering</td></tr>
+    <tr><td>15</td><td>file-reading</td><td>8</td><td>LOW</td><td>1</td><td>Platform</td></tr>
+    <tr><td>16</td><td>optimo-soc2-audit</td><td>8</td><td>LOW</td><td>1</td><td>Optimo GRC</td></tr>
+    <tr><td>17</td><td>pdf</td><td>7</td><td>LOW</td><td>1</td><td>Office</td></tr>
+    <tr><td>18</td><td>scvi-tools</td><td>3</td><td>LOW</td><td>2</td><td>Bio-Research</td></tr>
+    <tr><td>19</td><td>single-cell-rna-qc</td><td>3</td><td>LOW</td><td>2</td><td>Bio-Research</td></tr>
+    <tr><td>20</td><td>optimo-governance-audit</td><td>0</td><td>LOW</td><td>1</td><td>Optimo GRC</td></tr>
+    <tr><td>21</td><td>optimo-ventures</td><td>0</td><td>LOW</td><td>1</td><td>Optimo Platform</td></tr>
+    <tr style="color:var(--muted);"><td>22-44</td><td>23 remaining skills</td><td>0</td><td>CLEAN</td><td>0</td><td>Various</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:0.85rem;">Clean: start, architecture, deploy-checklist, documentation, standup, system-design, tech-debt, testing-strategy, launch-kraken, memory-report, optimo-expert-analysis, optimo-hipaa-audit, optimo-hlds, optimo-venture-triage, outlook-email (6 variants), pdf-reading, product-self-knowledge, report-distributor</p>
+</section>
+
+</div>
+
+<footer>
+  <p>NVIDIA SkillSpector v2.3.13 &bull; Optimo Ventures &bull; July 17, 2026</p>
+  <p><a href="https://github.com/Optimo-Ventures-Incorporate/claude-skills">Optimo-Ventures-Incorporate/claude-skills</a> &bull; Confluence: 00.07.4 — OPTIMOV Space</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', function() {
+    document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
