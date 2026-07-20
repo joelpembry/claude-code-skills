@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OptimoPR™ — RCM 5-Perspective Analysis</title>
+<style>
+  :root {
+    --bg: #0a0a0f; --surface: #14141f; --surface2: #1c1c2a; --border: #2a2a3d;
+    --text: #e0e0e8; --text2: #9898b0; --accent: #6c5ce7; --accent2: #a29bfe;
+    --green: #00d68f; --yellow: #ffc048; --red: #ff6b6b; --blue: #48c0ff;
+    --orange: #ff8c52; --teal: #00d2d3; --radius: 10px;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.7; }
+  .top-nav {
+    position: sticky; top: 0; z-index: 100; background: var(--surface);
+    border-bottom: 1px solid var(--border); padding: 12px 32px; display: flex;
+    gap: 24px; align-items: center; flex-wrap: wrap; backdrop-filter: blur(12px);
+  }
+  .top-nav .brand { font-weight: 700; font-size: 1.1rem; color: var(--accent2); }
+  .top-nav a { color: var(--text2); text-decoration: none; font-size: 0.85rem; transition: color .2s; }
+  .top-nav a:hover { color: var(--text); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .report-header {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 40px;
+    margin-bottom: 32px; text-align: center;
+  }
+  .report-header .lozenge {
+    display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 0.75rem;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+    background: rgba(108,92,231,0.15); color: var(--accent2); margin-bottom: 16px;
+  }
+  .report-header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+  .report-header .subtitle { color: var(--text2); font-size: 1.05rem; margin-bottom: 20px; }
+  .report-header .meta { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; font-size: 0.8rem; color: var(--text2); }
+  .report-header .meta span { padding: 4px 12px; background: var(--surface2); border-radius: 6px; }
+  .perspective-section { margin-bottom: 40px; }
+  .perspective-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 2px solid var(--border);
+  }
+  .perspective-header .icon {
+    width: 44px; height: 44px; border-radius: 12px; display: flex;
+    align-items: center; justify-content: center; font-size: 1.4rem;
+  }
+  .perspective-header h2 { font-size: 1.4rem; }
+  .p-explorer .icon { background: rgba(0,210,211,0.15); color: var(--teal); }
+  .p-evaluator .icon { background: rgba(72,192,255,0.15); color: var(--blue); }
+  .p-executor .icon { background: rgba(0,214,143,0.15); color: var(--green); }
+  .p-threat .icon { background: rgba(255,107,107,0.15); color: var(--red); }
+  .p-social .icon { background: rgba(255,140,82,0.15); color: var(--orange); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; margin-bottom: 16px;
+  }
+  .card h3 { font-size: 1.05rem; margin-bottom: 12px; color: var(--accent2); }
+  .card h4 { font-size: 0.95rem; margin: 16px 0 8px; color: var(--text); }
+  .card p, .card li { color: var(--text2); font-size: 0.93rem; }
+  .card ul, .card ol { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { background: var(--surface2); padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text2); }
+  tr:hover td { background: rgba(108,92,231,0.04); }
+  .score-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+  .score-5 { background: var(--green); } .score-4 { background: var(--teal); }
+  .score-3 { background: var(--yellow); } .score-2 { background: var(--orange); }
+  .score-1 { background: var(--red); }
+  .convergence { border-left: 3px solid var(--green); padding: 8px 16px; margin: 12px 0; }
+  .tension { border-left: 3px solid var(--orange); padding: 8px 16px; margin: 12px 0; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 0.73rem; font-weight: 600; margin-right: 6px;
+  }
+  .tag-high { background: rgba(0,214,143,0.15); color: var(--green); }
+  .tag-med { background: rgba(255,192,72,0.15); color: var(--yellow); }
+  .tag-low { background: rgba(255,107,107,0.15); color: var(--red); }
+  .tag-info { background: rgba(72,192,255,0.15); color: var(--blue); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
+  .toc h3 { margin-bottom: 12px; }
+  .toc ol { padding-left: 20px; color: var(--text2); }
+  .toc a { color: var(--accent2); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <span class="brand">◆ Optimo Ventures — RCM Intelligence</span>
+  <a href="#init">Initialize</a>
+  <a href="#explorer">Explorer</a>
+  <a href="#evaluator">Evaluator</a>
+  <a href="#executor">Executor</a>
+  <a href="#threat">Threat</a>
+  <a href="#social">Social</a>
+  <a href="#synthesis">Synthesis</a>
+  <a href="#next">Next Actions</a>
+</nav>
+
+<div class="container">
+
+<div class="report-header">
+  <div class="lozenge">RCM Session · Venture Domain Pack</div>
+  <h1>OptimoPR™ — 5-Perspective RCM Analysis</h1>
+  <div class="subtitle">Recursive Creativity Model · Full Session · AI-Native PR Automation Platform</div>
+  <div class="meta">
+    <span>📅 2026-07-20</span>
+    <span>🧠 Analyst: RCM Engine (5 Perspectives)</span>
+    <span>📦 Domain Pack: Venture</span>
+    <span>🔢 Session ID: RCM-OPTIMOPR-001</span>
+  </div>
+</div>
+
+<div class="toc" id="init">
+  <h3>📑 Session Map</h3>
+  <ol>
+    <li><a href="#init">Initialize — Goal Restatement & Domain</a></li>
+    <li><a href="#explorer">🔭 Explorer — Possibilities, Concepts & Research Leads</a></li>
+    <li><a href="#evaluator">⚖️ Evaluator — Quality Scores, Evidence, Tradeoffs</a></li>
+    <li><a href="#executor">⚙️ Executor — Build Plan, Phases, Dependencies</a></li>
+    <li><a href="#threat">🛡️ Threat — Risk Register, Constraints, Failure Modes</a></li>
+    <li><a href="#social">🤝 Social — Stakeholders, Adoption, Success Criteria</a></li>
+    <li><a href="#synthesis">🧬 Synthesis — Convergences, Tensions & Summary</a></li>
+    <li><a href="#next">🚦 Next Actions — Branch, Deep-Dive, Promote, Export</a></li>
+  </ol>
+</div>
+
+<!-- 1. INITIALIZE -->
+<div class="card">
+  <h3>🎯 Session Goal (Restated)</h3>
+  <p><strong>OptimoPR™</strong> is a proposed new Optimo Venture: an AI-Native PR Automation Platform that replaces traditional PR labor with AI-driven systems for story generation, journalist targeting, personalized outreach, multi-channel distribution, and reputation monitoring. Target customers: founders (Seed → Series C), personal brands, small agencies, and fractional CMOs who need measurable visibility without hiring PR professionals.</p>
+  <p style="margin-top:12px;">The venture thesis: AI has collapsed the traditional PR workflow — creating a category-defining opportunity similar to how HubSpot automated CRM and Jasper automated content creation. OptimoPR™ becomes the <em>AI Operating System for PR</em>.</p>
+  <p style="margin-top:12px;"><strong>Active Domain Pack:</strong> Venture | <strong>Primary Libraries:</strong> Human Truths, Audience Intelligence, Objections | <strong>Workspace:</strong> Exploration → Execution</p>
+</div>
+
+<!-- 2. EXPLORER -->
+<div class="perspective-section p-explorer" id="explorer">
+  <div class="perspective-header">
+    <div class="icon">🔭</div>
+    <h2>Explorer Perspective — Generate Possibilities, Discover Opportunities</h2>
+  </div>
+
+  <div class="card">
+    <h3>🧩 Concept Generation — 8 Strategic Directions</h3>
+    <p style="margin-bottom:14px;">The Explorer identifies 8 distinct concept configurations for OptimoPR™, each with different strategic emphasis:</p>
+    <ol style="padding-left:20px; color:var(--text2);">
+      <li><strong>Founder Narrative Engine (Concept A)</strong> — Deep psychological profiling of founders → AI-crafted narratives that feel authentic, not generated. Defensible moat: narrative psychology + AI. <span class="tag tag-high">Novelty: High</span></li>
+      <li><strong>PR-as-a-Service Platform (Concept B)</strong> — Full-stack SaaS: story → targeting → outreach → distribution → monitoring in one subscription. The "HubSpot for PR" play. <span class="tag tag-med">Novelty: Medium</span></li>
+      <li><strong>Agency Enablement OS (Concept C)</strong> — White-label PR engine that agencies resell under their brand. OptimoPR™ becomes the infrastructure, not the front-end. <span class="tag tag-high">Novelty: High</span></li>
+      <li><strong>AI Visibility Platform / GEO (Concept D)</strong> — Focus exclusively on Generative Engine Optimization: ensuring brands appear in ChatGPT, Perplexity, Gemini, Claude answers. The emerging PR frontier. <span class="tag tag-high">Novelty: High</span></li>
+      <li><strong>Creator PR Syndication (Concept E)</strong> — Match founders/creators with micro-influencers and newsletters for distribution. PR becomes a network effect. <span class="tag tag-med">Novelty: Medium</span></li>
+      <li><strong>PR Outcome Marketplace (Concept F)</strong> — Quantifiable PR marketplace where "coverage probability scores" are traded. PR becomes financialized. <span class="tag tag-high">Novelty: High</span></li>
+      <li><strong>Comms Team-in-a-Box (Concept G)</strong> — Enterprise-grade: replaces entire corporate communications departments with multi-agent AI. Targets Fortune 500. <span class="tag tag-med">Novelty: Medium</span></li>
+      <li><strong>OptimoPR™ Lite — Founder-First MVP (Concept H)</strong> — Narrow to the founder persona only. One button: "Get me visible." AI does everything else. <span class="tag tag-low">Novelty: Low</span></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>🔬 Objective Refinements Recommended</h3>
+    <ul>
+      <li><strong>Adopt Concept A (Founder Narrative Engine) as the wedge</strong> — most defensible entry point; leverages Optimo's unique strength in AI + psychology.</li>
+      <li><strong>Layer Concept D (AI Visibility / GEO) as Phase 2</strong> — this is where the market is heading (15% of agencies already generating GEO revenue; 41% building expertise per 2026 data).</li>
+      <li><strong>Defer Concept G (Enterprise) to Phase 4+</strong> — enterprise sales cycles would slow early iteration. Founder-first motion is faster and more capital-efficient.</li>
+      <li><strong>Consider Concept C (White-Label) as a parallel revenue track from Day 1</strong> — it monetizes agencies without competing with them, converting a stakeholder threat into a distribution channel.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🔍 Research Leads Generated</h3>
+    <ul>
+      <li>What is the average founder's current PR spend? (Segment: Seed → Series C)</li>
+      <li>What is churn in PR agency retainers? (Validate "founders distrust PR" claim with data)</li>
+      <li>How many PR freelancers are actively seeking AI tools vs. resisting them?</li>
+      <li>What is the GEO services market growth rate? (Validate Phase 2 timing)</li>
+      <li>Are journalists' open rates on AI-generated pitches measurably different from human-written?</li>
+      <li>What is Muck Rack's actual NPS among mid-market users? (Identify wedge opportunity)</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- 3. EVALUATOR -->
+<div class="perspective-section p-evaluator" id="evaluator">
+  <div class="perspective-header">
+    <div class="icon">⚖️</div>
+    <h2>Evaluator Perspective — Assess Quality, Score Dimensions, Compare Alternatives</h2>
+  </div>
+
+  <div class="card">
+    <h3>📊 Multi-Dimensional Scoring Matrix</h3>
+    <p style="margin-bottom:16px; color:var(--text2);">Each dimension scored 0–5. These are <strong>advisory scores</strong> — the formal triage assessment scores independently against the canonical rubric.</p>
+    <table>
+      <tr><th>Dimension</th><th>Score</th><th>Confidence</th><th>Rationale</th></tr>
+      <tr>
+        <td>Market Opportunity</td>
+        <td><span class="score-dot score-5"></span> 4.5</td>
+        <td>0.85</td>
+        <td>$107B global PR industry; AI PR tools growing 12.5% CAGR to $14.8B by 2032; GEO emerging as new budget category; founder segment massively underserved</td>
+      </tr>
+      <tr>
+        <td>Strategic Uniqueness</td>
+        <td><span class="score-dot score-4"></span> 4.0</td>
+        <td>0.80</td>
+        <td>No existing Optimo venture covers PR; narrative engineering + multi-agent automation is a unique combination; competitors automate single steps, not the full workflow</td>
+      </tr>
+      <tr>
+        <td>Technical Feasibility</td>
+        <td><span class="score-dot score-4"></span> 3.5</td>
+        <td>0.75</td>
+        <td>All components buildable on Lovable + Supabase + Vercel; LLM APIs handle content generation; journalist database is the key unvalidated data dependency</td>
+      </tr>
+      <tr>
+        <td>Revenue Potential</td>
+        <td><span class="score-dot score-4"></span> 4.0</td>
+        <td>0.75</td>
+        <td>6 monetization paths identified; SaaS + Accelerator + White-Label + Credits + Add-Ons + Marketplace; comparable tools at $149–$12K+/yr; founder SaaS TAM ~$3B</td>
+      </tr>
+      <tr>
+        <td>Defensibility</td>
+        <td><span class="score-dot score-4"></span> 3.5</td>
+        <td>0.70</td>
+        <td>Multi-agent orchestration layer is the moat; narrative psychology engine is hard to replicate; white-label channel creates switching costs; incumbents (Cision, Meltwater) have data moats</td>
+      </tr>
+      <tr>
+        <td>Execution Complexity</td>
+        <td><span class="score-dot score-3"></span> 3.0</td>
+        <td>0.70</td>
+        <td>5 major feature areas = significant build scope; journalist database acquisition is a gating dependency; multi-agent coordination is non-trivial but precedented in Optimo</td>
+      </tr>
+      <tr>
+        <td>Ecosystem Fit</td>
+        <td><span class="score-dot score-5"></span> 4.5</td>
+        <td>0.90</td>
+        <td>Aligns with democratizing AI for founders; leverages Optimo orchestration layer; creates new category; high TAM; zero overlap with existing ventures</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>⚡ Concept Comparison — Which Direction Scores Highest?</h3>
+    <table>
+      <tr><th>Concept</th><th>Market</th><th>Uniqueness</th><th>Feasibility</th><th>Revenue</th><th>Defensibility</th><th>Composite</th></tr>
+      <tr><td>A — Founder Narrative Engine</td><td>4.5</td><td>5.0</td><td>4.0</td><td>4.0</td><td>4.5</td><td><strong>4.4</strong> 🥇</td></tr>
+      <tr><td>D — AI Visibility / GEO</td><td>4.0</td><td>4.5</td><td>3.5</td><td>3.5</td><td>4.0</td><td><strong>3.9</strong> 🥈</td></tr>
+      <tr><td>C — Agency Enablement OS</td><td>3.5</td><td>4.5</td><td>3.0</td><td>4.0</td><td>4.5</td><td><strong>3.9</strong> 🥈</td></tr>
+      <tr><td>H — Founder-First MVP</td><td>4.0</td><td>3.0</td><td>5.0</td><td>3.5</td><td>3.0</td><td><strong>3.7</strong></td></tr>
+      <tr><td>B — Full SaaS Platform</td><td>4.5</td><td>3.0</td><td>3.5</td><td>4.5</td><td>3.0</td><td><strong>3.7</strong></td></tr>
+    </table>
+    <p style="margin-top:14px; color:var(--text2);"><strong>Evaluator recommendation:</strong> Lead with Concept A (Founder Narrative Engine) as the wedge, with Concepts D (GEO) and C (White-Label) as sequenced expansions. This creates a "narrative → visibility → infrastructure" strategic ladder.</p>
+  </div>
+
+  <div class="card">
+    <h3>📈 Evidence Inventory</h3>
+    <ul>
+      <li><strong>Market size:</strong> $107B global PR (Mordor Intelligence 2025); AI PR tools $6.5B → $14.8B by 2032 (QYResearch), 12.5% CAGR</li>
+      <li><strong>AI adoption:</strong> 91% of PR pros use generative AI (Cision 2026); 61% of press releases AI-assisted (Muck Rack 2025); 59% rank AI as top priority</li>
+      <li><strong>GEO emergence:</strong> 15% of agencies generating GEO revenue; 41% building expertise (2026)</li>
+      <li><strong>Competitor pricing:</strong> Muck Rack ~$5K/yr entry; CisionOne $12K–$150K+/yr; Semrush AI PR $149/mo; Featured.com usage-based; PressPulse AI $25–$80/mo</li>
+      <li><strong>Founder demand signal:</strong> Featured.com launched AI PR Co-Pilot June 2026 — validates founder appetite for automated PR discovery + pitching</li>
+      <li><strong>PR tools market:</strong> $10.1B in 2026, growing at 10.7% CAGR (Research & Markets)</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- 4. EXECUTOR -->
+<div class="perspective-section p-executor" id="executor">
+  <div class="perspective-header">
+    <div class="icon">⚙️</div>
+    <h2>Executor Perspective — Build Plans, Sequence Work, Estimate Resources</h2>
+  </div>
+
+  <div class="card">
+    <h3>🏗️ Recommended Build Architecture — 4 Phases, 16 Weeks</h3>
+
+    <h4 style="margin-top:16px; color:var(--accent2);">Phase 1 — Narrative Engine (Weeks 1–4)</h4>
+    <ul>
+      <li>Founder intake flow: questionnaire → psychological profile → narrative map</li>
+      <li>Story Engine: 5 output types (founder story, brand narrative, press release, media angle, pitch hook)</li>
+      <li>Supabase schema: profiles, narratives, media_angles, pitch_templates</li>
+      <li>Deliverable: Working narrative generator with 3 tested templates</li>
+      <li><strong>Dependency:</strong> None (greenfield build)</li>
+    </ul>
+
+    <h4 style="margin-top:16px; color:var(--accent2);">Phase 2 — Media Intelligence + Outreach (Weeks 5–8)</h4>
+    <ul>
+      <li>Journalist database integration (API partnership or licensed dataset)</li>
+      <li>AI targeting: match narratives → relevant journalists by beat, sentiment, past coverage</li>
+      <li>Outreach Agent: personalized pitch generation, open tracking, follow-up automation</li>
+      <li>Supabase: journalists, pitches, campaigns, tracking_events</li>
+      <li><strong>Dependency:</strong> Journalist database access (critical path item)</li>
+    </ul>
+
+    <h4 style="margin-top:16px; color:var(--accent2);">Phase 3 — Distribution + Monitoring (Weeks 9–12)</h4>
+    <ul>
+      <li>Multi-channel distribution: email, social syndication, newsletter routing</li>
+      <li>Reputation Monitor: mention tracking, sentiment scoring, competitive narrative mapping</li>
+      <li>Analytics dashboard: reach, sentiment, coverage probability, distribution velocity</li>
+      <li><strong>Dependency:</strong> Phases 1–2 complete</li>
+    </ul>
+
+    <h4 style="margin-top:16px; color:var(--accent2);">Phase 4 — Platform & Monetization (Weeks 13–16)</h4>
+    <ul>
+      <li>Subscription billing (Stripe integration)</li>
+      <li>White-label tenant system for agency licensing</li>
+      <li>Accelerator program workflow (30-day PR sprint automation)</li>
+      <li>GEO module: AI answer engine visibility tracking</li>
+      <li><strong>Dependency:</strong> Phases 1–3 complete</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>💰 Resource Estimate</h3>
+    <table>
+      <tr><th>Resource</th><th>Estimate (Monthly)</th><th>Notes</th></tr>
+      <tr><td>Lovable (build platform)</td><td>$0–$500</td><td>Credits + workspace subscription</td></tr>
+      <tr><td>Supabase Pro</td><td>$25 → $599</td><td>Scales with usage; Pro tier sufficient through early growth</td></tr>
+      <tr><td>Vercel hosting</td><td>$0–$20</td><td>Hobby → Pro tier</td></tr>
+      <tr><td>LLM API (Anthropic)</td><td>$200–$2,000</td><td>Narrative generation + pitch personalization; token-disciplined</td></tr>
+      <tr><td>Journalist database</td><td>$0–$500</td><td>API partnership or licensed dataset; may start manual</td></tr>
+      <tr><td>Email sending (Resend/SendGrid)</td><td>$0–$100</td><td>Free tier → growth tier</td></tr>
+      <tr><td><strong>Total Monthly Run Rate</strong></td><td><strong>~$300–$3,000</strong></td><td>Well within Optimo venture norms</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🔗 Key Dependencies & Gating Items</h3>
+    <ul>
+      <li><span class="tag tag-high">CRITICAL PATH</span> <strong>Journalist/media database access</strong> — Phase 2 cannot proceed without it. Options: license Muck Rack API, partner with IMAI, or manually curate a seed list of 5,000–10,000 contacts.</li>
+      <li><span class="tag tag-med">IMPORTANT</span> <strong>Founder narrative psychology model</strong> — the core IP. Requires collaboration between AI prompt engineering and narrative psychology frameworks.</li>
+      <li><span class="tag tag-med">IMPORTANT</span> <strong>Email infrastructure</strong> — for outreach automation at scale. Resend or SendGrid for deliverability.</li>
+      <li><span class="tag tag-low">NICE-TO-HAVE</span> <strong>Social platform APIs</strong> — LinkedIn, Twitter/X for distribution syndication.</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- 5. THREAT -->
+<div class="perspective-section p-threat" id="threat">
+  <div class="perspective-header">
+    <div class="icon">🛡️</div>
+    <h2>Threat Perspective — Risk Register, Constraints, Failure Modes</h2>
+  </div>
+
+  <div class="card">
+    <h3>📋 Risk Register (P × I Matrix)</h3>
+    <table>
+      <tr><th>#</th><th>Risk</th><th>P</th><th>I</th><th>P×I</th><th>Mitigation</th></tr>
+      <tr>
+        <td>R1</td>
+        <td><strong>Market crowding:</strong> AI PR becomes crowded; incumbents add AI features faster than expected</td>
+        <td><span class="tag tag-med">0.5</span></td>
+        <td><span class="tag tag-high">0.8</span></td>
+        <td><strong>0.40</strong></td>
+        <td>Lead with narrative engineering (unique IP); white-label channel creates ecosystem lock-in; focus on founder segment incumbents underserve</td>
+      </tr>
+      <tr>
+        <td>R2</td>
+        <td><strong>Journalist resistance:</strong> Journalists actively filter/reject AI-generated pitches</td>
+        <td><span class="tag tag-med">0.5</span></td>
+        <td><span class="tag tag-high">0.7</span></td>
+        <td><strong>0.35</strong></td>
+        <td>Deep personalization (read last 10 articles); sentiment-aware timing; A/B test AI vs. human open rates transparently</td>
+      </tr>
+      <tr>
+        <td>R3</td>
+        <td><strong>Founder expectation mismatch:</strong> Founders expect guaranteed coverage, blame platform when absent</td>
+        <td><span class="tag tag-high">0.7</span></td>
+        <td><span class="tag tag-med">0.5</span></td>
+        <td><strong>0.35</strong></td>
+        <td>Position as "visibility systems" not "coverage promises"; probability scores not guarantees; Accelerator = education + tool</td>
+      </tr>
+      <tr>
+        <td>R4</td>
+        <td><strong>Data dependency:</strong> Cannot secure journalist database at viable cost</td>
+        <td><span class="tag tag-med">0.4</span></td>
+        <td><span class="tag tag-high">0.8</span></td>
+        <td><strong>0.32</strong></td>
+        <td>Start manual curation; partner with IMAI or similar; use public sources for seed database</td>
+      </tr>
+      <tr>
+        <td>R5</td>
+        <td><strong>LLM quality:</strong> AI narratives become formulaic or hallucinate, damaging brand credibility</td>
+        <td><span class="tag tag-low">0.3</span></td>
+        <td><span class="tag tag-high">0.7</span></td>
+        <td><strong>0.21</strong></td>
+        <td>Human-in-the-loop review gate; narrative quality scoring; founder approval before any pitch sends</td>
+      </tr>
+      <tr>
+        <td>R6</td>
+        <td><strong>Compliance:</strong> GDPR/CCPA issues with journalist data + automated outreach at scale</td>
+        <td><span class="tag tag-low">0.3</span></td>
+        <td><span class="tag tag-med">0.5</span></td>
+        <td><strong>0.15</strong></td>
+        <td>Journalist data is publicly available professional info; CAN-SPAM compliance; 01.03 Compliance Canon covers data governance</td>
+      </tr>
+      <tr>
+        <td>R7</td>
+        <td><strong>Platform risk:</strong> Lovable dependency; pricing changes or quality degrades</td>
+        <td><span class="tag tag-low">0.2</span></td>
+        <td><span class="tag tag-med">0.5</span></td>
+        <td><strong>0.10</strong></td>
+        <td>Code is exportable to GitHub; can migrate to direct Vercel deploy; pattern established across 10+ Optimo ventures</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🚨 Critical Assumptions [UNVALIDATED]</h3>
+    <ul>
+      <li><span class="tag tag-high">[UNVALIDATED]</span> Founders will pay for AI-generated PR outcomes at a price point that sustains the venture</li>
+      <li><span class="tag tag-high">[UNVALIDATED]</span> AI-personalized pitches achieve comparable or better open rates than human-written pitches</li>
+      <li><span class="tag tag-high">[UNVALIDATED]</span> Journalist databases can be accessed at viable cost for a startup</li>
+      <li><span class="tag tag-med">[UNVALIDATED]</span> The "founder narrative" wedge is strong enough to pull users from existing PR tools</li>
+      <li><span class="tag tag-med">[UNVALIDATED]</span> Multi-agent orchestration produces measurably better PR outcomes than single-agent tools</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛑 Potential Showstoppers</h3>
+    <ul>
+      <li>If journalist database access is blocked or priced out of reach (>$5K/mo), Phase 2 collapses — must pivot to narrative-only (viable but narrower TAM).</li>
+      <li>If AI-generated pitches face industry-wide journalist blacklisting, the outreach component becomes toxic — must have a rapid pivot plan to "AI-assisted human" positioning with transparency defaults.</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- 6. SOCIAL -->
+<div class="perspective-section p-social" id="social">
+  <div class="perspective-header">
+    <div class="icon">🤝</div>
+    <h2>Social Perspective — Stakeholders, Adoption Barriers, Success Criteria</h2>
+  </div>
+
+  <div class="card">
+    <h3>👥 Stakeholder Map</h3>
+    <table>
+      <tr><th>Stakeholder</th><th>Interest</th><th>Influence</th><th>Stance</th><th>Strategy</th></tr>
+      <tr>
+        <td><strong>Founders (Seed → Series C)</strong></td>
+        <td>High</td><td>Medium</td><td>🤔 Curious, skeptical</td>
+        <td>Free narrative assessment as lead magnet; show measurable outcomes; Accelerator as trust-builder</td>
+      </tr>
+      <tr>
+        <td><strong>PR Agencies</strong></td>
+        <td>Medium</td><td>High</td><td>😟 Defensive</td>
+        <td>White-label licensing → partners not enemies; "force multiplier" positioning</td>
+      </tr>
+      <tr>
+        <td><strong>PR Freelancers</strong></td>
+        <td>High</td><td>Low</td><td>🔄 Ambivalent</td>
+        <td>Agency Enablement tier: give them AI superpowers; they become power users</td>
+      </tr>
+      <tr>
+        <td><strong>Journalists</strong></td>
+        <td>Low</td><td>High</td><td>😤 Potentially hostile</td>
+        <td>Quality gate: well-matched, personalized pitches only; respect preferences; transparency</td>
+      </tr>
+      <tr>
+        <td><strong>Fractional CMOs</strong></td>
+        <td>High</td><td>Medium</td><td>😊 Enthusiastic</td>
+        <td>Early adopter target; they need client results; OptimoPR™ = secret weapon</td>
+      </tr>
+      <tr>
+        <td><strong>Creator Economy</strong></td>
+        <td>Medium</td><td>Medium</td><td>😊 Receptive</td>
+        <td>Phase 2–3 expansion; creators already AI-native; PR automation natural evolution</td>
+      </tr>
+      <tr>
+        <td><strong>Optimo Ventures (Joel)</strong></td>
+        <td>High</td><td>High</td><td>🤔 Evaluating</td>
+        <td>This RCM + Triage report package provides the decision framework</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🚧 Adoption Barriers</h3>
+    <ol>
+      <li><strong>Trust Barrier:</strong> "Will AI-generated PR actually work?" — Requires social proof, case studies, measurable outcome data before mass adoption.</li>
+      <li><strong>Quality Perception:</strong> PR professionals will dismiss AI content as low-quality — must demonstrate equivalent or superior quality with data.</li>
+      <li><strong>Industry Backlash:</strong> PR industry bodies may position AI PR as unethical — proactive engagement and transparency standards needed.</li>
+      <li><strong>Learning Curve:</strong> Founders don't know PR — platform must be radically simple (one-button) to overcome this.</li>
+      <li><strong>Budget Competition:</strong> PR budgets compete with other founder priorities — must demonstrate clear ROI faster than traditional PR (30-day Accelerator addresses this).</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>✅ Social Success Criteria</h3>
+    <ul>
+      <li><strong>Adoption:</strong> 100+ founders through Accelerator program in first 6 months</li>
+      <li><strong>Retention:</strong> >60% Month-3 retention on SaaS subscriptions</li>
+      <li><strong>Outcome:</strong> >40% of users achieve at least 1 media placement within 90 days</li>
+      <li><strong>NPS:</strong> >40 among founder segment</li>
+      <li><strong>Agency Conversion:</strong> 5+ agencies on white-label within Year 1</li>
+      <li><strong>Journalist Acceptance:</strong> <10% pitch rejection rate attributed to "AI-generated" perception</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- 7. SYNTHESIS -->
+<div class="perspective-section" id="synthesis">
+  <div class="perspective-header">
+    <div class="icon" style="background:rgba(162,155,254,0.15);color:var(--accent2);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;">🧬</div>
+    <h2>Synthesis — Convergences, Tensions & Session Summary</h2>
+  </div>
+
+  <div class="card">
+    <h3>🤝 Convergences (All 5 Perspectives Agree)</h3>
+    <div class="convergence">
+      <strong>1. The Founder Narrative Wedge is the right entry point.</strong>
+      <p>Explorer, Evaluator, Executor, and Social all converge on leading with the narrative engine rather than full-stack PR automation. It's the most defensible, leverages Optimo's unique AI + psychology capability, and avoids direct head-to-head with incumbent media databases.</p>
+    </div>
+    <div class="convergence">
+      <strong>2. Market timing is favorable.</strong>
+      <p>All five perspectives agree: 91% AI adoption in PR, GEO emerging as a new budget category, founder segment underserved by enterprise-priced incumbents, and Featured.com's June 2026 AI Co-Pilot launch validates demand. The window is open.</p>
+    </div>
+    <div class="convergence">
+      <strong>3. White-label / agency enablement is strategically essential.</strong>
+      <p>Threat and Social independently identified agencies as the biggest stakeholder risk — and the white-label strategy converts them from adversaries to distribution partners. Explorer and Evaluator both scored this concept highly.</p>
+    </div>
+    <div class="convergence">
+      <strong>4. Journalist database access is the critical dependency.</strong>
+      <p>Executor and Threat both flagged this as the gating item for Phase 2+. Without viable journalist data, the outreach component is blocked. Must be solved before committing to the full roadmap.</p>
+    </div>
+    <div class="convergence" style="border-left-color:var(--accent); background:rgba(108,92,231,0.04); padding:12px 16px;">
+      <strong>5. 🆕 RCM as Embedded Core IP — All 5 Perspectives Converge. (Added 2026-07-20)</strong>
+      <p>A dedicated strategic analysis evaluated embedding RCM's 5-perspective recursive reasoning engine as OptimoPR's defining IP moat. <strong>Unanimous convergence across all 5 perspectives:</strong></p>
+      <ul style="margin-top:8px;">
+        <li><strong>Explorer:</strong> RCM embedding unlocks new product capabilities — every PR action becomes a multi-perspective reasoning exercise. New product concept: "RCM Score" as proprietary PR confidence metric.</li>
+        <li><strong>Evaluator:</strong> Transforms Benefit/Value from 4.0 → 5.0. Venture moves from "AI PR tool" to "category-defining PR reasoning platform." Triage score lifts from 73 → 85 (GO).</li>
+        <li><strong>Executor:</strong> Phase 0 added: extract RCM Engine as standalone Supabase Edge Function. Disposition changed from C → H (Hybrid A+C): RCM Engine canonized in Cortex, OptimoPR as first consumer venture.</li>
+        <li><strong>Threat:</strong> RCM's Threat perspective embedded in-product mitigates founder-expectation risk — risks surfaced before founder acts, not after. Platform becomes self-auditing.</li>
+        <li><strong>Social:</strong> "RCM-powered" becomes brand differentiator competitors cannot claim. New PR paradigm: reasoned, risk-aware, stakeholder-modeled communications strategy.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚡ Tensions (Perspectives Conflict)</h3>
+    <div class="tension">
+      <strong>1. Full-stack vs. Wedge strategy.</strong>
+      <p><strong>Explorer</strong> wants breadth (multiple concepts in parallel). <strong>Executor</strong> wants narrow sequencing (one wedge at a time). <strong>Social</strong> worries a narrow wedge won't generate enough value perception to retain users. <strong>Resolution:</strong> Lead with narrative wedge but design architecture for full-stack from day one — the wedge is a go-to-market choice, not a product limitation.</p>
+    </div>
+    <div class="tension">
+      <strong>2. Pricing: Premium vs. Accessible.</strong>
+      <p><strong>Evaluator</strong> leans toward premium ($199–$499/mo) given value delivered. <strong>Social</strong> warns founder budgets are constrained and trust barrier demands lower entry ($49–$99/mo). <strong>Resolution:</strong> Freemium narrative assessment → $99/mo SaaS → $1,999 Accelerator (30-day sprint). Tiered model captures both segments.</p>
+    </div>
+    <div class="tension">
+      <strong>3. AI transparency: Disclose or hide?</strong>
+      <p><strong>Social</strong> says transparency ("AI-assisted PR") builds trust with journalists. <strong>Threat</strong> says disclosure may trigger rejection filters. <strong>Resolution:</strong> Default to "AI-assisted" positioning (ethical, builds trust) but make disclosure granular (per-pitch toggle). Let data decide.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Session Summary</h3>
+    <p>The RCM session on <strong>OptimoPR™</strong> produced a rich, convergent analysis. The idea is <strong>viable, well-timed, and strategically aligned</strong> with Optimo's mission. The recommended shape:</p>
+    <ul>
+      <li><strong>Wedge:</strong> Founder Narrative Engine (Concept A) — AI-powered story discovery + press release generation</li>
+      <li><strong>Expansion 1:</strong> Media Intelligence + Outreach (Phases 2–3) — conditional on journalist database access</li>
+      <li><strong>Expansion 2:</strong> GEO / AI Visibility module (Phase 4) — emerging high-growth market</li>
+      <li><strong>Parallel Track:</strong> White-Label Agency Enablement — converts adversaries into channel partners</li>
+    </ul>
+    <p style="margin-top:12px;">Primary unresolved items: (1) journalist database sourcing, (2) founder willingness-to-pay validation, (3) AI pitch effectiveness benchmarking. These should be resolved in pre-build validation.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- 8. NEXT ACTIONS -->
+<div class="perspective-section" id="next">
+  <div class="perspective-header">
+    <div class="icon" style="background:rgba(0,214,143,0.15);color:var(--green);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;">🚦</div>
+    <h2>Next Actions</h2>
+  </div>
+
+  <div class="card">
+    <h3>Available Paths</h3>
+    <table>
+      <tr><th>Action</th><th>Description</th><th>Priority</th></tr>
+      <tr>
+        <td><strong>🏛️ Phase 0 — Canonize RCM Engine</strong></td>
+        <td>Extract RCM 5-perspective reasoning engine as standalone Supabase Edge Function. Document API. Register in 01.04 Canonical Registry. Deploy to OptimoCortex™ 02. This is the NEW first step — RCM Canon must exist before OptimoPR consumes it.</td>
+        <td><span class="tag tag-high">NOW</span></td>
+      </tr>
+      <tr>
+        <td><strong>📤 Export → Triage (Complete)</strong></td>
+        <td>RCM Project State fed to /optimo-venture-triage. Result: GO (85/100), Disposition H — Hybrid A+C. Supplementary RCM Embedded IP analysis filed.</td>
+        <td><span class="tag tag-green">DONE</span></td>
+      </tr>
+      <tr>
+        <td><strong>🔬 Deep-Dive: Journalist DB</strong></td>
+        <td>Dedicated research sprint on journalist database sourcing, pricing, and API quality</td>
+        <td>Before Phase 2 commit</td>
+      </tr>
+      <tr>
+        <td><strong>🔬 Deep-Dive: Founder WTP</strong></td>
+        <td>Validate willingness-to-pay through 10–15 customer discovery interviews</td>
+        <td>Pre-build</td>
+      </tr>
+      <tr>
+        <td><strong>⬆️ Promote</strong></td>
+        <td>Elevate to Approved Project State (requires all 5 perspective sign-offs + Joel approval)</td>
+        <td>After triage GO</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card" style="text-align:center; padding:32px;">
+    <p style="font-size:1.1rem; color:var(--accent2);"><strong>RCM Session Complete — Revised with Embedded IP Analysis.</strong></p>
+    <p style="color:var(--text2);">5/5 perspectives run · 8 concepts generated · 7 risks registered · 7 stakeholders mapped · 3 tensions surfaced · <strong>+1 Embedded IP convergence</strong></p>
+    <p style="color:var(--text2); margin-top:8px;">Triage Outcome: <strong>GO (85/100) · Disposition: H — Hybrid A+C</strong> · RCM Engine → OptimoCortex™ Canon · OptimoPR™ → First Consumer Venture</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
