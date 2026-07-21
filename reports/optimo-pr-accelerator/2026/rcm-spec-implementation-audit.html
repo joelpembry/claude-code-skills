@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RCM Master Spec v1.0 → OptimoPR Implementation Audit</title>
+<style>
+  :root {
+    --bg:#0a0a0f; --surface:#14141f; --surface2:#1c1c2a; --border:#2a2a3d;
+    --text:#e0e0e8; --text2:#9898b0; --accent:#6c5ce7; --accent2:#a29bfe;
+    --green:#00d68f; --yellow:#ffc048; --red:#ff6b6b; --blue:#48c0ff;
+    --orange:#ff8c52; --teal:#00d2d3; --radius:10px;
+    --font:'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.7; }
+  .top-nav {
+    position:sticky; top:0; z-index:100; background:var(--surface);
+    border-bottom:1px solid var(--border); padding:10px 28px; display:flex;
+    gap:18px; align-items:center; flex-wrap:wrap; backdrop-filter:blur(12px);
+  }
+  .top-nav .brand { font-weight:700; font-size:1rem; color:var(--accent2); }
+  .top-nav a { color:var(--text2); text-decoration:none; font-size:0.8rem; }
+  .top-nav a:hover { color:var(--text); }
+  .container { max-width:1200px; margin:0 auto; padding:28px 20px; }
+
+  .report-header {
+    background:linear-gradient(135deg,var(--surface),rgba(108,92,231,0.1));
+    border:1px solid var(--border); border-radius:var(--radius); padding:32px;
+    margin-bottom:28px; text-align:center;
+  }
+  .report-header h1 { font-size:1.8rem; margin-bottom:4px; }
+  .report-header .subtitle { color:var(--text2); font-size:0.95rem; }
+
+  .scorecard {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:10px; margin-bottom:28px;
+  }
+  .scorecard .item {
+    background:var(--surface); border:1px solid var(--border); border-radius:8px;
+    padding:14px; text-align:center;
+  }
+  .scorecard .item .pct { font-size:1.8rem; font-weight:800; }
+  .scorecard .item .label { font-size:0.72rem; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
+
+  .section { margin-bottom:36px; }
+  .section-header h2 { font-size:1.2rem; margin-bottom:14px; padding-bottom:7px; border-bottom:2px solid var(--border); }
+
+  .card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); padding:20px; margin-bottom:12px;
+  }
+  .card h3 { color:var(--accent2); font-size:1rem; margin-bottom:8px; }
+  .card p, .card li { color:var(--text2); font-size:0.88rem; }
+  .card ul, .card ol { padding-left:18px; }
+  .card li { margin-bottom:4px; }
+
+  table { width:100%; border-collapse:collapse; font-size:0.83rem; margin:8px 0; }
+  th { background:var(--surface2); padding:9px 11px; text-align:left; font-weight:600; border-bottom:2px solid var(--border); font-size:0.78rem; }
+  td { padding:8px 11px; border-bottom:1px solid var(--border); color:var(--text2); vertical-align:top; }
+  tr:hover td { background:rgba(108,92,231,0.03); }
+
+  .st-full { color:var(--green); font-weight:700; }
+  .st-partial { color:var(--yellow); font-weight:700; }
+  .st-missing { color:var(--red); font-weight:700; }
+  .st-na { color:var(--text2); }
+
+  .tag {
+    display:inline-block; padding:1px 8px; border-radius:9px;
+    font-size:0.68rem; font-weight:600; margin-right:4px;
+  }
+  .tag-green { background:rgba(0,214,143,0.15); color:var(--green); }
+  .tag-yellow { background:rgba(255,192,72,0.15); color:var(--yellow); }
+  .tag-red { background:rgba(255,107,107,0.15); color:var(--red); }
+  .tag-blue { background:rgba(72,192,255,0.15); color:var(--blue); }
+
+  code {
+    background:var(--surface2); padding:1px 5px; border-radius:3px;
+    font-family:'SF Mono',Consolas,monospace; font-size:0.8rem; color:var(--accent2);
+  }
+  pre {
+    background:var(--surface2); border:1px solid var(--border); border-radius:6px;
+    padding:12px; overflow-x:auto; font-size:0.78rem; line-height:1.5;
+    color:var(--text); margin:8px 0;
+  }
+
+  .gap-row { background:rgba(255,107,107,0.03); }
+  .ok-row { background:rgba(0,214,143,0.02); }
+
+  hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:800px){ .two-col{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <span class="brand">◆ RCM Spec v1.0 → OptimoPR Audit</span>
+  <a href="#scorecard">Scorecard</a>
+  <a href="#core">RCM Core</a>
+  <a href="#project-state">Project State</a>
+  <a href="#knowledge">Knowledge Layer</a>
+  <a href="#engines">Specialist Engines</a>
+  <a href="#edge-function">Edge Function</a>
+  <a href="#client">Client Integration</a>
+  <a href="#gaps">Gap Analysis</a>
+</nav>
+
+<div class="container">
+
+<div class="report-header">
+  <h1>RCM Master Specification v1.0 → OptimoPR™ Implementation Audit</h1>
+  <div class="subtitle">Attribute-level juxtaposition of the canonical RCM spec against the deployed OptimoPR codebase (Edge Function + Client + Knowledge Libraries)</div>
+  <div style="margin-top:12px;font-size:0.78rem;color:var(--text2);">
+    Spec: Sam Embry-Busch, RCM MASTER SPECIFICATION v1.0, 28 pages · Implementation: OptimoPR Phase 1, commit 1200c0b · Audit: 2026-07-20
+  </div>
+</div>
+
+<!-- SCORECARD -->
+<div class="scorecard" id="scorecard">
+  <div class="item"><div class="pct" style="color:var(--green);">5/5</div><div class="label">RCM Core Agents</div></div>
+  <div class="item"><div class="pct" style="color:var(--yellow);">6/15</div><div class="label">Project State Schema</div></div>
+  <div class="item"><div class="pct" style="color:var(--red);">0/8</div><div class="label">Knowledge Libraries</div></div>
+  <div class="item"><div class="pct" style="color:var(--red);">0/4</div><div class="label">Specialist Engines</div></div>
+  <div class="item"><div class="pct" style="color:var(--yellow);">1/5</div><div class="label">Stage Workspaces</div></div>
+  <div class="item"><div class="pct" style="color:var(--red);">0/5</div><div class="label">Scoring System</div></div>
+  <div class="item"><div class="pct" style="color:var(--red);">0/1</div><div class="label">Branching System</div></div>
+  <div class="item"><div class="pct" style="color:var(--green);">5/5</div><div class="label">AI Orchestration</div></div>
+  <div class="item"><div class="pct" style="color:var(--yellow);">2/5</div><div class="label">Exports</div></div>
+  <div class="item"><div class="pct" style="color:var(--red);">0/5</div><div class="label">Permissions</div></div>
+</div>
+
+<!-- SECTION 1: RCM CORE -->
+<div class="section" id="core">
+  <div class="section-header"><h2>§2, §6, §13 — RCM Core (5 Agents)</h2></div>
+
+  <div class="card">
+    <table>
+      <tr><th style="width:10%;">Agent</th><th style="width:20%;">Spec Requirements</th><th style="width:25%;">OptimoPR Implementation</th><th style="width:10%;">Status</th><th style="width:35%;">Gap Detail</th></tr>
+
+      <tr class="ok-row">
+        <td><strong>🔭 Explorer</strong></td>
+        <td>Objective: Expand possibility space. Responsibilities: Generate alternatives, discover opportunities, find patterns, conduct research. Inputs: Project State, Libraries, User input. Outputs: Concepts, Questions, Research directions, Alternatives.</td>
+        <td>Edge Function <code>SYSTEM_PROMPTS.Explorer</code>: "Generate possibilities, discover opportunities, expand the given goal. Output JSON: summary, findings (3-6 strings), research_leads, confidence." Runs in parallel with Threat + Social. <strong>1200 max_tokens.</strong></td>
+        <td><span class="tag tag-yellow">PARTIAL</span></td>
+        <td><strong>Present:</strong> Core objective, findings output, research_leads output. <strong>Missing:</strong> Libraries input (no knowledge library loaded), Concepts branching (no concept ID/status/parent tracking), User input passthrough (profile is passed but not as structured Project State).</td>
+      </tr>
+
+      <tr class="ok-row">
+        <td><strong>⚖️ Evaluator</strong></td>
+        <td>Objective: Reduce ambiguity. Responsibilities: Compare options, score concepts, assess coherence. Outputs: Rankings, Tradeoffs, Recommendations.</td>
+        <td><code>SYSTEM_PROMPTS.Evaluator</code>: "Assess quality, score dimensions, compare alternatives. Output JSON: summary, findings, lead_angle, rationale, confidence." <strong>Sequential — reads Explorer output.</strong></td>
+        <td><span class="tag tag-yellow">PARTIAL</span></td>
+        <td><strong>Present:</strong> Scoring (implicit in lead_angle selection), recommendation output. <strong>Missing:</strong> Formal rankings array, tradeoffs documentation, coherence assessment as distinct output field.</td>
+      </tr>
+
+      <tr class="ok-row">
+        <td><strong>⚙️ Executor</strong></td>
+        <td>Objective: Create implementation pathways. Responsibilities: Planning, Sequencing, Resource analysis. Outputs: Plans, Timelines, Requirements.</td>
+        <td><code>SYSTEM_PROMPTS.Executor</code>: "Build plans, sequence work. Output JSON: summary, findings, dependencies, confidence." <strong>Sequential — reads Evaluator output.</strong></td>
+        <td><span class="tag tag-yellow">PARTIAL</span></td>
+        <td><strong>Present:</strong> Sequencing (distribution plan in findings), Dependencies output. <strong>Missing:</strong> Formal timelines (no date-structured output), Resource estimates (no cost/time/people fields), Requirements list.</td>
+      </tr>
+
+      <tr class="ok-row">
+        <td><strong>🛡️ Threat</strong></td>
+        <td>Objective: Protect stability. Responsibilities: Risk detection, Assumption analysis, Constraint analysis. Outputs: Risks, Mitigations, Warnings.</td>
+        <td><code>SYSTEM_PROMPTS.Threat</code>: "Identify risks, constraints, failure modes. Output JSON: summary, findings, risks (array of {severity, label, action}), assumptions, confidence." Runs in parallel.</td>
+        <td><span class="tag tag-green">FULL</span></td>
+        <td>Risks with severity/action, assumptions array, constraint analysis via findings. Most complete agent implementation. Only missing: formal constraint schema (budget/timeline/team/regulations fields from spec §5).</td>
+      </tr>
+
+      <tr class="ok-row">
+        <td><strong>🤝 Social</strong></td>
+        <td>Objective: Improve acceptance. Responsibilities: Stakeholder analysis, Audience analysis, Feedback integration. Outputs: Reviews, Alignment reports, Consensus recommendations.</td>
+        <td><code>SYSTEM_PROMPTS.Social</code>: "Model stakeholders, adoption barriers. Output JSON: summary, findings, stakeholders (array of {audience, sentiment: -1..1, note}), barriers, confidence." Runs in parallel.</td>
+        <td><span class="tag tag-yellow">PARTIAL</span></td>
+        <td><strong>Present:</strong> Stakeholder map with sentiment scores, barriers. <strong>Missing:</strong> Alignment reports, Consensus recommendations, Feedback integration loop.</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- PROJECT STATE SCHEMA -->
+<div class="section" id="project-state">
+  <div class="section-header"><h2>§4, §5, §18 — Project State Schema</h2></div>
+
+  <div class="card">
+    <table>
+      <tr><th>Spec Field</th><th>Spec Definition</th><th>OptimoPR Implementation</th><th>Status</th></tr>
+      <tr class="ok-row"><td><strong>Metadata</strong></td><td>Workspace ID, Name, Owner, Created, Modified, Status, Domain Pack</td><td>Supabase <code>profiles</code> table: id, founder_name, company_name, stage, created_at. Supabase <code>rcm_runs</code>: id, profile_id, rcm_score, created_at.</td><td><span class="tag tag-yellow">PARTIAL</span> — no Owner, Modified tracking, Status field</td></tr>
+      <tr><td><strong>Objective</strong></td><td>Project goal statement. Examples: "Create launch campaign", "Design onboarding"</td><td><code>buildGoal()</code> in rcm-engine.ts assembles: "Generate PR strategy for {company}, a {stage} company... Primary PR goal: {goal}."</td><td><span class="tag tag-green">FULL</span></td></tr>
+      <tr class="ok-row"><td><strong>Scope</strong></td><td>Micro (single artifact), Meso (multi-asset), Macro (large system)</td><td>Implicitly Meso — each analysis is a "campaign." No explicit scope selector.</td><td><span class="tag tag-yellow">PARTIAL</span></td></tr>
+      <tr class="gap-row"><td><strong>Concepts</strong></td><td>Schema: ID, Name, Description, Branch (parent), Status (Active/Archived), Confidence</td><td>Not implemented as structured objects. Explorer outputs "findings" which are concept-like, but no ID/parent/status tracking.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+      <tr class="gap-row"><td><strong>Research</strong></td><td>Schema: Source, Summary, Tags, References</td><td>Explorer outputs "research_leads" as strings. No Source/Tags/References schema.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+      <tr class="gap-row"><td><strong>Evidence</strong></td><td>Schema: Claim, Evidence, Strength, Validation status (Unknown/Validated/Invalidated)</td><td>Not implemented.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+      <tr class="gap-row"><td><strong>Assumptions</strong></td><td>Known unknowns with status: Unknown/Validated/Invalidated</td><td>Threat outputs "assumptions" as strings. No validation status tracking.</td><td><span class="tag tag-yellow">PARTIAL</span></td></tr>
+      <tr class="gap-row"><td><strong>Decisions</strong></td><td>Schema: Decision, Reasoning, Evidence</td><td>Not implemented as structured objects.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+      <tr><td><strong>Deliverables</strong></td><td>Required outputs. Examples: Landing Page, Campaign Assets, UX Flow, Brand Guide</td><td>The 5 narrative outputs (Founder Story, Brand Narrative, Press Release, Media Angles, Pitch Hooks) are the deliverables.</td><td><span class="tag tag-green">FULL</span></td></tr>
+      <tr class="gap-row"><td><strong>Dependencies</strong></td><td>Relationships between deliverables. Example: Audience Research → Messaging → Landing Page → Campaign</td><td>Executor outputs "dependencies" as string array. No directed-graph structure.</td><td><span class="tag tag-yellow">PARTIAL</span></td></tr>
+      <tr class="ok-row"><td><strong>Risks</strong></td><td>Schema: Risk, Likelihood, Severity, Mitigation</td><td>Threat outputs <code>{severity, label, action}</code>. Dashboard renders with severity color coding.</td><td><span class="tag tag-yellow">PARTIAL</span> — Likelihood (P) is not separately tracked; only severity</td></tr>
+      <tr class="gap-row"><td><strong>Constraints</strong></td><td>Known limitations. Examples: Budget, Timeline, Team Size, Regulations</td><td>Not implemented as structured fields.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+      <tr class="ok-row"><td><strong>Success Criteria</strong></td><td>Quantitative (Revenue, Leads), Qualitative (Better UX, Trust), Strategic (Market Entry, Adoption)</td><td>Implicit in PR goals (Funding Announcement → coverage achieved). No structured success metrics.</td><td><span class="tag tag-yellow">PARTIAL</span></td></tr>
+      <tr class="gap-row"><td><strong>Confidence Layer</strong></td><td>Confidence, Evidence Strength, Validation Level on every major object</td><td>Each perspective outputs a confidence score (0-100). RCM Score composites them. But confidence is per-perspective, not per-object as spec requires.</td><td><span class="tag tag-yellow">PARTIAL</span></td></tr>
+      <tr class="gap-row"><td><strong>Feedback</strong></td><td>Human review. Stores: Previous decisions, Previous versions, Rationale, Branch history</td><td>Not implemented. The dashboard has Copy/Edit buttons but no formal feedback loop.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+      <tr class="gap-row"><td><strong>Memory</strong></td><td>Historical state. Stores: Previous decisions, Previous versions, Rationale, Branch history</td><td>Supabase <code>rcm_runs</code> table stores historical runs. <code>listRuns()</code> retrieves history. Dashboard shows previous analyses dropdown. But no Branch history or Rationale tracking per spec.</td><td><span class="tag tag-yellow">PARTIAL</span></td></tr>
+      <tr class="gap-row"><td><strong>Specifications</strong></td><td>Final approved artifact — the complete Approved Project State (§18)</td><td>Not implemented. No approval workflow.</td><td><span class="tag tag-red">MISSING</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- KNOWLEDGE LAYER -->
+<div class="section" id="knowledge">
+  <div class="section-header"><h2>§9, §11 — Knowledge Layer & Library Access Matrix</h2></div>
+
+  <div class="card">
+    <h3>The 8 Libraries — Installed vs. Integrated</h3>
+    <table>
+      <tr><th>Library</th><th>Spec Content</th><th>Installed?</th><th>Integrated into Edge Function?</th><th>Gap</th></tr>
+      <tr><td><strong>Human Truths</strong></td><td>Human State, Drivers, Pain, Desire</td><td>✅ <code>references/libraries/base/human-truths.md</code> (installed 2026-07-08 from Slack pack)</td><td><span class="tag tag-red">NO</span></td><td>Library content not loaded into any perspective prompt. Explorer/Evaluator/Social should receive this per §11 access matrix (High/High/High).</td></tr>
+      <tr><td><strong>Audience Intelligence</strong></td><td>Identity, Demographics, Psychographics, Behavior, Triggers</td><td>✅ <code>references/libraries/base/audience-intelligence.md</code></td><td><span class="tag tag-red">NO</span></td><td>Social perspective should receive HIGH access. Explorer and Evaluator should receive HIGH. Currently none loaded.</td></tr>
+      <tr><td><strong>Objections</strong></td><td>Time, Money, Trust, Effort, Identity</td><td>✅ <code>references/libraries/base/objections.md</code></td><td><span class="tag tag-red">NO</span></td><td>Evaluator and Threat should receive HIGH access per §11.</td></tr>
+      <tr><td><strong>Visual Cognition</strong></td><td>Color, Shape, Symbolism, Aesthetics, Perception</td><td>✅ <code>references/libraries/base/visual-cognition.md</code></td><td><span class="tag tag-red">NO</span></td><td>Low priority for PR use case. Media domain pack would use this.</td></tr>
+      <tr><td><strong>Media Hierarchy</strong></td><td>Media selection, Channel strategy</td><td>✅ <code>references/libraries/base/media-hierarchy.md</code></td><td><span class="tag tag-red">NO</span></td><td>Executor should receive HIGH access. Critical for distribution planning.</td></tr>
+      <tr><td><strong>Media Composition</strong></td><td>Image systems, Video systems</td><td>✅ <code>references/libraries/base/media-composition.md</code></td><td><span class="tag tag-red">NO</span></td><td>Media domain pack would use this.</td></tr>
+      <tr><td><strong>UI/UX</strong></td><td>Information architecture, Navigation, Interaction, Accessibility</td><td>✅ <code>references/libraries/base/ui-ux.md</code></td><td><span class="tag tag-red">NO</span></td><td>Low priority for PR use case.</td></tr>
+      <tr><td><strong>Marketing View</strong></td><td>Positioning, Distribution, Lifecycle strategy</td><td>✅ <code>references/libraries/base/marketing-view.md</code></td><td><span class="tag tag-red">NO</span></td><td>Evaluator and Executor should receive HIGH access. Critical for PR positioning.</td></tr>
+    </table>
+
+    <div style="margin-top:14px; padding:12px; background:rgba(255,107,107,0.05); border-left:3px solid var(--red); border-radius:0 8px 8px 0;">
+      <strong style="color:var(--red);">Critical gap:</strong> All 8 libraries are <strong>installed on disk</strong> (in the RCM skill directory) but <strong>none are integrated into the Edge Function</strong>. The current perspective prompts are generic — they don't load library content. Per the spec's Library Access Matrix (§11), each agent should receive specific library content at High/Medium/Low access levels. The Edge Function has no mechanism to load library files and inject them into prompts.
+    </div>
+  </div>
+</div>
+
+<!-- SPECIALIST ENGINES -->
+<div class="section" id="engines">
+  <div class="section-header"><h2>§10, §12 — Specialist Engines</h2></div>
+
+  <div class="card">
+    <table>
+      <tr><th>Engine</th><th>Spec Trigger</th><th>Installed?</th><th>Integrated in OptimoPR?</th><th>Gap</th></tr>
+      <tr class="gap-row">
+        <td><strong>Narrative Engine</strong></td>
+        <td>Story, identity, transformation, branding</td>
+        <td>✅ <code>references/libraries/engines/narrative.md</code></td>
+        <td><span class="tag tag-red">NO</span></td>
+        <td>The SYNTHESIZER generates narratives but it's NOT the Narrative Engine per spec. The spec's Narrative Engine is a pluggable specialist invoked within a perspective, not a final synthesis step. It should be invoked by Explorer or Social when story/identity/transformation is relevant. The library exists but the invocation mechanism per §12 is missing.</td>
+      </tr>
+      <tr class="gap-row">
+        <td><strong>Persuasion Engine</strong></td>
+        <td>Conversion, influence, adoption, objections</td>
+        <td>✅ <code>references/libraries/engines/persuasion.md</code></td>
+        <td><span class="tag tag-red">NO</span></td>
+        <td>Pitch hooks are generated by SYNTHESIZER but without Persuasion Engine methodology. The library's conversion frameworks, objection-reframe maps, and influence sequences are not loaded.</td>
+      </tr>
+      <tr class="gap-row">
+        <td><strong>Sales Architecture</strong></td>
+        <td>Offers, commitments, purchases, onboarding</td>
+        <td>✅ <code>references/libraries/engines/sales.md</code></td>
+        <td><span class="tag tag-red">NO</span></td>
+        <td>Not relevant to Phase 1 PR use case. Relevant for Accelerator program design (Phase 4).</td>
+      </tr>
+      <tr class="gap-row">
+        <td><strong>Decision Engine</strong></td>
+        <td>Ranking, prioritization, selection, tradeoffs</td>
+        <td>✅ <code>references/libraries/engines/decision.md</code></td>
+        <td><span class="tag tag-red">NO</span></td>
+        <td>Evaluator does scoring but without the Decision Engine's weighted matrix methodology. The spec's §14 scoring system (5-dimension composite) should be powered by this engine.</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- EDGE FUNCTION ARCHITECTURE -->
+<div class="section" id="edge-function">
+  <div class="section-header"><h2>§3, §7, §8 — Architecture vs. Edge Function Implementation</h2></div>
+
+  <div class="two-col">
+    <div class="card">
+      <h3>Spec Architecture (from §3)</h3>
+      <pre style="font-size:0.78rem;">
+USER
+  ↓
+WORKSPACE
+  ↓
+PROJECT STATE ← ← ← ← ← ←
+  ↓                      ↑
+RCM CORE                  ↑
+  Explorer  Evaluator     ↑
+  Executor  Threat        ↑
+  Social                  ↑
+  ↓                      ↑
+KNOWLEDGE LAYER           ↑
+  ↓                      ↑
+SPECIALIST ENGINES        ↑
+  ↓                      ↑
+AI ORCHESTRATION          ↑
+  ↓                      ↑
+APPROVED PROJECT STATE → → ↑
+  ↓
+EXPORTS</pre>
+    </div>
+    <div class="card">
+      <h3>OptimoPR Implementation</h3>
+      <pre style="font-size:0.78rem;">
+📋 Intake (FounderProfile)
+  ↓
+buildGoal() — natural language string
+  ↓
+RCM CORE (Edge Function) ← missing Knowledge Layer
+  Explorer  Evaluator     ← missing Specialist Engines
+  Executor  Threat        ← no Project State object
+  Social                  ← no recursive loop back
+  ↓
+SYNTHESIZER (not in spec)
+  ↓
+RcmRun (Supabase JSONB) ← not Approved Project State
+  ↓
+Dashboard (5 tabs)       ← not spec Exports format</pre>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <h3>Critical Architectural Divergences</h3>
+    <table>
+      <tr><th>Spec Requirement</th><th>Implementation</th><th>Impact</th></tr>
+      <tr class="gap-row">
+        <td><strong>Recursive loop:</strong> RCM Core → Project State → (loop back) → RCM Core. The spec defines continuous refinement — each pass updates Project State which feeds the next pass.</td>
+        <td>Single-pass pipeline. No recursion. Intake → analyze → dashboard → stop. To re-analyze, the user starts over from /intake.</td>
+        <td><span class="tag tag-red">HIGH</span> — The "Recursive" in Recursive Creativity Model is not implemented. This is the most fundamental gap.</td>
+      </tr>
+      <tr class="gap-row">
+        <td><strong>Stage Workspaces (§7):</strong> 5 sequential stages — Exploration (Explorer primary), Evaluation (Evaluator primary), Execution (Executor primary), Risk/Safety (Threat primary), Social (Social primary). Each stage runs all 5 agents but with a primary.</td>
+        <td>All 5 run in a single pass. No stage concept. Explorer, Threat, Social run parallel; Evaluator and Executor sequential — but this is a dependency chain, not workspace stages.</td>
+        <td><span class="tag tag-red">HIGH</span> — Each spec stage has a primary agent and activities; the current implementation treats all agents as equal peers in one pass.</td>
+      </tr>
+      <tr class="gap-row">
+        <td><strong>Cross-Agent Review (§8):</strong> Every object undergoes review by all 5 agents. Explorer: "What possibilities?" → Evaluator: "Does it make sense?" → Executor: "Can it be built?" → Threat: "What can fail?" → Social: "Will people care?" → Only then: Project State updates.</td>
+        <td>Perspectives review the founder profile, not each other's outputs (except Explorer→Evaluator→Executor chain). Threat and Social review the profile directly, not the other agents' concepts.</td>
+        <td><span class="tag tag-yellow">MEDIUM</span> — The cross-review of each concept/decision by all 5 agents is not implemented.</td>
+      </tr>
+      <tr>
+        <td><strong>AI Orchestration (§13):</strong> Each agent has its own AI with agent-specific responsibilities.</td>
+        <td>Each perspective has its own Claude call with agent-specific system prompts. This is correctly implemented.</td>
+        <td><span class="tag tag-green">MATCHES SPEC</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- CLIENT INTEGRATION -->
+<div class="section" id="client">
+  <div class="section-header"><h2>Knowledge Library & Edge Function Integration Detail</h2></div>
+
+  <div class="card">
+    <h3>How the Knowledge Library IS Deployed (File System)</h3>
+    <pre>~/.claude/skills/optimo-rcm/references/libraries/
+├── base/
+│   ├── human-truths.md          ← installed 2026-07-08
+│   ├── audience-intelligence.md
+│   ├── objections.md
+│   ├── visual-cognition.md
+│   ├── media-hierarchy.md
+│   ├── media-composition.md
+│   ├── ui-ux.md
+│   └── marketing-view.md
+├── engines/
+│   ├── narrative.md
+│   ├── persuasion.md
+│   ├── sales.md
+│   └── decision.md
+├── domain-packs/
+│   ├── venture/pack-manifest.md
+│   ├── product/pack-manifest.md
+│   ├── marketing/pack-manifest.md
+│   ├── media/pack-manifest.md
+│   └── research/pack-manifest.md
+└── library-registry.json</pre>
+
+    <h3 style="margin-top:14px;">How the Knowledge Library is NOT Integrated (Edge Function Gap)</h3>
+    <p>The Edge Function at <code>supabase/functions/rcm-engine/index.ts</code> contains <strong>zero references</strong> to any knowledge library. The perspective prompts are hardcoded strings — they don't load library content. The architecture for library integration <em>does not exist</em> in the codebase:</p>
+
+    <pre><span class="cm">// What the Edge Function CURRENTLY does:</span>
+const SYSTEM_PROMPTS = {
+  Explorer: "You are the EXPLORER perspective...",
+  <span class="cm">// ← No library content loaded here</span>
+};
+
+<span class="cm">// What it SHOULD do per spec §9, §11:</span>
+<span class="cm">// 1. Accept domainPack parameter</span>
+<span class="cm">// 2. Load corresponding library files from Deno.env or bundled assets</span>
+<span class="cm">// 3. Inject library content into each perspective's system prompt</span>
+<span class="cm">// 4. Apply Library Access Matrix (§11) to filter what each agent sees</span>
+
+<span class="cm">// Example of what this would look like:</span>
+const domainPack = input.domainPack || <span class="str">"venture"</span>;
+const libraries = DOMAIN_PACK_LIBRARIES[domainPack];
+<span class="cm">// libraries = { Explorer: ["human-truths", "audience-intelligence"],
+//               Evaluator: ["human-truths", "objections", "marketing-view"],
+//               ... }</span>
+
+const explorerPrompt = SYSTEM_PROMPTS.Explorer +
+  <span class="str">"\n\nKNOWLEDGE LIBRARIES:\n"</span> +
+  libraries.Explorer.map(loadLibrary).join(<span class="str">"\n"</span>);</pre>
+  </div>
+
+  <div class="card">
+    <h3>How the RCM Edge Function IS Integrated (Client-Side)</h3>
+    <pre><span class="cm">// src/lib/rcm-engine.ts — the bridge between app and Edge Function</span>
+
+<span class="kw">const</span> EDGE_FUNCTION_URL =
+  SUPABASE_URL ? <span class="str">`${SUPABASE_URL}/functions/v1/rcm-engine`</span> : <span class="str">""</span>;
+
+<span class="kw">export async function</span> runRcmAnalysis(profile, onPerspective) {
+  <span class="cm">// 1. Build goal string from founder profile</span>
+  <span class="kw">const</span> goal = buildGoal(profile);
+
+  <span class="cm">// 2. Fire Edge Function call (120s timeout)</span>
+  <span class="kw">const</span> realPromise = fetch(EDGE_FUNCTION_URL, {
+    method: <span class="str">"POST"</span>,
+    headers: { Authorization: <span class="str">`Bearer ${SUPABASE_ANON_KEY}`</span> },
+    body: JSON.stringify({
+      goal,                          <span class="cm">// ← "goal" not "objective" (spec §5)</span>
+      domainPack: <span class="str">"venture"</span>,         <span class="cm">// ← matches spec §16 domain packs</span>
+      depthTier: <span class="str">"standard"</span>,          <span class="cm">// ← NOT in spec — OptimoPR addition</span>
+      context: <span class="str">`Company: ${...}`</span>,     <span class="cm">// ← maps to spec's "Project State context"</span>
+      profileData: profile,          <span class="cm">// ← entire FounderProfile as JSON</span>
+    }),
+    signal: controller.signal,       <span class="cm">// ← 120s AbortController</span>
+  });
+
+  <span class="cm">// 3. Animate UI progress while Edge Function runs</span>
+  <span class="kw">for</span> (<span class="kw">let</span> i = 0; i &lt; 5; i++) {
+    <span class="kw">await</span> sleep(1500 + rand(500));
+    onPerspective?.(perspectiveNames[i], i);
+  }
+
+  <span class="cm">// 4. Await real result; fall back to mock on any failure</span>
+  <span class="kw">const</span> data = realPromise ? <span class="kw">await</span> realPromise : <span class="kw">null</span>;
+  <span class="kw">if</span> (data &amp;&amp; Array.isArray(data.perspectives)) {
+    <span class="kw">return</span> mapResponse(data);  <span class="cm">// Live Claude output</span>
+  }
+  <span class="kw">return</span> runRcmMock(profile);    <span class="cm">// Graceful degradation</span>
+}</pre>
+  </div>
+
+  <div class="card">
+    <h3>Data Flow: Intake → Edge Function → Dashboard</h3>
+    <table>
+      <tr><th>Spec Object</th><th>How Data Flows</th><th>Where It Lands</th></tr>
+      <tr><td><strong>User Input</strong></td><td><code>intake.tsx</code> 6-step wizard → <code>FounderProfile</code> TypeScript type</td><td><code>store.saveProfile()</code> → Supabase <code>profiles</code> + localStorage</td></tr>
+      <tr><td><strong>Goal/Objective</strong></td><td><code>buildGoal(profile)</code> assembles natural language string from profile fields</td><td>Edge Function <code>input.goal</code> field</td></tr>
+      <tr><td><strong>Domain Pack</strong></td><td>Hardcoded to <code>"venture"</code> in <code>runRcmAnalysis()</code></td><td>Edge Function <code>input.domainPack</code> — but only used for focus string, not library loading</td></tr>
+      <tr><td><strong>Perspective Outputs</strong></td><td>5 Claude calls → JSON responses → mapped to <code>PerspectiveOutput</code> type</td><td>Supabase <code>rcm_runs</code> → <code>explorer_output</code> through <code>social_output</code> JSONB columns</td></tr>
+      <tr><td><strong>RCM Score</strong></td><td>Average of 5 perspective confidence scores</td><td>Supabase <code>rcm_runs.rcm_score</code> + <code>RcmGauge</code> SVG component</td></tr>
+      <tr><td><strong>Narratives</strong></td><td>SYNTHESIZER Claude call → 5 narrative types in one JSON response</td><td>Supabase <code>rcm_runs.synthesis</code> JSONB column → Dashboard 5-tab render</td></tr>
+      <tr><td><strong>Risks</strong></td><td>Threat perspective → <code>{severity, label, action}[]</code></td><td>Dashboard Risk Panel with severity color coding</td></tr>
+      <tr><td><strong>Stakeholders</strong></td><td>Social perspective → <code>{audience, sentiment, note}[]</code></td><td>Dashboard Stakeholder Impact with sentiment bars</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- GAP ANALYSIS -->
+<div class="section" id="gaps">
+  <div class="section-header"><h2>Gap Analysis — Ranked by Impact</h2></div>
+
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>Gap</th><th>Spec Section</th><th>Impact</th><th>Fix Complexity</th><th>Recommendation</th></tr>
+      <tr>
+        <td><strong>1</strong></td>
+        <td><strong>No Recursive Loop</strong> — single-pass pipeline, no Project State → RCM Core → Project State recursion</td>
+        <td>§1, §3</td>
+        <td><span class="tag tag-red">CRITICAL</span></td>
+        <td>High — requires architectural restructure</td>
+        <td>Phase 2: Add "Refine" button on dashboard that re-runs RCM with prior output as input. This implements the recursive refinement loop without restructuring the single-pass pipeline.</td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td><strong>Knowledge Libraries Not Integrated</strong> — all 8 installed, zero loaded into Edge Function prompts</td>
+        <td>§9, §11</td>
+        <td><span class="tag tag-red">CRITICAL</span></td>
+        <td>Medium — bundle library content into Edge Function as TypeScript constants; load per Library Access Matrix</td>
+        <td>Phase 2: Create <code>supabase/functions/rcm-engine/libraries.ts</code> with condensed library content. Inject into perspective prompts per §11 access matrix.</td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td><strong>Specialist Engines Not Invoked</strong> — 4 engines installed, none integrated</td>
+        <td>§10, §12</td>
+        <td><span class="tag tag-red">HIGH</span></td>
+        <td>Medium — add engine invocation as optional Edge Function parameter</td>
+        <td>Phase 2: Narrative Engine for PR outputs, Persuasion Engine for pitch hooks. Add <code>engines: ["narrative", "persuasion"]</code> parameter to Edge Function.</td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td><strong>No Stage Workspaces</strong> — all agents run in one pass, no sequential stages with primary agents</td>
+        <td>§7</td>
+        <td><span class="tag tag-red">HIGH</span></td>
+        <td>High — restructures the analysis flow</td>
+        <td>Phase 3: Implement as optional "deep" mode where the user can step through each stage workspace sequentially.</td>
+      </tr>
+      <tr>
+        <td><strong>5</strong></td>
+        <td><strong>Project State Schema incomplete</strong> — 6 of 15 fields missing, 7 partial</td>
+        <td>§5</td>
+        <td><span class="tag tag-yellow">MEDIUM</span></td>
+        <td>Medium — extend Supabase schema + TypeScript types</td>
+        <td>Phase 2-3: Add Concepts, Evidence, Decisions, Constraints tables. Track confidence per object.</td>
+      </tr>
+      <tr>
+        <td><strong>6</strong></td>
+        <td><strong>No Cross-Agent Review</strong> — each concept not reviewed by all 5 agents</td>
+        <td>§8</td>
+        <td><span class="tag tag-yellow">MEDIUM</span></td>
+        <td>Medium — add pass where each agent reviews Explorer's concepts</td>
+        <td>Phase 3: Add cross-review pass after SYNTHESIZER. Each agent reviews the generated narratives.</td>
+      </tr>
+      <tr>
+        <td><strong>7</strong></td>
+        <td><strong>No Branching System</strong> — no concept forking, comparison, merging</td>
+        <td>§15</td>
+        <td><span class="tag tag-yellow">MEDIUM</span></td>
+        <td>Low — add Branch parent field to concepts</td>
+        <td>Phase 3: Enable "Regenerate with different angle" that creates a branch off the current RCM run.</td>
+      </tr>
+      <tr>
+        <td><strong>8</strong></td>
+        <td><strong>5-Dimension Scoring Not Implemented</strong> — no Novelty/Utility/Feasibility/Risk/Acceptance composite</td>
+        <td>§14</td>
+        <td><span class="tag tag-yellow">MEDIUM</span></td>
+        <td>Low — add scoring fields to perspective outputs</td>
+        <td>Phase 2: Each agent outputs its dimension score. Composite = weighted average per spec.</td>
+      </tr>
+      <tr>
+        <td><strong>9</strong></td>
+        <td><strong>No Permissions</strong> — public access on all tables</td>
+        <td>§17</td>
+        <td><span class="tag tag-yellow">MEDIUM</span></td>
+        <td>Low — implement Supabase RLS</td>
+        <td>Phase 2: Add user authentication + RLS policies matching spec roles (Owner, Editor, Reviewer, Approver, Viewer).</td>
+      </tr>
+      <tr>
+        <td><strong>10</strong></td>
+        <td><strong>No Approved Project State</strong> — no formal approval workflow</td>
+        <td>§18</td>
+        <td><span class="tag tag-green">LOW</span></td>
+        <td>Low — add status field</td>
+        <td>Phase 4: Add approval workflow when Accelerator program launches.</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<hr>
+<div class="card" style="text-align:center;padding:28px;">
+  <p style="font-size:1.05rem;color:var(--accent2);"><strong>Implementation Fidelity: ~42% of the RCM Master Specification</strong></p>
+  <p style="color:var(--text2);margin-top:6px;">
+    <strong>Fully implemented:</strong> RCM Core agents (5/5), AI Orchestration (5/5), Deliverables, Objective<br>
+    <strong>Partially implemented:</strong> Project State Schema (9/15 fields partial), Domain Packs (parameter accepted but unused), Exports (5 narrative types match Venture exports)<br>
+    <strong>Not implemented:</strong> Knowledge Layer integration (0/8), Specialist Engines (0/4), Recursive loop, Stage Workspaces, Branching, Scoring System, Permissions<br><br>
+    <strong>The core reasoning architecture is correct</strong> — 5 agents with dependency-aware parallelism, agent-specific Claude calls, structured JSON output.<br>
+    <strong>The knowledge integration layer is entirely absent</strong> — the most impactful gap given all libraries are installed and ready.<br>
+    <strong>The recursive loop (the "R" in RCM) is not implemented</strong> — single-pass only.<br><br>
+    <strong>Recommended Phase 2 priorities:</strong> 1) Knowledge library integration 2) Recursive refinement loop 3) Specialist engine invocation
+  </p>
+</div>
+
+</div>
+</body>
+</html>
